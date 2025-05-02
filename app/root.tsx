@@ -7,19 +7,29 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
-import "./tailwind.css";
+/* import "./tailwind.css"; */
 
 export const links: LinksFunction = () => [
+   { rel: "icon", href: "/assets/img/favicon.png" },
+  { rel: "apple-touch-icon", href: "/assets/img/apple-touch-icon.png" },
+
+  // 🎨 Fonts
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
+  { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Marcellus:wght@400&display=swap",
   },
+
+  // 🔥 Vendor CSS
+  { rel: "stylesheet", href: "/assets/vendor/bootstrap-icons/bootstrap-icons.css" },
+  { rel: "stylesheet", href: "/assets/vendor/aos/aos.css" },
+  /* { rel: "stylesheet", href: "/assets/vendor/swiper/swiper-bundle.min.css" }, */
+  { rel: "stylesheet", href: "/assets/vendor/glightbox/css/glightbox.min.css" },
+  
+  { rel: "stylesheet", href: "/assets/vendor/bootstrap/css/bootstrap.min.css" },
+  // 🌟 Main CSS
+  { rel: "stylesheet", href: "/assets/css/main.css" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
