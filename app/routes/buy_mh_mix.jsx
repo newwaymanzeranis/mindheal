@@ -56,7 +56,7 @@ return (
       <nav className="breadcrumbs">
         <ol>
           <li><a href="index.html">Home</a></li>
-          <li className="current">Blogs</li>
+          <li className="current">Buy Mind Heal Mix</li>
         </ol>
       </nav>
     </div>
