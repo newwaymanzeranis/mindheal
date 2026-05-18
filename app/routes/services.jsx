@@ -1,66 +1,16 @@
+import { Link } from "react-router";
 
+import PageTitle from "~/components/PageTitle";
 
-
-
-
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useEffect } from "react";
-
-export default function about(){
-
-  useEffect(() => {
-    const scripts = [
-      "/assets/vendor/aos/aos.js",
-    ];
-
-    let loadedScripts = 0;
-
-    scripts.forEach((src) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = true;
-      script.onload = () => {
-        loadedScripts++;
-        console.log(`${src} loaded`);
-        // Initialize AOS **only after** its script is loaded
-        if (src.includes("aos.js") && window.AOS) {
-          window.AOS.init();
-          console.log("AOS initialized!");
-        }
-      };
-      script.onerror = () => console.error(`Failed to load ${src}`);
-      document.body.appendChild(script);
-    });
-    return () => {
-      scripts.forEach((src) => {
-        const script = document.querySelector(`script[src="${src}"]`);
-        if (script) document.body.removeChild(script);
-      });
-    };
-
-  }, []);
-
-return (
-  <> 
-        {/* Header */}
-        <Header />
-       
-     {/* Services Section */}
-     <main className="main">
-  {/* Page Title */}
-  <div className="page-title dark-background" data-aos="fade" style={{backgroundImage: 'url(assets/img/page-title-bg.jpg)'}}>
-    <div className="container position-relative">
-      <h1>Services</h1>
-      <p>Your Healing Partner with Bach Flower Remedies - We provide professionally pre-mixed Bach Flower Remedies </p>
-      <nav className="breadcrumbs">
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li className="current">Services</li>
-        </ol>
-      </nav>
-    </div>
-  </div>{/* End Page Title */}
+export default function Services() {
+  return (
+    <main className="main">
+      <PageTitle
+        title="Services"
+        description="Your Healing Partner with Bach Flower Remedies - We provide professionally pre-mixed Bach Flower Remedies"
+        current="Services"
+        backgroundImage="/assets/img/page-title-bg.jpg"
+      />
   
   {/* services Section */}
   <section className="testimonials-12 testimonials section" id="testimonials">
@@ -194,11 +144,7 @@ return (
       </div>
     </div>
   </section>{/* /Call To Action Section */}
-</main>
-<Footer />
-  </>
 
-)
-
-
+    </main>
+  );
 }

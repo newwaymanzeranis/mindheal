@@ -9,7 +9,7 @@ export default function RemediesExpert(){
   <div className="container">
     <div className="row gy-4 justify-content-between align-items-center">
       <div className="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
-        <img src="assets/img/img_sq_1.jpeg" alt="Image" className="img-fluid" />
+        <img src="/assets/img/img_sq_1.jpeg" alt="Image" className="img-fluid" />
         <a href="#" className="glightbox pulsating-play-btn">
           <span className="play"><i className="bi bi-play-fill" /></span>
         </a>

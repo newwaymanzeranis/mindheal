@@ -1,41 +1,114 @@
-import { Link } from "@remix-run/react";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router";
 
-export default function Header(){
-return(
+import HeaderAuth from "~/components/HeaderAuth";
+import HeaderCart from "~/components/HeaderCart";
+import MobileMenu from "~/components/MobileMenu";
+
+function navClass({ isActive }) {
+  return isActive ? "active" : undefined;
+}
+
+export default function Header() {
+  const { pathname } = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+
+  const aboutContactActive =
+    pathname === "/about" || pathname === "/contact";
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setAboutOpen(false);
+    document.body.classList.remove("mobile-nav-active");
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.classList.remove("mobile-nav-active");
+  }, []);
+
+  return (
     <>
-<header id="header" className="header d-flex align-items-center position-relative">
-        <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-          <Link to="/" className="logo d-flex align-items-center">
-            <img src="/assets/img/logo.png" alt="AgriCulture" />
-          </Link>
-          <nav className="navmenu">
+      <header id="header" className="header d-flex align-items-center">
+        <div className="container-fluid container-xl d-flex align-items-center justify-content-between site-header-inner">
+          <NavLink to="/" className="logo d-flex align-items-center" end>
+            <img src="/assets/img/logo.png" alt="Mind Heal" />
+          </NavLink>
+
+          {/* Desktop navigation */}
+          <nav id="navmenu" className="navmenu site-nav-desktop">
             <ul>
-              <li><Link to="/" className="active">Home</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/services">Our Services</Link></li>
-              <li><Link to="/healing_stories">Healing Stories</Link></li>
-              <li><Link to="/buy_mh_mix">Buy MH Mix</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
-              {/* <li className="dropdown">
-                <a href="#"><span>Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
+              <li>
+                <NavLink to="/" end className={navClass}>
+                  Home
+                </NavLink>
+              </li>
+              <li
+                className={`dropdown${aboutContactActive ? " active" : ""}`}
+              >
+                <a href="#" onClick={(e) => e.preventDefault()}>
+                  <span>About & Contact</span>
+                  <i className="bi bi-chevron-down toggle-dropdown" aria-hidden />
+                </a>
                 <ul>
-                  <li><a href="#">Dropdown 1</a></li>
-                  <li className="dropdown">
-                    <a href="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                      <li><a href="#">Deep Dropdown 1</a></li>
-                      <li><a href="#">Deep Dropdown 2</a></li>
-                    </ul>
+                  <li>
+                    <NavLink to="/about" className={navClass}>
+                      About Us
+                    </NavLink>
                   </li>
-                  <li><a href="#">Dropdown 2</a></li>
+                  <li>
+                    <NavLink to="/contact" className={navClass}>
+                      Contact
+                    </NavLink>
+                  </li>
                 </ul>
-              </li> */}
-              <li><Link to="/contact">Contact</Link></li>
+              </li>
+              <li>
+                <NavLink to="/services" className={navClass}>
+                  Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/healing_stories" className={navClass}>
+                  Stories
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/buy_mh_mix" className={navClass}>
+                  Shop
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/blog" className={navClass}>
+                  Blog
+                </NavLink>
+              </li>
+              <HeaderAuth />
+              <li className="header-cart-item">
+                <HeaderCart />
+              </li>
             </ul>
-            <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav>
+
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="site-mobile-trigger"
+            aria-label="Open menu"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(true)}
+          >
+            <i className="bi bi-list" />
+          </button>
         </div>
       </header>
-      </>
-)
+
+      <MobileMenu
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        aboutOpen={aboutOpen}
+        setAboutOpen={setAboutOpen}
+      />
+    </>
+  );
 }

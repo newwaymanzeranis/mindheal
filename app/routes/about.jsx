@@ -1,66 +1,16 @@
+import { Link } from "react-router";
 
+import PageTitle from "~/components/PageTitle";
 
-
-
-
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useEffect } from "react";
-
-export default function about(){
-
-  useEffect(() => {
-    const scripts = [
-      "/assets/vendor/aos/aos.js",
-    ];
-
-    let loadedScripts = 0;
-
-    scripts.forEach((src) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = true;
-      script.onload = () => {
-        loadedScripts++;
-        console.log(`${src} loaded`);
-        // Initialize AOS **only after** its script is loaded
-        if (src.includes("aos.js") && window.AOS) {
-          window.AOS.init();
-          console.log("AOS initialized!");
-        }
-      };
-      script.onerror = () => console.error(`Failed to load ${src}`);
-      document.body.appendChild(script);
-    });
-    return () => {
-      scripts.forEach((src) => {
-        const script = document.querySelector(`script[src="${src}"]`);
-        if (script) document.body.removeChild(script);
-      });
-    };
-
-  }, []);
-
-return (
-  <> 
-        {/* Header */}
-        <Header />
-       
-     {/* Services Section */}
-     <main className="main">
-  {/* Page Title */}
-  <div className="page-title dark-background" data-aos="fade" style={{backgroundImage: 'url(assets/img/page-title-bg.webp)'}}>
-    <div className="container position-relative">
-      <h1>About</h1>
-      <p>Your Healing Partner with Bach Flower Remedies - We provide professionally pre-mixed Bach Flower Remedies </p>
-      <nav className="breadcrumbs">
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li className="current">About</li>
-        </ol>
-      </nav>
-    </div>
-  </div>{/* End Page Title */}
+export default function About() {
+  return (
+    <main className="main">
+      <PageTitle
+        title="About"
+        description="Your Healing Partner with Bach Flower Remedies - We provide professionally pre-mixed Bach Flower Remedies"
+        current="About"
+        backgroundImage="/assets/img/page-title-bg.webp"
+      />
   {/* About 3 Section */}
   <section id="about-3" className="about-3 section" style={{'padding-bottom':'0px'}}>
     <div className="container">
@@ -91,7 +41,7 @@ return (
             <li>Fear, anger, jealousy, guilt</li>
             <li>Sleeplessness and restlessness</li>
           </ul>
-          <a href="#"><h3>See All Products ➤</h3></a>
+          <Link to="/buy_mh_mix"><h3>See All Products ➤</h3></Link>
           <br />
 
          {/*  <p><a href="#" className="btn-cta">Get in touch</a></p> */}
@@ -112,7 +62,7 @@ return (
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="person">
               <figure>
-                <img src="assets/img/doctors/dr_zulfequar.jpg" alt="Image" className="img-fluid" />
+                <img src="/assets/img/doctors/dr_zulfequar.jpg" alt="Image" className="img-fluid" />
                 <div className="social">
                   <a href="#"><span className="bi bi-facebook" /></a>
                   <a href="#"><span className="bi bi-twitter-x" /></a>
@@ -128,7 +78,7 @@ return (
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="person">
               <figure>
-                <img src="assets/img/doctors/dr_zahir.jpg" alt="Image" className="img-fluid" />
+                <img src="/assets/img/doctors/dr_zahir.jpg" alt="Image" className="img-fluid" />
                 <div className="social">
                   <a href="#"><span className="bi bi-facebook" /></a>
                   <a href="#"><span className="bi bi-twitter-x" /></a>
@@ -144,7 +94,7 @@ return (
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="person">
               <figure>
-                <img src="assets/img/doctors/dr_talha.jpeg" alt="Image" className="img-fluid" />
+                <img src="/assets/img/doctors/dr_talha.jpeg" alt="Image" className="img-fluid" />
                 <div className="social">
                   <a href="#"><span className="bi bi-facebook" /></a>
                   <a href="#"><span className="bi bi-twitter-x" /></a>
@@ -160,7 +110,7 @@ return (
           <div className="col-lg-3 col-md-6 mb-4">
             <div className="person">
               <figure>
-                <img src="assets/img/team/team4.jpg" alt="Image" className="img-fluid" />
+                <img src="/assets/img/team/team4.jpg" alt="Image" className="img-fluid" />
                 <div className="social">
                   <a href="#"><span className="bi bi-facebook" /></a>
                   <a href="#"><span className="bi bi-twitter-x" /></a>
@@ -272,11 +222,7 @@ Start your journey with MIND HEAL — your mind deserves peace.</h4>
       </div>
     </div>
   </section>{/* /Call To Action Section */}
-</main>
-<Footer />
-  </>
 
-)
-
-
+    </main>
+  );
 }

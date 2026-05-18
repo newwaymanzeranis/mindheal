@@ -9,7 +9,7 @@ export default function WhyChooseUs(){
     <div className="container">
       <div className="row">
         <div className="col-lg-6 mb-4 mb-lg-0">
-          <img src="assets/img/img_long_5.jpg" alt="Image " className="img-fluid img-overlap" data-aos="zoom-out" />
+          <img src="/assets/img/img_long_5.jpg" alt="Image " className="img-fluid img-overlap" data-aos="zoom-out" />
         </div>
         <div className="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay={100}>
           <h3 className="content-subtitle text-white opacity-50 mt-5">Why Choose Us</h3>

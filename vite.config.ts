@@ -1,24 +1,28 @@
-import { vitePlugin as remix } from "@remix-run/dev";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-declare module "@remix-run/node" {
-  interface Future {
-    v3_singleFetch: true;
-  }
-}
+const appDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [
-    remix({
-      future: {
-        v3_fetcherPersist: true,
-        v3_relativeSplatPath: true,
-        v3_throwAbortReason: true,
-        v3_singleFetch: true,
-        v3_lazyRouteDiscovery: true,
+  plugins: [reactRouter(), tsconfigPaths()],
+  resolve: {
+    alias: {
+      "~": path.resolve(appDirectory, "app"),
+    },
+  },
+  server: {
+    // 5173 is often taken by other Vite apps; use a dedicated port for Mind Heal
+    port: 5175,
+    strictPort: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:4000",
+        changeOrigin: true,
       },
-    }),
-    tsconfigPaths(),
-  ],
+    },
+  },
 });
