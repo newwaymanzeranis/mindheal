@@ -8,7 +8,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 const appDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [reactRouter(), tsconfigPaths()],
+  plugins: [reactRouter(), tsconfigPaths(), vercel({
+    presets: [vercelPreset()],
+  })],
   resolve: {
     alias: {
       "~": path.resolve(appDirectory, "app"),
