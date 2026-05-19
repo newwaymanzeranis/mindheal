@@ -8,8 +8,8 @@ import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
 
-export async function loader() {
-  const products = await fetchProducts("published=true&limit=50");
+export async function loader({ request }) {
+  const products = await fetchProducts("published=true&limit=50", { request });
   return { products };
 }
 

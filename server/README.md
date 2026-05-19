@@ -18,7 +18,7 @@ Backend for the Bach Flower / Mind Heal project.
 ```bash
 cd server
 cp .env.example .env
-# Edit DATABASE_URL for your MySQL mind_heal database
+# .env = localhost MySQL for local dev (do not change for day-to-day dev)
 npm install
 npm run db:generate
 npm run db:push
@@ -27,6 +27,31 @@ npm run dev
 ```
 
 API runs at `http://localhost:4000`
+
+## Production DB (remote MySQL)
+
+Local `.env` stays on **localhost**. Production uses `server/.env.production` (gitignored).
+
+```bash
+# Run API against remote DB (same credentials as Vercel API env)
+npm run dev:remote
+# or
+npm run start:production
+```
+
+### Vercel / hosted API environment variables
+
+Set on the **API** deployment (not only the frontend):
+
+| Variable | Value |
+|----------|--------|
+| `DATABASE_URL` | `mysql://u108457690_mhdb:Root%21%40%23123mhdb@194.59.164.73:3306/u108457690_mhdb` |
+| `CLIENT_URL` | Your Vercel site URL |
+| `JWT_SECRET` | Same as local or a new production secret |
+
+Password in URL must be encoded: `Root!@#123mhdb` → `Root%21%40%23123mhdb`
+
+Remote DB already has tables (`users`, `product`, `posts`, etc.).
 
 ## Auth
 

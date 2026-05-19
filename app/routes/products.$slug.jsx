@@ -10,8 +10,8 @@ import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
 
-export async function loader({ params }) {
-  const product = await fetchProductBySlug(params.slug);
+export async function loader({ params, request }) {
+  const product = await fetchProductBySlug(params.slug, { request });
   if (!product) {
     throw new Response("Product not found", { status: 404 });
   }

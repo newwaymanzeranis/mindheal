@@ -1,9 +1,54 @@
-const API_BASE =
-  process.env.API_INTERNAL_URL ||
-  process.env.VITE_API_URL ||
-  "http://127.0.0.1:4000/api";
+/** @param {string} base */
+function normalizeApiBase(base) {
+  const trimmed = base.trim().replace(/\/$/, "");
+  if (!trimmed) return "";
+  return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`;
+}
 
-export async function fetchApi(path) {
+/**
+ * API base for server-side loaders (SSR on Vercel, local dev, etc.).
+ * @param {Request | undefined} request
+ */
+export function resolveApiBase(request) {
+  const fromEnv =
+    process.env.API_INTERNAL_URL ||
+    process.env.VITE_API_URL ||
+    process.env.VITE_API_BASE_URL;
+
+  if (fromEnv) {
+    return normalizeApiBase(fromEnv);
+  }
+
+  // Same-origin /api (works with Vite proxy locally and Vercel rewrites in production)
+  if (request) {
+    return `${new URL(request.url).origin}/api`;
+  }
+
+  if (process.env.VERCEL_URL) {
+    const host = process.env.VERCEL_URL.replace(/^https?:\/\//, "");
+    return `https://${host}/api`;
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    return "http://127.0.0.1:4000/api";
+  }
+
+  return "";
+}
+
+/**
+ * @param {string} path
+ * @param {{ request?: Request }} [options]
+ */
+export async function fetchApi(path, { request } = {}) {
+  const API_BASE = resolveApiBase(request);
+  if (!API_BASE) {
+    console.error(
+      `API fetch failed ${path}: set API_INTERNAL_URL or VITE_API_URL to your public API (e.g. https://api.example.com/api)`
+    );
+    return null;
+  }
+
   const url = `${API_BASE.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 
   try {
@@ -22,28 +67,28 @@ export async function fetchApi(path) {
   }
 }
 
-export async function fetchPosts(params = "published=true&limit=50") {
-  const data = await fetchApi(`/posts?${params}`);
+export async function fetchPosts(params = "published=true&limit=50", options = {}) {
+  const data = await fetchApi(`/posts?${params}`, options);
   return data?.posts ?? [];
 }
 
-export async function fetchPostBySlug(slug) {
-  return fetchApi(`/posts/slug/${slug}`);
+export async function fetchPostBySlug(slug, options = {}) {
+  return fetchApi(`/posts/slug/${slug}`, options);
 }
 
-export async function fetchProducts(params = "published=true&limit=50") {
-  const data = await fetchApi(`/products?${params}`);
+export async function fetchProducts(params = "published=true&limit=50", options = {}) {
+  const data = await fetchApi(`/products?${params}`, options);
   return data?.products ?? [];
 }
 
-export async function fetchTestimonials() {
-  return (await fetchApi("/testimonials")) ?? [];
+export async function fetchTestimonials(options = {}) {
+  return (await fetchApi("/testimonials", options)) ?? [];
 }
 
-export async function fetchHomeSlides() {
-  return (await fetchApi("/home-slides")) ?? [];
+export async function fetchHomeSlides(options = {}) {
+  return (await fetchApi("/home-slides", options)) ?? [];
 }
 
-export async function fetchProductBySlug(slug) {
-  return fetchApi(`/products/slug/${slug}`);
+export async function fetchProductBySlug(slug, options = {}) {
+  return fetchApi(`/products/slug/${slug}`, options);
 }

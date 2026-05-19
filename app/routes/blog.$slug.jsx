@@ -8,8 +8,8 @@ import blogCss from "~/styles/blog.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: blogCss }];
 
-export async function loader({ params }) {
-  const post = await fetchPostBySlug(params.slug);
+export async function loader({ params, request }) {
+  const post = await fetchPostBySlug(params.slug, { request });
   if (!post) {
     throw new Response("Post not found", { status: 404 });
   }

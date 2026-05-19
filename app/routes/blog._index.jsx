@@ -4,8 +4,10 @@ import PageTitle from "~/components/PageTitle";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
 
-export async function loader() {
-  const posts = await fetchPosts("published=true&limit=50&categorySlug=bach-flower");
+export async function loader({ request }) {
+  const posts = await fetchPosts("published=true&limit=50&categorySlug=bach-flower", {
+    request,
+  });
   return { posts };
 }
 

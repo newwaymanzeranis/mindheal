@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/index.js",
+    "dev:remote": "node --env-file=.env.production --watch src/index.js",
     "start": "node src/index.js",
+    "start:production": "node --env-file=.env.production src/index.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",

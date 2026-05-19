@@ -3,8 +3,10 @@ import { useLoaderData } from "react-router";
 import PageTitle from "~/components/PageTitle";
 import { fetchPosts } from "~/lib/fetchApi.server";
 
-export async function loader() {
-  const stories = await fetchPosts("published=true&limit=50&categorySlug=healing-stories");
+export async function loader({ request }) {
+  const stories = await fetchPosts("published=true&limit=50&categorySlug=healing-stories", {
+    request,
+  });
   return { stories };
 }
 

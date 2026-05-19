@@ -17,12 +17,13 @@ import {
 } from "~/lib/fetchApi.server";
 import { initHomePage } from "~/utils/siteInit";
 
-export async function loader() {
+export async function loader({ request }) {
+  const opts = { request };
   const [slides, posts, products, testimonials] = await Promise.all([
-    fetchHomeSlides(),
-    fetchPosts("published=true&limit=3&categorySlug=bach-flower"),
-    fetchProducts("published=true&limit=50"),
-    fetchTestimonials(),
+    fetchHomeSlides(opts),
+    fetchPosts("published=true&limit=3&categorySlug=bach-flower", opts),
+    fetchProducts("published=true&limit=50", opts),
+    fetchTestimonials(opts),
   ]);
 
   return { slides, posts, products, testimonials };
