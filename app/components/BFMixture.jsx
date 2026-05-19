@@ -14,7 +14,7 @@ export default function BFMixture({ products = [] }) {
             <Link to="/buy_mh_mix"> EXPLORE ALL COMBINATIONS ➤</Link>
           </blink>
         </h1>
-        <p>Providing Pre-Mixed Bach Flower Remedies for Your Well-Being</p>
+        <p>Providing Pre-Mixed Bach Flower Remedies for Your Well-Being </p>
       </div>
       <div className="content">
         <div className="container">
@@ -37,7 +37,7 @@ export default function BFMixture({ products = [] }) {
                   <div className="service-item-content">
                     <h3 className="service-heading">{product.name}</h3>
                     <h6 className="text-right">
-                      <Link to={`/products/${product.slug}`}>Read More...</Link>
+                      <Link to={`/products/${product.slug}`}>Read More....</Link>
                     </h6>
                   </div>
                 </div>
