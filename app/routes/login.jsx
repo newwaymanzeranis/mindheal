@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 
 import PageTitle from "~/components/PageTitle";
 import { useAuth } from "~/context/AuthContext";
+import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
 
 import cartCss from "~/styles/cart.css?url";
 
@@ -12,17 +13,18 @@ export default function LoginPage() {
   const { login, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/checkout";
+  const redirect = normalizeRedirect(searchParams.get("redirect"));
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  if (!authLoading && isAuthenticated) {
-    navigate(redirect, { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      navigate(redirect, { replace: true });
+    }
+  }, [authLoading, isAuthenticated, redirect, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +40,19 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  if (!authLoading && isAuthenticated) {
+    return (
+      <main className="main">
+        <section className="section">
+          <div className="container text-center py-5">
+            <div className="spinner-border text-success" role="status" />
+            <p className="text-muted mt-3 mb-0">Continuing…</p>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="main">
@@ -100,7 +115,7 @@ export default function LoginPage() {
 
                 <p className="text-center small text-muted mt-4 mb-0">
                   New here?{" "}
-                  <Link to={`/register?redirect=${encodeURIComponent(redirect)}`}>
+                  <Link to={buildAuthRedirectUrl("/register", redirect)}>
                     Create an account
                   </Link>
                 </p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 import PageTitle from "~/components/PageTitle";
@@ -18,14 +18,23 @@ function CheckoutForm() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    shippingName: user?.name || "",
-    phone: user?.phone || "",
+    shippingName: "",
+    phone: "",
     shippingAddress: "",
     city: "",
     state: "",
     pincode: "",
     notes: "",
   });
+
+  useEffect(() => {
+    if (!user) return;
+    setForm((prev) => ({
+      ...prev,
+      shippingName: prev.shippingName || user.name || "",
+      phone: prev.phone || user.phone || "",
+    }));
+  }, [user]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 

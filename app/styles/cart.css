@@ -111,6 +111,24 @@
   flex: 1;
   min-width: 140px;
   font-weight: 600;
+  position: relative;
+}
+
+.mix-btn-cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  background: #dc2626;
+  border-radius: 10px;
+  pointer-events: none;
 }
 
 .mix-btn-cart--added {

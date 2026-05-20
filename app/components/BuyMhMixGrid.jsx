@@ -6,7 +6,7 @@ import { useCart } from "~/context/CartContext";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
 
 export default function BuyMhMixGrid({ products = [] }) {
-  const { addToCart } = useCart();
+  const { addToCart, cartCount, hydrated } = useCart();
   const [addedId, setAddedId] = useState(null);
 
   const handleAdd = (product) => {
@@ -43,6 +43,11 @@ export default function BuyMhMixGrid({ products = [] }) {
                     }`}
                   />
                   {addedId === product.id ? "Added" : "Add to Cart"}
+                  {hydrated && cartCount > 0 && (
+                    <span className="mix-btn-cart-badge" aria-hidden>
+                      {cartCount > 99 ? "99+" : cartCount}
+                    </span>
+                  )}
                 </button>
                 <Link
                   to={`/products/${product.slug}`}

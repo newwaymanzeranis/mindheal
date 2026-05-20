@@ -5,6 +5,7 @@ import ProductPrice from "~/components/ProductPrice";
 import { useAuth } from "~/context/AuthContext";
 import { useCart } from "~/context/CartContext";
 import { formatPrice, productMindHealLabel } from "~/utils/format";
+import { buildAuthRedirectUrl } from "~/utils/navigation";
 
 import cartCss from "~/styles/cart.css?url";
 
@@ -23,9 +24,8 @@ export default function CartPage() {
     clearCart,
   } = useCart();
 
-  const checkoutHref = isAuthenticated
-    ? "/checkout"
-    : `/login?redirect=${encodeURIComponent("/checkout")}`;
+  const loginHref = buildAuthRedirectUrl("/login", "/checkout");
+  const registerHref = buildAuthRedirectUrl("/register", "/checkout");
 
   if (!hydrated) {
     return (
@@ -154,9 +154,23 @@ export default function CartPage() {
                   <p className="cart-summary-note small text-muted">
                     MRP ₹400 per mix · Special price ₹250 each
                   </p>
-                  <Link to={checkoutHref} className="btn btn-success w-100 mt-3">
-                    {isAuthenticated ? "Proceed to Checkout (COD)" : "Login to Checkout"}
-                  </Link>
+                  {isAuthenticated ? (
+                    <Link to="/checkout" className="btn btn-success w-100 mt-3">
+                      Proceed to Checkout (COD)
+                    </Link>
+                  ) : (
+                    <>
+                      <Link to={loginHref} className="btn btn-success w-100 mt-3">
+                        Login to Checkout
+                      </Link>
+                      <Link
+                        to={registerHref}
+                        className="btn btn-outline-success w-100 mt-2"
+                      >
+                        Create Account & Checkout
+                      </Link>
+                    </>
+                  )}
                   <Link to="/buy_mh_mix" className="btn btn-outline-success w-100 mt-2">
                     Continue Shopping
                   </Link>

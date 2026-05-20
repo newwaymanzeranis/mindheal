@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Link, NavLink } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
+import { useCart } from "~/context/CartContext";
 
 function navClass({ isActive }) {
   return isActive ? "active" : undefined;
@@ -10,6 +11,7 @@ function navClass({ isActive }) {
 
 export default function MobileMenu({ open, onClose, aboutOpen, setAboutOpen }) {
   const { user, isAuthenticated, loading, logout } = useAuth();
+  const { cartCount, hydrated } = useCart();
 
   useEffect(() => {
     if (!open) return;
@@ -112,7 +114,12 @@ export default function MobileMenu({ open, onClose, aboutOpen, setAboutOpen }) {
 
           <Link to="/cart" className="site-mobile-cart" onClick={onClose}>
             <i className="bi bi-cart3" />
-            View Cart
+            <span>View Cart</span>
+            {hydrated && cartCount > 0 && (
+              <span className="site-mobile-cart-count">
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
           </Link>
         </nav>
       </div>

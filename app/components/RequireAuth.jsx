@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
+import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
 
 export default function RequireAuth({ children }) {
   const { isAuthenticated, loading } = useAuth();
@@ -10,10 +11,10 @@ export default function RequireAuth({ children }) {
 
   useEffect(() => {
     if (loading || isAuthenticated) return;
-    const redirect = encodeURIComponent(
+    const returnTo = normalizeRedirect(
       `${location.pathname}${location.search}`
     );
-    navigate(`/login?redirect=${redirect}`, { replace: true });
+    navigate(buildAuthRedirectUrl("/login", returnTo), { replace: true });
   }, [isAuthenticated, loading, location, navigate]);
 
   if (loading) {
@@ -24,7 +25,14 @@ export default function RequireAuth({ children }) {
     );
   }
 
-  if (!isAuthenticated) return null;
+  if (!isAuthenticated) {
+    return (
+      <div className="text-center py-5">
+        <div className="spinner-border text-success" role="status" />
+        <p className="text-muted mt-3 mb-0">Redirecting to login…</p>
+      </div>
+    );
+  }
 
   return children;
 }

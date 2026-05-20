@@ -90,16 +90,18 @@ export default function Header() {
             </ul>
           </nav>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="site-mobile-trigger"
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen(true)}
-          >
-            <i className="bi bi-list" />
-          </button>
+          <div className="site-mobile-actions">
+            <HeaderCart />
+            <button
+              type="button"
+              className="site-mobile-trigger"
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(true)}
+            >
+              <i className="bi bi-list" />
+            </button>
+          </div>
         </div>
       </header>
 
