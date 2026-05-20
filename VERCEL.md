@@ -1,6 +1,8 @@
 # Vercel deploy — data / DB fix
 
-Frontend **aur** API ab ek hi Vercel project par chal sakte hain (`api/index.mjs`).
+Frontend **aur** API ab ek hi Vercel project par chal sakte hain (`api/index.js`).
+
+**Build error fix:** `vercel.json` mein `functions.api/index.mjs` mat likho — Vercel sirf `api/**/*.js` detect karta hai.
 
 ## Vercel → Settings → Environment Variables
 
