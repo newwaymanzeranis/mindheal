@@ -41,8 +41,31 @@ app.use(express.urlencoded({ extended: true }));
 
 const clientUrl = process.env.CLIENT_URL || "http://localhost:5175";
 
-app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "Mind Heal API is running" });
+app.get("/api/health", async (req, res) => {
+  const hasDbUrl = Boolean(process.env.DATABASE_URL);
+  if (!hasDbUrl) {
+    return res.status(503).json({
+      success: false,
+      message: "DATABASE_URL is not set (add it in Vercel → Environment Variables)",
+      database: "missing",
+    });
+  }
+
+  try {
+    const { prisma } = await import("./lib/prisma.js");
+    await prisma.$queryRaw`SELECT 1`;
+    return res.json({
+      success: true,
+      message: "Mind Heal API is running",
+      database: "connected",
+    });
+  } catch (error) {
+    return res.status(503).json({
+      success: false,
+      message: error.message || "Database connection failed",
+      database: "error",
+    });
+  }
 });
 
 // Admin UI lives on the React app (Vite), not on this API server

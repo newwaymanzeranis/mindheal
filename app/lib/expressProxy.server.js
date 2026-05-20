@@ -6,8 +6,11 @@ import { config } from "dotenv";
 
 import app from "../../server/src/app.js";
 
-const appDir = path.dirname(fileURLToPath(import.meta.url));
-config({ path: path.resolve(appDir, "../../server/.env") });
+// Local dev only — on Vercel use dashboard env vars (DATABASE_URL, etc.)
+if (!process.env.VERCEL) {
+  const appDir = path.dirname(fileURLToPath(import.meta.url));
+  config({ path: path.resolve(appDir, "../../server/.env") });
+}
 
 const globalKey = "__mindHealExpressServer";
 
