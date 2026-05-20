@@ -13,9 +13,26 @@ import testimonialRoutes from "./routes/testimonialRoutes.js";
 
 const app = express();
 
+function corsOrigins() {
+  const list = [
+    process.env.CLIENT_URL,
+    process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
+    process.env.VERCEL_BRANCH_URL,
+    "http://localhost:5175",
+  ].filter(Boolean);
+  return [...new Set(list)];
+}
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5175",
+    origin(origin, callback) {
+      const allowed = corsOrigins();
+      if (!origin || allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, allowed[0] || true);
+      }
+    },
     credentials: true,
   })
 );

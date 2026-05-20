@@ -25,7 +25,7 @@ Deploy the `build/server` and `build/client` output directories.
 The frontend SSR calls the Express API during page load. On Vercel there is **no** API on `localhost:4000`.
 
 1. Deploy `server/` somewhere public (Railway, Render, VPS, etc.) with MySQL and `DATABASE_URL`.
-2. On the API host, set `CLIENT_URL` to your Vercel site (e.g. `https://your-app.vercel.app`).
+2. On the API host, set `CLIENT_URL` to `https://mindheal-psi.vercel.app`.
 3. In **Vercel → Project → Settings → Environment Variables**, add:
 
    | Variable | Example |

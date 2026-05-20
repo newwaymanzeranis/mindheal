@@ -4,16 +4,23 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
+    "build": "prisma generate && react-router build",
     "dev": "react-router dev",
+    "db:generate": "prisma generate",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "@react-router/node": "^7.15.1",
     "@react-router/serve": "^7.15.1",
     "aos": "^2.3.4",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "isbot": "^4.1.0",
     "qrcode": "^1.5.4",
     "react": "^18.2.0",
@@ -22,6 +29,7 @@
     "swiper": "^11.2.6"
   },
   "devDependencies": {
+    "prisma": "^6.5.0",
     "@react-router/dev": "^7.15.1",
     "@react-router/fs-routes": "^7.15.1",
     "@types/react": "^18.2.20",
@@ -43,5 +51,8 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "prisma": {
+    "schema": "server/prisma/schema.prisma"
   }
 }
