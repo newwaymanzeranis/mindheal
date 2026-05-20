@@ -1,8 +1,7 @@
 # Vercel deploy — data / DB fix
 
-Frontend **aur** API ab ek hi Vercel project par chal sakte hain (`api/index.js`).
-
-**Build error fix:** `vercel.json` mein `functions.api/index.mjs` mat likho — Vercel sirf `api/**/*.js` detect karta hai.
+API ab React Router ke through chalti hai (`app/routes/api.$.jsx` + `entry.server.tsx`),  
+**`api/` folder Vercel par kaam nahi karti** jab React Router deploy ho.
 
 ## Vercel → Settings → Environment Variables
 
