@@ -127,20 +127,24 @@ function buildSlipHtml(order, siteUrl, qrDataUrl, whiteLogoDataUrl, watermarkLog
     }
     .head-brand {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
     }
     .head-logo {
       width: auto;
-      max-width: 52px;
-      max-height: 44px;
+      max-width: 200px;
+      max-height: 56px;
       height: auto;
       object-fit: contain;
+      display: block;
     }
-    .head-text { text-align: left; }
-    .head h1 { font-size: 14px; letter-spacing: 0.5px; line-height: 1.2; }
-    .head p { font-size: 9px; opacity: 0.9; margin-top: 2px; }
+    .head-tagline {
+      font-size: 9px;
+      opacity: 0.92;
+      letter-spacing: 0.2px;
+    }
     .body {
       padding: 10px;
       position: relative;
@@ -263,10 +267,7 @@ function buildSlipHtml(order, siteUrl, qrDataUrl, whiteLogoDataUrl, watermarkLog
     <div class="head">
       <div class="head-brand">
         <img src="${logoSrc}" alt="Mind Heal" class="head-logo" />
-        <div class="head-text">
-          <h1>MIND HEAL</h1>
-          <p>Bach Flower Remedies · Delivery Slip</p>
-        </div>
+        <p class="head-tagline">Bach Flower Remedies · Delivery Slip</p>
       </div>
     </div>
     <div class="body">
