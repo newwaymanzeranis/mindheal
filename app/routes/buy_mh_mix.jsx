@@ -2,14 +2,16 @@ import { useLoaderData } from "react-router";
 
 import BuyMhMixGrid from "~/components/BuyMhMixGrid";
 import PageTitle from "~/components/PageTitle";
-import { fetchProducts } from "~/lib/fetchApi.server";
+import { fetchAllProducts } from "~/lib/fetchApi.server";
 
 import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
 
 export async function loader({ request }) {
-  const products = await fetchProducts("published=true&limit=50", { request });
+  const products = (await fetchAllProducts("published=true", { request })).sort(
+    (a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)
+  );
   return { products };
 }
 

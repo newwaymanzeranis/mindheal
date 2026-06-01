@@ -8,8 +8,7 @@ Backend for the Bach Flower / Mind Heal project.
 - `blog_category`
 - `posts`
 - `posts_category` (post ↔ category many-to-many)
-- `emotional_tags`
-- `product` (`mind_heal_no`, `emotional_tag_id` on product)
+- `product` (`mind_heal_no`, `short_description`, `emotional_tags` comma-separated text on product)
 - `testimonials`
 - `home_slides`
 
@@ -76,8 +75,7 @@ Use header: `Authorization: Bearer <token>` for admin routes.
 - `GET /api/blog-categories`
 - `GET /api/posts?published=true`
 - `GET /api/posts/slug/:slug`
-- `GET /api/emotional-tags`
-- `GET /api/products`
+- `GET /api/products` (optional filter: `?tag=anxiety` searches `emotional_tags` text)
 - `GET /api/products/slug/:slug`
 - `GET /api/testimonials`
 

@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router";
 
 import PageTitle from "~/components/PageTitle";
 import ProductAddToCart from "~/components/ProductAddToCart";
+import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
 import { fetchProductBySlug } from "~/lib/fetchApi.server";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
@@ -20,12 +21,17 @@ export async function loader({ params, request }) {
 
 export default function ProductDetail() {
   const { product } = useLoaderData();
+  const showHealingNote =
+    product.description &&
+    product.description.trim() !== (product.shortDescription || "").trim();
 
   return (
     <main className="main">
       <PageTitle
         title={product.name}
-        description={product.description || product.name}
+        description={
+          product.shortDescription || product.description || product.name
+        }
         current="Products"
         backgroundImage="/assets/img/page-title-bg.jpg"
       />
@@ -45,22 +51,26 @@ export default function ProductDetail() {
                 {productMindHealLabel(product.mindHealNo, product.sortOrder)}
               </p>
               <h1 className="mb-3">{product.name}</h1>
-              {product.description && (
-                <p className="lead">{product.description}</p>
+              {product.shortDescription && (
+                <p className="lead product-short-lead">{product.shortDescription}</p>
               )}
               <ProductPrice product={product} size="lg" />
-              {product.emotionalTag && (
-                <div className="mt-3">
-                  <strong>Tag: </strong>
-                  <span className="badge bg-light text-dark">{product.emotionalTag.name}</span>
-                </div>
-              )}
+              <ProductEmotionalTags
+                emotionalTags={product.emotionalTags}
+                className="mt-3"
+              />
               <ProductAddToCart product={product} />
               <div className="mt-2">
                 <Link to="/contact" className="btn btn-link text-success p-0">
                   Need help ordering? Contact us →
                 </Link>
               </div>
+              {showHealingNote && (
+                <div className="product-healing-note mt-4 pt-4 border-top">
+                  <h2 className="h5 mb-3">Healing Note</h2>
+                  <p className="lead product-healing-lead mb-0">{product.description}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

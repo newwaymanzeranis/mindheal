@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 
+import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import { imageSrc, productMixLabel } from "~/utils/format";
 
 export default function BFMixture({ products = [] }) {
@@ -26,16 +27,19 @@ export default function BFMixture({ products = [] }) {
                     <div style={{ padding: "10px" }}>
                       {productMixLabel(product.mindHealNo, product.sortOrder)}
                     </div>
-                    <div className="service-item-icon">
+                    <div className="service-item-icon bf-mixture-img">
                       <img
                         src={imageSrc(product.image)}
                         alt={product.name}
-                        style={{ width: "100%" }}
                       />
                     </div>
                   </div>
                   <div className="service-item-content">
                     <h3 className="service-heading">{product.name}</h3>
+                    <ProductEmotionalTags
+                      emotionalTags={product.emotionalTags}
+                      className="mb-2 gap-0"
+                    />
                     <h6 className="text-right">
                       <Link to={`/products/${product.slug}`}>Read More....</Link>
                     </h6>

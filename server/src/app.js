@@ -4,7 +4,6 @@ import express from "express";
 import { errorHandler } from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
 import blogCategoryRoutes from "./routes/blogCategoryRoutes.js";
-import emotionalTagRoutes from "./routes/emotionalTagRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import homeSlideRoutes from "./routes/homeSlideRoutes.js";
@@ -76,7 +75,6 @@ app.get(/^\/admin(\/.*)?$/, (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/blog-categories", blogCategoryRoutes);
 app.use("/api/posts", postRoutes);
-app.use("/api/emotional-tags", emotionalTagRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/home-slides", homeSlideRoutes);

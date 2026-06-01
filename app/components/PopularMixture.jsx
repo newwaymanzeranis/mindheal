@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 
+import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import { imageSrc } from "~/utils/format";
 
 export default function PopularMixture({ products = [] }) {
@@ -81,6 +82,10 @@ export default function PopularMixture({ products = [] }) {
                       <Link to={`/products/${product.slug}`}>
                         <span className="service-item-category">Our Popular Mixture</span>
                         <h2 className="service-item-title">{product.name}</h2>
+                        <ProductEmotionalTags
+                          emotionalTags={product.emotionalTags}
+                          className="mt-2"
+                        />
                       </Link>
                     </div>
                     <img

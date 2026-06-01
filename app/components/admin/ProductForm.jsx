@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 
-import { productsApi, tagsApi } from "~/lib/api";
+import { productsApi } from "~/lib/api";
 import { slugify } from "~/utils/slugify";
 
 const empty = {
@@ -9,26 +9,22 @@ const empty = {
   slug: "",
   mindHealNo: "",
   description: "",
+  shortDescription: "",
   mrp: "400",
   price: "250",
   image: "",
   published: true,
   sortOrder: 0,
-  emotionalTagId: "",
+  emotionalTags: "",
 };
 
 export default function ProductForm({ productId }) {
   const navigate = useNavigate();
   const isEdit = Boolean(productId);
   const [form, setForm] = useState(empty);
-  const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(isEdit);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    tagsApi.list().then(setTags).catch(() => {});
-  }, []);
 
   useEffect(() => {
     if (!isEdit) return;
@@ -40,12 +36,13 @@ export default function ProductForm({ productId }) {
           slug: product.slug || "",
           mindHealNo: product.mindHealNo || "",
           description: product.description || "",
+          shortDescription: product.shortDescription || "",
           mrp: product.mrp != null ? String(product.mrp) : "400",
           price: product.price != null ? String(product.price) : "250",
           image: product.image || "",
           published: product.published ?? true,
           sortOrder: product.sortOrder ?? 0,
-          emotionalTagId: product.emotionalTagId ? String(product.emotionalTagId) : "",
+          emotionalTags: product.emotionalTags || "",
         });
       })
       .catch((e) => setError(e.message))
@@ -68,12 +65,13 @@ export default function ProductForm({ productId }) {
       slug: form.slug,
       mindHealNo: form.mindHealNo.trim(),
       description: form.description,
+      shortDescription: form.shortDescription.trim() || null,
       mrp: form.mrp ? Number(form.mrp) : 400,
       price: form.price ? Number(form.price) : 250,
       image: form.image,
       published: form.published,
       sortOrder: Number(form.sortOrder),
-      emotionalTagId: form.emotionalTagId ? Number(form.emotionalTagId) : null,
+      emotionalTags: form.emotionalTags.trim() || null,
     };
 
     try {
@@ -130,13 +128,39 @@ export default function ProductForm({ productId }) {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Description</label>
+              <label className="form-label">Short Description</label>
+              <textarea
+                className="form-control"
+                rows={2}
+                placeholder="Brief summary for cards and listing pages"
+                value={form.shortDescription}
+                onChange={(e) => update("shortDescription", e.target.value)}
+              />
+              <small className="text-muted">
+                Short line shown on product cards and page header. Full description below is optional.
+              </small>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Full Description</label>
               <textarea
                 className="form-control"
                 rows={5}
                 value={form.description}
                 onChange={(e) => update("description", e.target.value)}
               />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Emotional Tags</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="ocd, anxiety, repetitive-thoughts, mental-loop, overthinking"
+                value={form.emotionalTags}
+                onChange={(e) => update("emotionalTags", e.target.value)}
+              />
+              <small className="text-muted">
+                Comma-separated tags (no link to other tables). Shown on product cards and detail page.
+              </small>
             </div>
           </div>
           <div className="col-md-4">
@@ -181,21 +205,6 @@ export default function ProductForm({ productId }) {
                 value={form.image}
                 onChange={(e) => update("image", e.target.value)}
               />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Emotional Tag</label>
-              <select
-                className="form-select"
-                value={form.emotionalTagId}
-                onChange={(e) => update("emotionalTagId", e.target.value)}
-              >
-                <option value="">— None —</option>
-                {tags.map((tag) => (
-                  <option key={tag.id} value={tag.id}>
-                    {tag.name}
-                  </option>
-                ))}
-              </select>
             </div>
             <div className="form-check mb-3">
               <input

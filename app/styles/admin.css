@@ -925,6 +925,24 @@
   padding: 24px;
 }
 
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #e8ecf1;
+  background: #fafbfc;
+}
+
+.admin-pagination__info {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+  min-width: 7rem;
+  text-align: center;
+}
+
 .admin-form .form-label {
   font-weight: 600;
   color: #374151;

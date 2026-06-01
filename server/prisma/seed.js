@@ -54,90 +54,67 @@ async function main() {
   const healingCategory = categories.find((c) => c.slug === "healing-stories");
   const blogCategory = categories.find((c) => c.slug === "bach-flower");
 
-  const tags = await Promise.all([
-    prisma.emotionalTag.upsert({
-      where: { slug: "anxiety" },
-      update: {},
-      create: { name: "Anxiety", slug: "anxiety" },
-    }),
-    prisma.emotionalTag.upsert({
-      where: { slug: "exam-stress" },
-      update: {},
-      create: { name: "Exam Stress", slug: "exam-stress" },
-    }),
-    prisma.emotionalTag.upsert({
-      where: { slug: "ocd" },
-      update: {},
-      create: { name: "OCD", slug: "ocd" },
-    }),
-    prisma.emotionalTag.upsert({
-      where: { slug: "sleep" },
-      update: {},
-      create: { name: "Sleeplessness", slug: "sleep" },
-    }),
-  ]);
-
   const products = [
     {
       name: "Obsessive-Compulsive Disorder (OCD)",
       slug: "ocd-mix",
       description: "Pre-mixed remedy for OCD-related emotional patterns.",
       image: "/assets/img/bach/no01.jpeg",
-      tagSlug: "ocd",
+      emotionalTags:
+        "ocd, anxiety, repetitive-thoughts, mental-loop, overthinking",
     },
     {
       name: "Social/Emotional Issues",
       slug: "social-emotional-mix",
       description: "Support for social and emotional challenges.",
       image: "/assets/img/bach/no02.jpeg",
-      tagSlug: "anxiety",
+      emotionalTags: "anxiety, social-anxiety, emotional-balance, confidence",
     },
     {
       name: "Hyperactivity & concentration problems",
       slug: "hyperactivity-mix",
       description: "Calming support for hyperactivity and focus.",
       image: "/assets/img/bach/no03.jpeg",
-      tagSlug: "anxiety",
+      emotionalTags: "hyperactivity, concentration, focus, restlessness, calm",
     },
     {
       name: "Exam stress",
       slug: "exam-stress-mix",
       description: "Calming blend for students under exam pressure.",
       image: "/assets/img/bach/no04.png",
-      tagSlug: "exam-stress",
+      emotionalTags: "exam-stress, anxiety, focus, memory, confidence",
     },
     {
       name: "General phobia",
       slug: "general-phobia-mix",
       description: "Gentle remedy for general phobias and fears.",
       image: "/assets/img/bach/no05.jpeg",
-      tagSlug: "anxiety",
+      emotionalTags: "phobia, fear, anxiety, panic, calm",
     },
     {
       name: "Comitment phobia",
       slug: "commitment-phobia-mix",
       description: "Emotional support for commitment-related fears.",
       image: "/assets/img/bach/no06.jpeg",
-      tagSlug: "anxiety",
+      emotionalTags: "commitment-phobia, fear, anxiety, trust, emotional-balance",
     },
     {
       name: "Separation anxiety",
       slug: "separation-anxiety-mix",
       description: "Helps ease separation anxiety naturally.",
       image: "/assets/img/bach/no07.jpeg",
-      tagSlug: "anxiety",
+      emotionalTags: "separation-anxiety, anxiety, attachment, calm, emotional-balance",
     },
     {
       name: "Quit Smoking",
       slug: "quit-smoking-mix",
       description: "Bach flower blend to support quitting smoking.",
       image: "/assets/img/bach/no08.jpeg",
-      tagSlug: "sleep",
+      emotionalTags: "quit-smoking, addiction, calm, willpower, sleep",
     },
   ];
 
   for (const [index, item] of products.entries()) {
-    const tag = tags.find((t) => t.slug === item.tagSlug);
     const mindHealNo = String(index + 1).padStart(2, "0");
 
     await prisma.product.upsert({
@@ -145,25 +122,27 @@ async function main() {
       update: {
         name: item.name,
         description: item.description,
+        shortDescription: item.description,
         image: item.image,
         mrp: 400,
         price: 250,
         published: true,
         sortOrder: index,
         mindHealNo,
-        emotionalTagId: tag?.id ?? null,
+        emotionalTags: item.emotionalTags,
       },
       create: {
         name: item.name,
         slug: item.slug,
         mindHealNo,
         description: item.description,
+        shortDescription: item.description,
         image: item.image,
         mrp: 400,
         price: 250,
         published: true,
         sortOrder: index,
-        emotionalTagId: tag?.id ?? null,
+        emotionalTags: item.emotionalTags,
       },
     });
   }

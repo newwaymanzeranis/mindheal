@@ -1,13 +1,10 @@
 import { prisma } from "../lib/prisma.js";
+import { normalizeEmotionalTags } from "../utils/emotionalTags.js";
 import { slugify } from "../utils/slug.js";
 import { fail, ok } from "../utils/response.js";
 
-const productInclude = {
-  emotionalTag: true,
-};
-
 export const list = async (req, res) => {
-  const { published, tagId, tagSlug, page = 1, limit = 12 } = req.query;
+  const { published, tag, page = 1, limit = 12 } = req.query;
   const skip = (Number(page) - 1) * Number(limit);
   const where = {};
 
@@ -20,18 +17,19 @@ export const list = async (req, res) => {
     where.published = false;
   }
 
-  if (tagId) {
-    where.emotionalTagId = Number(tagId);
+  if (tag) {
+    where.emotionalTags = { contains: String(tag).trim() };
   }
-  if (tagSlug) {
-    where.emotionalTag = { slug: tagSlug };
-  }
+
+  const orderBy =
+    req.query.sortBy === "sortOrder"
+      ? [{ sortOrder: "asc" }, { id: "asc" }]
+      : [{ mindHealNo: "asc" }, { sortOrder: "asc" }];
 
   const [products, total] = await Promise.all([
     prisma.product.findMany({
       where,
-      include: productInclude,
-      orderBy: [{ mindHealNo: "asc" }, { sortOrder: "asc" }],
+      orderBy,
       skip,
       take: Number(limit),
     }),
@@ -52,7 +50,6 @@ export const list = async (req, res) => {
 export const getById = async (req, res) => {
   const product = await prisma.product.findUnique({
     where: { id: Number(req.params.id) },
-    include: productInclude,
   });
   if (!product) return fail(res, "Product not found", 404);
   return ok(res, product);
@@ -61,7 +58,6 @@ export const getById = async (req, res) => {
 export const getBySlug = async (req, res) => {
   const product = await prisma.product.findUnique({
     where: { slug: req.params.slug },
-    include: productInclude,
   });
   if (!product) return fail(res, "Product not found", 404);
   return ok(res, product);
@@ -73,12 +69,13 @@ export const create = async (req, res) => {
     slug,
     mindHealNo,
     description,
+    shortDescription,
     mrp,
     price,
     image,
     published,
     sortOrder,
-    emotionalTagId,
+    emotionalTags,
   } = req.body;
 
   if (!name) return fail(res, "Name is required");
@@ -95,14 +92,17 @@ export const create = async (req, res) => {
       mindHealNo: String(mindHealNo),
       slug: slug || slugify(name),
       description,
+      shortDescription: shortDescription ?? null,
       mrp: mrp != null ? mrp : 400,
       price: price != null ? price : 250,
       image,
       published: published ?? true,
       sortOrder: sortOrder ?? 0,
-      emotionalTagId: emotionalTagId ? Number(emotionalTagId) : null,
+      emotionalTags:
+        emotionalTags !== undefined
+          ? normalizeEmotionalTags(emotionalTags)
+          : null,
     },
-    include: productInclude,
   });
 
   return ok(res, product, 201);
@@ -115,12 +115,13 @@ export const update = async (req, res) => {
     slug,
     mindHealNo,
     description,
+    shortDescription,
     mrp,
     price,
     image,
     published,
     sortOrder,
-    emotionalTagId,
+    emotionalTags,
   } = req.body;
 
   if (mindHealNo) {
@@ -138,20 +139,20 @@ export const update = async (req, res) => {
     ...(slug && { slug }),
     ...(mindHealNo && { mindHealNo: String(mindHealNo) }),
     ...(description !== undefined && { description }),
+    ...(shortDescription !== undefined && { shortDescription }),
     ...(mrp !== undefined && { mrp }),
     ...(price !== undefined && { price }),
     ...(image !== undefined && { image }),
     ...(published !== undefined && { published }),
     ...(sortOrder !== undefined && { sortOrder: Number(sortOrder) }),
-    ...(emotionalTagId !== undefined && {
-      emotionalTagId: emotionalTagId ? Number(emotionalTagId) : null,
+    ...(emotionalTags !== undefined && {
+      emotionalTags: normalizeEmotionalTags(emotionalTags),
     }),
   };
 
   const product = await prisma.product.update({
     where: { id },
     data,
-    include: productInclude,
   });
 
   return ok(res, product);

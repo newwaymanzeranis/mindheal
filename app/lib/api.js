@@ -94,10 +94,6 @@ export const categoriesApi = {
   list: () => api("/blog-categories"),
 };
 
-export const tagsApi = {
-  list: () => api("/emotional-tags"),
-};
-
 export const testimonialsApi = {
   list: () => api("/testimonials?published=false"),
   create: (body) => api("/testimonials", { method: "POST", body }),

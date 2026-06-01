@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
+import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
 import { useCart } from "~/context/CartContext";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
 
 export default function BuyMhMixGrid({ products = [] }) {
-  const { addToCart, cartCount, hydrated } = useCart();
+  const { addToCart, items, hydrated } = useCart();
   const [addedId, setAddedId] = useState(null);
 
   const handleAdd = (product) => {
@@ -17,7 +18,11 @@ export default function BuyMhMixGrid({ products = [] }) {
 
   return (
     <div className="row gy-4">
-      {products.map((product) => (
+      {products.map((product) => {
+        const inCartQty =
+          items.find((item) => item.id === product.id)?.quantity ?? 0;
+
+        return (
         <div className="col-lg-4 col-md-6" key={product.id}>
           <article className="mix-product-card h-100">
             <div className="mix-product-img">
@@ -28,6 +33,15 @@ export default function BuyMhMixGrid({ products = [] }) {
             </div>
             <div className="mix-product-body">
               <h3 className="mix-product-title">{product.name}</h3>
+              {product.shortDescription && (
+                <p className="mix-product-short-desc text-muted small mb-2">
+                  {product.shortDescription}
+                </p>
+              )}
+              <ProductEmotionalTags
+                emotionalTags={product.emotionalTags}
+                className="mb-2"
+              />
               <ProductPrice product={product} size="lg" />
               <div className="mix-product-actions">
                 <button
@@ -43,9 +57,9 @@ export default function BuyMhMixGrid({ products = [] }) {
                     }`}
                   />
                   {addedId === product.id ? "Added" : "Add to Cart"}
-                  {hydrated && cartCount > 0 && (
+                  {hydrated && inCartQty > 0 && (
                     <span className="mix-btn-cart-badge" aria-hidden>
-                      {cartCount > 99 ? "99+" : cartCount}
+                      {inCartQty > 99 ? "99+" : inCartQty}
                     </span>
                   )}
                 </button>
@@ -59,7 +73,8 @@ export default function BuyMhMixGrid({ products = [] }) {
             </div>
           </article>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

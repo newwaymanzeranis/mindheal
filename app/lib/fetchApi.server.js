@@ -81,6 +81,27 @@ export async function fetchProducts(params = "published=true&limit=50", options 
   return data?.products ?? [];
 }
 
+export async function fetchAllProducts(baseParams = "published=true", options = {}) {
+  const allProducts = [];
+  let page = 1;
+  const limit = 50;
+
+  while (true) {
+    const data = await fetchApi(
+      `/products?${baseParams}&page=${page}&limit=${limit}`,
+      options
+    );
+    const products = data?.products ?? [];
+    allProducts.push(...products);
+
+    const total = data?.pagination?.total ?? allProducts.length;
+    if (allProducts.length >= total || products.length < limit) break;
+    page += 1;
+  }
+
+  return allProducts;
+}
+
 export async function fetchTestimonials(options = {}) {
   return (await fetchApi("/testimonials", options)) ?? [];
 }

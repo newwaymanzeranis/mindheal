@@ -1,52 +1,65 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import { productsApi } from "~/lib/api";
 import { formatPrice, productMindHealLabel } from "~/utils/format";
 import { getProductPricing } from "~/utils/pricing";
 
+const PAGE_SIZE = 50;
+
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
+  const [pagination, setPagination] = useState({ total: 0, page: 1, pages: 1 });
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const load = () => {
+  const load = (pageToLoad = page) => {
     setLoading(true);
     productsApi
-      .list("limit=50")
-      .then((res) => setProducts(res.products || []))
+      .list(`page=${pageToLoad}&limit=${PAGE_SIZE}&sortBy=sortOrder`)
+      .then((res) => {
+        setProducts(res.products || []);
+        setPagination(res.pagination || { total: 0, page: pageToLoad, pages: 1 });
+        setPage(pageToLoad);
+      })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
-    load();
-  }, []);
-
-  const sortedProducts = useMemo(
-    () =>
-      [...products].sort((a, b) => {
-        const noA = String(a.mindHealNo ?? "").padStart(2, "0");
-        const noB = String(b.mindHealNo ?? "").padStart(2, "0");
-        return noA.localeCompare(noB, undefined, { numeric: true });
-      }),
-    [products]
-  );
+    load(page);
+  }, [page]);
 
   const handleDelete = async (id) => {
     if (!confirm("Delete this product?")) return;
     try {
       await productsApi.remove(id);
-      load();
+      const remainingOnPage = products.length - 1;
+      if (remainingOnPage === 0 && page > 1) {
+        setPage((current) => current - 1);
+      } else {
+        load(page);
+      }
     } catch (e) {
       alert(e.message);
     }
   };
 
+  const rangeStart = pagination.total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+  const rangeEnd = Math.min(page * PAGE_SIZE, pagination.total);
+
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="mb-0">Products (MH Mix)</h2>
+        <div>
+          <h2 className="mb-1">Products (MH Mix)</h2>
+          {!loading && pagination.total > 0 && (
+            <p className="text-muted small mb-0">
+              Showing {rangeStart}–{rangeEnd} of {pagination.total} products
+            </p>
+          )}
+        </div>
         <Link to="/admin/products/new" className="btn btn-success">
           <i className="bi bi-plus-lg" /> Add Product
         </Link>
@@ -72,9 +85,11 @@ export default function AdminProducts() {
                 </tr>
               </thead>
               <tbody>
-                {sortedProducts.map((p, index) => (
+                {products.map((p, index) => (
                   <tr key={p.id}>
-                    <td className="text-center text-muted fw-semibold">{index + 1}</td>
+                    <td className="text-center text-muted fw-semibold">
+                      {rangeStart + index}
+                    </td>
                     <td>
                       <span className="admin-mh-no">
                         {productMindHealLabel(p.mindHealNo, p.sortOrder)}
@@ -115,6 +130,29 @@ export default function AdminProducts() {
         )}
         {!loading && products.length === 0 && (
           <p className="text-muted mb-0">No products yet.</p>
+        )}
+        {!loading && pagination.pages > 1 && (
+          <nav className="admin-pagination" aria-label="Products pagination">
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-secondary"
+              disabled={page <= 1}
+              onClick={() => setPage((current) => current - 1)}
+            >
+              <i className="bi bi-chevron-left" /> Previous
+            </button>
+            <span className="admin-pagination__info">
+              Page {page} of {pagination.pages}
+            </span>
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-secondary"
+              disabled={page >= pagination.pages}
+              onClick={() => setPage((current) => current + 1)}
+            >
+              Next <i className="bi bi-chevron-right" />
+            </button>
+          </nav>
         )}
       </div>
     </>

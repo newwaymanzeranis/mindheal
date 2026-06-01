@@ -4,8 +4,6 @@ import { fileURLToPath } from "node:url";
 
 import { config } from "dotenv";
 
-import app from "../../server/src/app.js";
-
 // Local dev only — on Vercel use dashboard env vars (DATABASE_URL, etc.)
 if (!process.env.VERCEL) {
   const appDir = path.dirname(fileURLToPath(import.meta.url));
@@ -13,6 +11,15 @@ if (!process.env.VERCEL) {
 }
 
 const globalKey = "__mindHealExpressServer";
+let appPromise;
+
+async function getExpressApp() {
+  if (!appPromise) {
+    appPromise = import("../../server/src/app.js").then((module) => module.default);
+  }
+
+  return appPromise;
+}
 
 /**
  * Run the Express API in-process (localhost) and proxy Fetch requests to it.
@@ -23,6 +30,7 @@ async function getServerPort() {
     return globalThis[globalKey].port;
   }
 
+  const app = await getExpressApp();
   const server = http.createServer(app);
 
   await new Promise((resolve, reject) => {
