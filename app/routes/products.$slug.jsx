@@ -40,11 +40,16 @@ export default function ProductDetail() {
         <div className="container">
           <div className="row gy-4 align-items-start">
             <div className="col-lg-5">
+              
               <img
                 src={imageSrc(product.image)}
                 alt={product.name}
                 className="img-fluid rounded"
               />
+               <img
+                        src="/assets/img/bach/mh_bottole.png"
+                        alt="Mind Heal Bottle"
+                       className=" position-absolute   start-0" style={{ width: '20%' }}/>
             </div>
             <div className="col-lg-7">
               <p className="text-success fw-bold mb-2">
