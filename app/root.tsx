@@ -12,6 +12,7 @@ import type { LinksFunction } from "react-router";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import CartToast from "~/components/CartToast";
+import NavigationLoader from "~/components/NavigationLoader";
 import { AuthProvider } from "~/context/AuthContext";
 import { CartProvider } from "~/context/CartContext";
 import { useSiteScripts } from "~/hooks/useSiteScripts";
@@ -81,12 +82,18 @@ export default function App() {
   }, [scriptsReady, isHome, isAdminRoute, pathname]);
 
   if (isAdminRoute) {
-    return <Outlet />;
+    return (
+      <>
+        <NavigationLoader />
+        <Outlet />
+      </>
+    );
   }
 
   return (
     <AuthProvider>
       <CartProvider>
+        <NavigationLoader />
         <CartToast />
         <div className={`site-layout${isHome ? " index-page" : ""}`}>
           <Header />

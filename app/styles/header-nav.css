@@ -27,6 +27,85 @@
   flex: 1;
 }
 
+/* Global page navigation loader */
+body.page-navigating {
+  cursor: wait;
+}
+
+.nav-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.nav-loader-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 10001;
+  background: rgba(45, 106, 79, 0.15);
+  overflow: hidden;
+}
+
+.nav-loader-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #2d6a4f, #52b788);
+  border-radius: 0 2px 2px 0;
+  animation: navLoaderBar 1s ease-in-out infinite;
+}
+
+.nav-loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(2px);
+  pointer-events: all;
+}
+
+.nav-loader-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid #e8ecf1;
+  border-top-color: #2d6a4f;
+  border-radius: 50%;
+  animation: navLoaderSpin 0.7s linear infinite;
+}
+
+.nav-loader-text {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1a3c2e;
+  letter-spacing: 0.02em;
+}
+
+@keyframes navLoaderBar {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes navLoaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .site-header-inner {
   width: 100%;
   min-height: 56px;
