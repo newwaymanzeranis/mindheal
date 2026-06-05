@@ -5,6 +5,8 @@ import MixSearchFilter from "~/components/MixSearchFilter";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import { imageSrc, productMixLabel } from "~/utils/format";
 
+const DISPLAY_LIMIT = 16;
+
 export default function BFMixture({ products = [] }) {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -13,6 +15,9 @@ export default function BFMixture({ products = [] }) {
   }, []);
 
   if (!products.length) return null;
+
+  const displayProducts = filteredProducts.slice(0, DISPLAY_LIMIT);
+  const hasMore = filteredProducts.length > DISPLAY_LIMIT;
 
   return (
     <section id="services" className="services section">
@@ -34,7 +39,7 @@ export default function BFMixture({ products = [] }) {
             </p>
           ) : (
           <div className="row g-0">
-            {filteredProducts.map((product) => (
+            {displayProducts.map((product) => (
               <div className="col-lg-3 col-md-6" key={product.id}>
                 <div className="service-item">
                   <div className="number">
@@ -62,6 +67,13 @@ export default function BFMixture({ products = [] }) {
               </div>
             ))}
           </div>
+          )}
+          {hasMore && (
+            <p className="text-center mt-4 mb-0">
+              <Link to="/buy_mh_mix" className="fw-semibold text-success">
+                View all {filteredProducts.length} mixes →
+              </Link>
+            </p>
           )}
         </div>
       </div>
