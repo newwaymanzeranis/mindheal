@@ -1,6 +1,8 @@
+import { useCallback, useState } from "react";
 import { useLoaderData } from "react-router";
 
 import BuyMhMixGrid from "~/components/BuyMhMixGrid";
+import MixSearchFilter from "~/components/MixSearchFilter";
 import PageTitle from "~/components/PageTitle";
 import { fetchAllProducts } from "~/lib/fetchApi.server";
 
@@ -17,6 +19,11 @@ export async function loader({ request }) {
 
 export default function BuyMhMix() {
   const { products } = useLoaderData();
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleFilteredChange = useCallback((next) => {
+    setFilteredProducts(next);
+  }, []);
 
   return (
     <main className="main">
@@ -36,12 +43,13 @@ export default function BuyMhMix() {
           >
             Pick the Healing Blend That Feels Right for You or Your Loved One
           </p>
-          <p className="text-center mb-5">
+          <p className="text-center mb-3">
             <span className="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
               MRP ₹400 · Special offer ₹250 · 38% OFF on every mix
             </span>
           </p>
-          <BuyMhMixGrid products={products} />
+          <MixSearchFilter products={products} onFilteredChange={handleFilteredChange} />
+          <BuyMhMixGrid products={filteredProducts} />
         </div>
       </section>
     </main>

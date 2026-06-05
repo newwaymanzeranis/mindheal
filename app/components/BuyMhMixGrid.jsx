@@ -16,6 +16,14 @@ export default function BuyMhMixGrid({ products = [] }) {
     setTimeout(() => setAddedId(null), 1500);
   };
 
+  if (!products.length) {
+    return (
+      <p className="text-center text-muted py-5">
+        No mixes match your search. Try different tags or clear filters.
+      </p>
+    );
+  }
+
   return (
     <div className="row gy-4">
       {products.map((product) => {

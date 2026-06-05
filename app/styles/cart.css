@@ -75,6 +75,388 @@
   gap: 8px;
 }
 
+/* Buy MH Mix — search & tag filter */
+.mix-search-filter {
+  position: relative;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mix-search-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.mix-search-input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.mix-search-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 16px;
+  font-size: 1rem;
+  color: #1a3c2e;
+  background: #fff;
+  border: 1px solid #d1d9e0;
+  border-radius: 24px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mix-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.mix-search-input:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.12);
+}
+
+.mix-search-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.mix-search-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a3c2e;
+  background: #fff;
+  border: 1px solid #d1d9e0;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.mix-search-more-btn i {
+  font-size: 1.25rem;
+}
+
+.mix-search-more-btn:hover,
+.mix-search-more-btn--active {
+  background: #f0fdf4;
+  border-color: #2d6a4f;
+  color: #2d6a4f;
+}
+
+.mix-search-active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 0 4px;
+  font-size: 0.875rem;
+}
+
+.mix-search-active-count {
+  color: #6b7280;
+}
+
+.mix-search-clear-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2d6a4f;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mix-search-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1040;
+}
+
+.mix-search-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #e8ecf1;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.mix-search-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mix-search-panel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a3c2e;
+  margin: 0;
+}
+
+.mix-search-panel-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 50%;
+  color: #374151;
+  cursor: pointer;
+}
+
+.mix-search-panel-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  max-height: 420px;
+}
+
+.mix-search-tags-col {
+  padding: 16px;
+  border-right: 1px solid #f3f4f6;
+  overflow-y: auto;
+  max-height: 420px;
+}
+
+.mix-search-results-col {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: 420px;
+  background: #f8faf9;
+}
+
+.mix-search-col-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  margin: 0 0 12px;
+}
+
+.mix-search-results-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: #2d6a4f;
+  border-radius: 11px;
+}
+
+.mix-search-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mix-search-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.mix-search-tag i {
+  font-size: 0.75rem;
+}
+
+.mix-search-tag-count {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin-left: 2px;
+}
+
+.mix-search-tag:hover {
+  border-color: #2d6a4f;
+  color: #2d6a4f;
+}
+
+.mix-search-tag--selected {
+  background: #2d6a4f;
+  border-color: #2d6a4f;
+  color: #fff;
+}
+
+.mix-search-tag--selected .mix-search-tag-count {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mix-search-tags-clear {
+  display: block;
+  margin-top: 12px;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #2d6a4f;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mix-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mix-search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #e8ecf1;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.mix-search-result-item:hover {
+  border-color: #2d6a4f;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.1);
+}
+
+.mix-search-result-img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.mix-search-result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mix-search-result-no {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #2d6a4f;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.mix-search-result-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a3c2e;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mix-search-result-arrow {
+  flex-shrink: 0;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.mix-search-empty {
+  margin: 0;
+  padding: 24px 12px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .mix-search-bar {
+    gap: 8px;
+  }
+
+  .mix-search-more-btn span {
+    display: none;
+  }
+
+  .mix-search-more-btn {
+    width: 48px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .mix-search-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 16px 16px 0 0;
+    max-height: 85vh;
+    animation: mixSearchSlideUp 0.25s ease;
+  }
+
+  .mix-search-panel-body {
+    grid-template-columns: 1fr;
+    max-height: calc(85vh - 56px);
+  }
+
+  .mix-search-tags-col {
+    border-right: none;
+    border-bottom: 1px solid #f3f4f6;
+    max-height: 200px;
+  }
+
+  .mix-search-results-col {
+    max-height: calc(85vh - 56px - 200px);
+  }
+}
+
+@keyframes mixSearchSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* Buy MH Mix cards */
 .mix-product-card {
   background: #fff;
