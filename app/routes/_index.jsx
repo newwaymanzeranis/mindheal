@@ -11,9 +11,9 @@ import Testimonials from "~/components/Testimonials";
 import WhyChooseUs from "~/components/WhyChooseUs";
 import { useSiteScripts } from "~/hooks/useSiteScripts";
 import {
+  fetchAllProducts,
   fetchHomeSlides,
   fetchPosts,
-  fetchProducts,
   fetchTestimonials,
 } from "~/lib/fetchApi.server";
 import { initHomePage } from "~/utils/siteInit";
@@ -36,15 +36,19 @@ export async function loader({ request }) {
   const [slides, posts, products, testimonials] = await Promise.all([
     fetchHomeSlides(opts),
     fetchPosts("published=true&limit=3&categorySlug=bach-flower", opts),
-    fetchProducts("published=true&limit=12", opts),
+    fetchAllProducts("published=true", opts),
     fetchTestimonials(opts),
   ]);
+
+  const sortedProducts = products.sort(
+    (a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)
+  );
 
   return {
     slides,
     posts,
-    products,
-    popularProducts: pickRandomProducts(products, 8),
+    products: sortedProducts,
+    popularProducts: pickRandomProducts(sortedProducts, 8),
     testimonials,
   };
 }

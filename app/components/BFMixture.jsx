@@ -1,9 +1,17 @@
+import { useCallback, useState } from "react";
 import { Link } from "react-router";
 
+import MixSearchFilter from "~/components/MixSearchFilter";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import { imageSrc, productMixLabel } from "~/utils/format";
 
 export default function BFMixture({ products = [] }) {
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleFilteredChange = useCallback((next) => {
+    setFilteredProducts(next);
+  }, []);
+
   if (!products.length) return null;
 
   return (
@@ -16,11 +24,17 @@ export default function BFMixture({ products = [] }) {
           </blink>
         </h1>
         <p>Providing Pre-Mixed Bach Flower Remedies for Your Well-Being </p>
+        <MixSearchFilter products={products} onFilteredChange={handleFilteredChange} />
       </div>
       <div className="content">
         <div className="container">
+          {!filteredProducts.length ? (
+            <p className="text-center text-muted py-4">
+              No mixes match your search. Try different tags or clear filters.
+            </p>
+          ) : (
           <div className="row g-0">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div className="col-lg-3 col-md-6" key={product.id}>
                 <div className="service-item">
                   <div className="number">
@@ -48,6 +62,7 @@ export default function BFMixture({ products = [] }) {
               </div>
             ))}
           </div>
+          )}
         </div>
       </div>
     </section>

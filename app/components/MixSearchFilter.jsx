@@ -65,7 +65,7 @@ export default function MixSearchFilter({ products = [], onFilteredChange }) {
   const hasActiveFilters = searchQuery.trim() || selectedTags.length > 0;
 
   return (
-    <div className="mix-search-filter mb-4">
+    <div className="mix-search-filter mb-2">
       <div className="mix-search-bar">
         <div className="mix-search-input-wrap">
           <input
