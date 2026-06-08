@@ -21,7 +21,7 @@ export default function BFMixture({ products = [] }) {
 
   return (
     <section id="services" className="services section">
-      <div className="container section-title"  >
+      <div className="container section-title"  style={{'padding-bottom': '0px'}} >
         <h2>BACH FLOWER COMBINATION PRODUCTS</h2>
         <h1>
           <blink>

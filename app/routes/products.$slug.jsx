@@ -67,7 +67,8 @@ export default function ProductDetail() {
               <ProductAddToCart product={product} />
               <div className="mt-2">
                 <Link to="/contact" className="btn btn-link text-success p-0">
-                  Need help ordering? Contact us →
+                  {/* Need help ordering? Contact us → */}
+                  Need help finding the right remedy? Talk to us →
                 </Link>
               </div>
               {showHealingNote && (
