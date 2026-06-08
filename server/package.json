@@ -14,7 +14,8 @@
     "db:seed": "node prisma/seed.js",
     "db:migrate-emotional-tags": "node prisma/migrate-emotional-tags-string.js",
     "db:migrate-short-description": "node prisma/migrate-product-short-description.js",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "test:email": "node scripts/test-email.js"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
@@ -22,7 +23,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^8.0.10"
   },
   "devDependencies": {
     "prisma": "^6.5.0"

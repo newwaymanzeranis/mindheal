@@ -36,9 +36,24 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  orders Order[]
+  orders            Order[]
+  passwordResetOtps PasswordResetOtp[]
 
   @@map("users")
+}
+
+model PasswordResetOtp {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  otpHash   String    @map("otp_hash") @db.VarChar(255)
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_reset_otps")
 }
 
 model Order {

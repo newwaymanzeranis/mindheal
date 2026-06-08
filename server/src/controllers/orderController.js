@@ -1,4 +1,8 @@
 import { prisma } from "../lib/prisma.js";
+import {
+  sendOrderPlacedEmail,
+  sendOrderStatusChangeEmail,
+} from "../services/emailService.js";
 import { generateOrderNumber } from "../utils/orderNumber.js";
 import { fail, ok } from "../utils/response.js";
 
@@ -96,6 +100,10 @@ export const create = async (req, res) => {
     },
     include: orderInclude,
   });
+
+  sendOrderPlacedEmail(order).catch((err) =>
+    console.error("[order.create] email error:", err.message)
+  );
 
   return ok(res, { order }, 201);
 };
@@ -235,11 +243,21 @@ export const updateStatus = async (req, res) => {
     return fail(res, "Invalid status");
   }
 
+  const existing = await prisma.order.findUnique({ where: { id } });
+  if (!existing) return fail(res, "Order not found", 404);
+
   const order = await prisma.order.update({
     where: { id },
     data: { status },
     include: orderInclude,
   });
+
+  const notifyStatuses = ["CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"];
+  if (existing.status !== status && notifyStatuses.includes(status)) {
+    sendOrderStatusChangeEmail(order, status).catch((err) =>
+      console.error("[order.updateStatus] email error:", err.message)
+    );
+  }
 
   return ok(res, { order });
 };

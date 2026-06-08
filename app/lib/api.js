@@ -62,6 +62,12 @@ export const authApi = {
   login: (email, password) =>
     api("/auth/login", { method: "POST", body: { email, password } }),
   me: () => api("/auth/me"),
+  forgotPassword: (email) =>
+    api("/auth/forgot-password", { method: "POST", body: { email } }),
+  verifyOtp: (email, otp) =>
+    api("/auth/verify-otp", { method: "POST", body: { email, otp } }),
+  resetPassword: (body) =>
+    api("/auth/reset-password", { method: "POST", body }),
 };
 
 export const ordersApi = {
