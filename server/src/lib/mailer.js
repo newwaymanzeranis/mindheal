@@ -1,6 +1,12 @@
 import nodemailer from "nodemailer";
 
 function createTransporter() {
+  console.log("SMTP_HOST:", process.env.SMTP_HOST);
+  console.log("SMTP_USER:", process.env.SMTP_USER);
+  console.log("SMTP_PASS:", process.env.SMTP_PASS);
+  console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
+  console.log("SMTP_PORT:", process.env.SMTP_PORT);
+  console.log("SMTP_SECURE:", process.env.SMTP_SECURE);
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: Number(process.env.SMTP_PORT || 587),
