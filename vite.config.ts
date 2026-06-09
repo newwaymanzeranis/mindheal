@@ -14,6 +14,14 @@ export default defineConfig({
       "~": path.resolve(appDirectory, "app"),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ["nodemailer"],
+    },
+  },
+  ssr: {
+    external: ["nodemailer"],
+  },
   server: {
     // 5173 is often taken by other Vite apps; use a dedicated port for Mind Heal
     port: 5175,
