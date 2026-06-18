@@ -11,6 +11,13 @@ datasource db {
 enum UserRole {
   ADMIN
   USER
+  DOCTOR
+}
+
+enum AppointmentStatus {
+  OPEN
+  WORKING
+  COMPLETE
 }
 
 enum OrderStatus {
@@ -38,6 +45,8 @@ model User {
 
   orders            Order[]
   passwordResetOtps PasswordResetOtp[]
+  appointments      Appointment[]
+  teamMemberProfile TeamMember?      @relation("DoctorAccount")
 
   @@map("users")
 }
@@ -217,9 +226,37 @@ model TeamMember {
   instagramUrl String?  @map("instagram_url") @db.VarChar(500)
   published    Boolean  @default(true)
   sortOrder    Int      @default(0) @map("sort_order")
+  userId       Int?     @unique @map("user_id")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
+  user         User?          @relation("DoctorAccount", fields: [userId], references: [id], onDelete: SetNull)
+  appointments Appointment[]
+
   @@index([published])
   @@map("team_members")
+}
+
+model Appointment {
+  id                Int               @id @default(autoincrement())
+  appointmentNumber String            @unique @map("appointment_number") @db.VarChar(32)
+  userId            Int               @map("user_id")
+  teamMemberId      Int               @map("team_member_id")
+  patientName       String            @map("patient_name") @db.VarChar(255)
+  patientPhone      String            @map("patient_phone") @db.VarChar(20)
+  patientEmail      String            @map("patient_email") @db.VarChar(255)
+  concern           String?           @db.Text
+  preferredAt       DateTime?         @map("preferred_at")
+  scheduledAt       DateTime?         @map("scheduled_at")
+  status            AppointmentStatus @default(OPEN)
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  teamMember TeamMember @relation(fields: [teamMemberId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@index([teamMemberId])
+  @@index([status])
+  @@map("appointments")
 }

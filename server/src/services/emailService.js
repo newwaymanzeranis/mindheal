@@ -1,5 +1,8 @@
 import { sendMail } from "../lib/mailer.js";
 import {
+  appointmentAdminEmail,
+  appointmentPatientEmail,
+  appointmentScheduledEmail,
   orderPlacedEmail,
   orderStatusEmail,
   passwordOtpEmail,
@@ -47,6 +50,40 @@ export async function sendOrderStatusChangeEmail(order, status) {
     to: email,
     subject: payload.subject,
     html: payload.html,
+  });
+  return result.ok;
+}
+
+function getAdminEmail() {
+  return process.env.ADMIN_EMAIL || "mindhealbbfr@gmail.com";
+}
+
+export async function sendAppointmentPatientEmail(appointment) {
+  const html = appointmentPatientEmail({ appointment });
+  const result = await sendMail({
+    to: appointment.patientEmail,
+    subject: `Consultation Request Received — ${appointment.appointmentNumber}`,
+    html,
+  });
+  return result.ok;
+}
+
+export async function sendAppointmentAdminEmail(appointment) {
+  const html = appointmentAdminEmail({ appointment });
+  const result = await sendMail({
+    to: getAdminEmail(),
+    subject: `New Consultation — ${appointment.appointmentNumber}`,
+    html,
+  });
+  return result.ok;
+}
+
+export async function sendAppointmentScheduledEmail(appointment) {
+  const html = appointmentScheduledEmail({ appointment });
+  const result = await sendMail({
+    to: appointment.patientEmail,
+    subject: `Appointment Scheduled — ${appointment.appointmentNumber}`,
+    html,
   });
   return result.ok;
 }

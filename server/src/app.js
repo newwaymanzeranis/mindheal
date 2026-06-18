@@ -10,6 +10,7 @@ import homeSlideRoutes from "./routes/homeSlideRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
 import teamMemberRoutes from "./routes/teamMemberRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js";
 
 const app = express();
 
@@ -79,6 +80,7 @@ app.use("/api/posts", postRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/team-members", teamMemberRoutes);
+app.use("/api/appointments", appointmentRoutes);
 app.use("/api/home-slides", homeSlideRoutes);
 app.use("/api/orders", orderRoutes);
 

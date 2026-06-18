@@ -18,11 +18,11 @@ export default function AdminLogin() {
 
     try {
       const user = await login(email, password);
-      if (user.role !== "ADMIN") {
-        setError("Admin access only");
+      if (user.role !== "ADMIN" && user.role !== "DOCTOR") {
+        setError("Staff access only (Admin or Doctor)");
         return;
       }
-      navigate("/admin");
+      navigate(user.role === "DOCTOR" ? "/admin/appointments" : "/admin");
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {
@@ -33,8 +33,8 @@ export default function AdminLogin() {
   return (
     <div className="admin-login-page">
       <div className="admin-login-card">
-        <h1>Mind Heal Admin</h1>
-        <p className="text-muted mb-4">Sign in to manage blog, products & more</p>
+        <h1>Mind Heal Staff Login</h1>
+        <p className="text-muted mb-4">Admin &amp; Doctor — manage appointments, blog, products</p>
 
         {error && <div className="alert alert-danger admin-alert">{error}</div>}
 

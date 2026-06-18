@@ -5,7 +5,7 @@ import { useAuth } from "~/context/AuthContext";
 const navLinkClass = ({ isActive }) => (isActive ? "active" : "");
 
 export default function AdminSidebar() {
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -23,36 +23,47 @@ export default function AdminSidebar() {
         </div>
       </div>
       <ul className="admin-nav">
+        {isAdmin && (
+          <li>
+            <NavLink to="/admin" end className={navLinkClass}>
+              <i className="bi bi-grid" /> Dashboard
+            </NavLink>
+          </li>
+        )}
         <li>
-          <NavLink to="/admin" end className={navLinkClass}>
-            <i className="bi bi-grid" /> Dashboard
+          <NavLink to="/admin/appointments" className={navLinkClass}>
+            <i className="bi bi-calendar-check" /> Appointments
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/admin/posts" className={navLinkClass}>
-            <i className="bi bi-journal-text" /> Blog Posts
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/products" className={navLinkClass}>
-            <i className="bi bi-box-seam" /> Products
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/testimonials" className={navLinkClass}>
-            <i className="bi bi-chat-quote" /> Testimonials
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/team" className={navLinkClass}>
-            <i className="bi bi-people" /> Team Members
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/orders" className={navLinkClass}>
-            <i className="bi bi-bag-check" /> Orders
-          </NavLink>
-        </li>
+        {isAdmin && (
+          <>
+            <li>
+              <NavLink to="/admin/posts" className={navLinkClass}>
+                <i className="bi bi-journal-text" /> Blog Posts
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/products" className={navLinkClass}>
+                <i className="bi bi-box-seam" /> Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/testimonials" className={navLinkClass}>
+                <i className="bi bi-chat-quote" /> Testimonials
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/team" className={navLinkClass}>
+                <i className="bi bi-people" /> Team Members
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/orders" className={navLinkClass}>
+                <i className="bi bi-bag-check" /> Orders
+              </NavLink>
+            </li>
+          </>
+        )}
         <li>
           <Link to="/" target="_blank">
             <i className="bi bi-globe" /> View Website

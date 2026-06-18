@@ -27,11 +27,34 @@ function parseSortOrder(value, fallback = 0) {
   return Number.isFinite(num) ? Math.trunc(num) : fallback;
 }
 
+async function linkDoctorAccount(email, teamMemberId) {
+  if (!email?.trim()) return;
+  const doctorUser = await prisma.user.findUnique({
+    where: { email: email.trim().toLowerCase() },
+  });
+  if (!doctorUser) {
+    throw new Error(`No user found with email: ${email}`);
+  }
+  await prisma.teamMember.updateMany({
+    where: { userId: doctorUser.id, id: { not: teamMemberId } },
+    data: { userId: null },
+  });
+  await prisma.user.update({
+    where: { id: doctorUser.id },
+    data: { role: "DOCTOR" },
+  });
+  await prisma.teamMember.update({
+    where: { id: teamMemberId },
+    data: { userId: doctorUser.id },
+  });
+}
+
 export const list = async (req, res) => {
   const publishedOnly = req.query.published !== "false";
   const members = await prisma.teamMember.findMany({
     where: publishedOnly ? { published: true } : {},
     orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
+    include: { user: { select: { email: true } } },
   });
   return ok(res, members);
 };
@@ -70,6 +93,7 @@ export const create = async (req, res) => {
     instagramUrl,
     published,
     sortOrder,
+    doctorLoginEmail,
   } = req.body;
 
   if (!name) return fail(res, "Name is required");
@@ -94,7 +118,20 @@ export const create = async (req, res) => {
       sortOrder: parseSortOrder(sortOrder),
     },
   });
-  return ok(res, member, 201);
+
+  if (doctorLoginEmail?.trim()) {
+    try {
+      await linkDoctorAccount(doctorLoginEmail, member.id);
+    } catch (err) {
+      return fail(res, err.message, 400);
+    }
+  }
+
+  const withUser = await prisma.teamMember.findUnique({
+    where: { id: member.id },
+    include: { user: { select: { email: true } } },
+  });
+  return ok(res, withUser, 201);
 };
 
 export const update = async (req, res) => {
@@ -113,6 +150,7 @@ export const update = async (req, res) => {
     instagramUrl,
     published,
     sortOrder,
+    doctorLoginEmail,
   } = req.body;
 
   const social = pickSocialUrls({
@@ -138,7 +176,20 @@ export const update = async (req, res) => {
       ...(sortOrder !== undefined && { sortOrder: parseSortOrder(sortOrder) }),
     },
   });
-  return ok(res, member);
+
+  if (doctorLoginEmail !== undefined && doctorLoginEmail?.trim()) {
+    try {
+      await linkDoctorAccount(doctorLoginEmail, member.id);
+    } catch (err) {
+      return fail(res, err.message, 400);
+    }
+  }
+
+  const withUser = await prisma.teamMember.findUnique({
+    where: { id: member.id },
+    include: { user: { select: { email: true } } },
+  });
+  return ok(res, withUser);
 };
 
 export const remove = async (req, res) => {

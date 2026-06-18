@@ -1,0 +1,139 @@
+.appointment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.appointment-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  animation: appointmentModalIn 0.25s ease;
+}
+
+@keyframes appointmentModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.appointment-modal-header {
+  text-align: center;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid #e8f5e9;
+  background: linear-gradient(180deg, #f8fdf9 0%, #fff 100%);
+  border-radius: 16px 16px 0 0;
+  position: relative;
+}
+
+.appointment-modal-logo {
+  height: 56px;
+  width: auto;
+  margin-bottom: 0.75rem;
+}
+
+.appointment-modal-header h2 {
+  font-size: 1.35rem;
+  color: #1a4d2e;
+  margin: 0 0 0.25rem;
+}
+
+.appointment-modal-header p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.appointment-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: #f0f0f0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+}
+
+.appointment-modal-close:hover {
+  background: #e0e0e0;
+}
+
+.appointment-modal-body {
+  padding: 1.5rem;
+}
+
+.appointment-modal-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.appointment-modal-success i {
+  font-size: 3rem;
+  color: #2d6a4f;
+  margin-bottom: 1rem;
+}
+
+.appointment-modal-success h3 {
+  color: #1a4d2e;
+  margin-bottom: 0.5rem;
+}
+
+.appointment-modal-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25d366;
+  color: #fff !important;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.appointment-modal-whatsapp:hover {
+  background: #1ebe57;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.appointment-doctor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e8f5e9;
+  color: #1a4d2e;
+  padding: 0.4rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+}
+
+.appointment-doctor-chip img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}

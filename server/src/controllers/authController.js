@@ -89,7 +89,12 @@ export const login = async (req, res) => {
     return fail(res, "Email and password are required");
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findUnique({
+    where: { email },
+    include: {
+      teamMemberProfile: { select: { id: true, name: true, slug: true } },
+    },
+  });
   if (!user || !user.isActive) {
     return fail(res, "Invalid email or password", 401);
   }
@@ -107,6 +112,7 @@ export const login = async (req, res) => {
       name: user.name,
       phone: user.phone,
       role: user.role,
+      teamMemberProfile: user.teamMemberProfile ?? null,
     },
     token,
   });

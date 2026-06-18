@@ -114,3 +114,14 @@ export const teamMembersApi = {
   update: (id, body) => api(`/team-members/${id}`, { method: "PUT", body }),
   remove: (id) => api(`/team-members/${id}`, { method: "DELETE" }),
 };
+
+export const appointmentsApi = {
+  create: (body) => api("/appointments", { method: "POST", body }),
+  listMine: () => api("/appointments/mine"),
+  listStaff: () => api("/appointments/staff/all"),
+  get: (id) => api(`/appointments/${id}`),
+  updateStatus: (id, status) =>
+    api(`/appointments/${id}/status`, { method: "PATCH", body: { status } }),
+  schedule: (id, scheduledAt) =>
+    api(`/appointments/${id}/schedule`, { method: "PATCH", body: { scheduledAt } }),
+};

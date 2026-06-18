@@ -12,7 +12,7 @@ export const links = () => [
 ];
 
 function AdminGuard() {
-  const { user, loading, isAdmin } = useAuth();
+  const { user, loading, isStaff } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const isLogin = location.pathname === "/admin/login";
@@ -23,10 +23,17 @@ function AdminGuard() {
       navigate("/admin/login", { replace: true });
       return;
     }
-    if (!isAdmin) {
+    if (!isStaff) {
       navigate("/admin/login", { replace: true });
+      return;
     }
-  }, [user, loading, isAdmin, isLogin, navigate]);
+    if (
+      user.role === "DOCTOR" &&
+      !location.pathname.startsWith("/admin/appointments")
+    ) {
+      navigate("/admin/appointments", { replace: true });
+    }
+  }, [user, loading, isStaff, isLogin, navigate, location.pathname]);
 
   if (isLogin) {
     return (
@@ -44,7 +51,7 @@ function AdminGuard() {
     );
   }
 
-  if (!user || !isAdmin) return null;
+  if (!user || !isStaff) return null;
 
   return (
     <div className="admin-root">

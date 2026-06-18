@@ -70,6 +70,8 @@ export function AuthProvider({ children }) {
       register,
       logout,
       isAdmin: user?.role === "ADMIN",
+      isDoctor: user?.role === "DOCTOR",
+      isStaff: user?.role === "ADMIN" || user?.role === "DOCTOR",
       isAuthenticated: Boolean(user),
     }),
     [user, loading]

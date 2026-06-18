@@ -2,12 +2,16 @@ import { Link, useLoaderData } from "react-router";
 
 import RichHtml, { isHtmlContent, stripHtml } from "~/components/RichHtml";
 import { TeamProfileSocialLinks } from "~/components/TeamSocialLinks";
+import TeamConsultationCta, { appointmentModalLinks } from "~/components/TeamConsultationCta";
 import { fetchTeamMemberBySlug } from "~/lib/fetchApi.server";
 import { imageSrc } from "~/utils/format";
 
 import teamProfileCss from "~/styles/team-profile.css?url";
 
-export const links = () => [{ rel: "stylesheet", href: teamProfileCss }];
+export const links = () => [
+  { rel: "stylesheet", href: teamProfileCss },
+  ...appointmentModalLinks(),
+];
 
 const PORTFOLIO_ICONS = [
   "bi-award",
@@ -170,17 +174,7 @@ export default function TeamMemberProfile() {
             </div>
           )}
 
-          <div className="team-profile-cta" data-aos="fade-up">
-            <h3>Ready to Start Your Healing Journey?</h3>
-            <p>
-              Book a free consultation with {member.name.split(" ").pop()} and discover the right Bach
-              Flower Remedies for your emotional wellness.
-            </p>
-            <Link to="/contact" className="btn-consult">
-              <i className="bi bi-calendar-check" />
-              Book Free Consultation
-            </Link>
-          </div>
+          <TeamConsultationCta member={member} />
         </div>
       </section>
     </main>

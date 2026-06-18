@@ -21,6 +21,9 @@ export async function authenticate(req, res, next) {
         phone: true,
         role: true,
         isActive: true,
+        teamMemberProfile: {
+          select: { id: true, name: true, slug: true },
+        },
       },
     });
 
@@ -38,6 +41,13 @@ export async function authenticate(req, res, next) {
 export function requireAdmin(req, res, next) {
   if (req.user?.role !== "ADMIN") {
     return fail(res, "Admin access required", 403);
+  }
+  next();
+}
+
+export function requireStaff(req, res, next) {
+  if (req.user?.role !== "ADMIN" && req.user?.role !== "DOCTOR") {
+    return fail(res, "Staff access required", 403);
   }
   next();
 }

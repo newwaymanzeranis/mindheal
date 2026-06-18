@@ -879,6 +879,16 @@
   color: #065f46;
 }
 
+.admin-badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.admin-badge.info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
 .admin-badge.muted {
   background: #f3f4f6;
   color: #6b7280;

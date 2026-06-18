@@ -187,3 +187,68 @@ export function orderStatusEmail({ order, status, userName }) {
     }),
   };
 }
+
+function formatDateTime(value) {
+  if (!value) return "—";
+  return new Date(value).toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+function appointmentDetailsBlock(appointment) {
+  return `
+    <p style="margin:0 0 8px;"><strong>Appointment ID:</strong> ${escapeHtml(appointment.appointmentNumber)}</p>
+    <p style="margin:0 0 8px;"><strong>Doctor:</strong> ${escapeHtml(appointment.teamMember?.name)}</p>
+    <p style="margin:0 0 8px;"><strong>Patient:</strong> ${escapeHtml(appointment.patientName)}</p>
+    <p style="margin:0 0 8px;"><strong>Phone:</strong> ${escapeHtml(appointment.patientPhone)}</p>
+    <p style="margin:0 0 8px;"><strong>Email:</strong> ${escapeHtml(appointment.patientEmail)}</p>
+    ${appointment.concern ? `<p style="margin:0 0 8px;"><strong>Concern:</strong><br>${escapeHtml(appointment.concern)}</p>` : ""}
+    ${appointment.preferredAt ? `<p style="margin:0 0 8px;"><strong>Preferred time:</strong> ${formatDateTime(appointment.preferredAt)}</p>` : ""}
+    ${appointment.scheduledAt ? `<p style="margin:0 0 8px;"><strong>Scheduled:</strong> ${formatDateTime(appointment.scheduledAt)}</p>` : ""}
+    <p style="margin:0;"><strong>Status:</strong> ${escapeHtml(appointment.status)}</p>`;
+}
+
+export function appointmentPatientEmail({ appointment }) {
+  const greeting = appointment.patientName
+    ? `Hi ${escapeHtml(appointment.patientName)},`
+    : "Hi,";
+  return baseLayout({
+    title: `Consultation Request — ${appointment.appointmentNumber}`,
+    bodyHtml: `
+      <h2 style="margin:0 0 16px;color:#2d6a4f;font-size:20px;">Consultation Request Received</h2>
+      <p style="margin:0 0 16px;">${greeting}</p>
+      <p style="margin:0 0 16px;">Thank you for booking a consultation with Mind Heal. We have received your request and our team will contact you soon.</p>
+      ${appointmentDetailsBlock(appointment)}
+      <p style="margin:24px 0 0;color:#666;font-size:14px;">You will receive another email when your appointment is scheduled.</p>`,
+  });
+}
+
+export function appointmentAdminEmail({ appointment }) {
+  return baseLayout({
+    title: `New Consultation — ${appointment.appointmentNumber}`,
+    bodyHtml: `
+      <h2 style="margin:0 0 16px;color:#2d6a4f;font-size:20px;">New Consultation Appointment</h2>
+      <p style="margin:0 0 16px;">A patient has requested a consultation through the website.</p>
+      ${appointmentDetailsBlock(appointment)}
+      <p style="margin:24px 0 0;text-align:center;">
+        <a href="${getSiteUrl()}/admin/appointments" style="display:inline-block;background:#2d6a4f;color:#fff;text-decoration:none;padding:12px 28px;border-radius:6px;font-weight:bold;">View in Admin Panel</a>
+      </p>`,
+  });
+}
+
+export function appointmentScheduledEmail({ appointment }) {
+  const greeting = appointment.patientName
+    ? `Hi ${escapeHtml(appointment.patientName)},`
+    : "Hi,";
+  return baseLayout({
+    title: `Appointment Scheduled — ${appointment.appointmentNumber}`,
+    bodyHtml: `
+      <h2 style="margin:0 0 16px;color:#2d6a4f;font-size:20px;">Your Consultation is Scheduled</h2>
+      <p style="margin:0 0 16px;">${greeting}</p>
+      <p style="margin:0 0 16px;">Your consultation with <strong>${escapeHtml(appointment.teamMember?.name)}</strong> has been scheduled.</p>
+      <p style="margin:0 0 16px;font-size:18px;color:#2d6a4f;"><strong>Date &amp; Time: ${formatDateTime(appointment.scheduledAt)}</strong></p>
+      ${appointmentDetailsBlock(appointment)}
+      <p style="margin:24px 0 0;color:#666;font-size:14px;">Please be available at the scheduled time. For changes, contact Mind Heal.</p>`,
+  });
+}

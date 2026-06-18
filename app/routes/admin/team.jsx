@@ -16,6 +16,7 @@ const empty = {
   twitterUrl: "",
   linkedinUrl: "",
   instagramUrl: "",
+  doctorLoginEmail: "",
   published: true,
   sortOrder: 0,
 };
@@ -61,6 +62,7 @@ export default function AdminTeam() {
       twitterUrl: m.twitterUrl || "",
       linkedinUrl: m.linkedinUrl || "",
       instagramUrl: m.instagramUrl || "",
+      doctorLoginEmail: m.user?.email || "",
       published: m.published,
       sortOrder: m.sortOrder ?? 0,
     });
@@ -158,6 +160,20 @@ export default function AdminTeam() {
               onChange={update("image")}
               placeholder="/assets/img/doctors/photo.jpg"
             />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Doctor Login Email (optional)</label>
+            <input
+              className="form-control"
+              type="email"
+              value={form.doctorLoginEmail}
+              onChange={update("doctorLoginEmail")}
+              placeholder="user@email.com — must be registered on site"
+            />
+            <small className="text-muted">
+              Links this team member to a user account with DOCTOR role for appointment management.
+            </small>
           </div>
 
           <div className="mb-3">
