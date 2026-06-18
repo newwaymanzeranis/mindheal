@@ -382,6 +382,69 @@ async function main() {
     });
   }
 
+  const teamMembers = [
+    {
+      name: "Dr. Zulfequar",
+      slug: "dr-zulfequar",
+      degree: "BHMS. M.D.",
+      experience: "25 Years",
+      image: "/assets/img/doctors/dr_zulfequar.jpg",
+      bio: "Senior Bach Flower Therapist with over two decades of experience guiding patients through emotional healing journeys.",
+      expertise:
+        "Specializes in chronic anxiety, grief recovery, trauma-related emotional patterns, and long-term Bach Flower therapy protocols. Expert in creating personalized remedy blends for complex emotional states.",
+      portfolio:
+        "Led Mind Heal's clinical practice for 25+ years.\nTreated thousands of patients with Bach Flower Remedies.\nMentored junior practitioners in holistic emotional wellness.\nPublished articles on Bach Flower therapy applications.",
+      sortOrder: 1,
+    },
+    {
+      name: "Dr. Zahir",
+      slug: "dr-zahir",
+      degree: "BHMS",
+      experience: "10 Years",
+      image: "/assets/img/doctors/dr_zahir.jpg",
+      bio: "Dedicated homeopathic practitioner passionate about gentle, natural emotional healing through Bach Flower Remedies.",
+      expertise:
+        "Focuses on anxiety disorders, relationship emotional issues, exam stress, and youth mental wellness. Known for compassionate consultation and precise remedy selection.",
+      portfolio:
+        "10 years of clinical practice in Bach Flower therapy.\nSpecialized in youth and student emotional wellness programs.\nConducted free emotional wellness camps across communities.",
+      sortOrder: 2,
+    },
+    {
+      name: "Dr. Talha",
+      slug: "dr-talha",
+      degree: "BHMS. M.D.",
+      experience: "10 Years",
+      image: "/assets/img/doctors/dr_talha.jpeg",
+      bio: "Experienced Bach Flower specialist combining modern homeopathic knowledge with Dr. Bach's timeless emotional healing principles.",
+      expertise:
+        "Expert in mood disorders, sleep disturbances, anger management, and stress-related conditions. Skilled in custom remedy mixing and patient follow-up care.",
+      portfolio:
+        "MD in Homeopathy with Bach Flower specialization.\nDeveloped Mind Heal's custom mixing protocols.\nActive in patient education and remedy guidance workshops.",
+      sortOrder: 3,
+    },
+    {
+      name: "Manzer Anis",
+      slug: "manzer-anis",
+      degree: "A Level Certificate",
+      experience: "5 Years",
+      image: "/assets/img/team/team4.jpg",
+      bio: "Technology and wellness enthusiast bridging digital innovation with Mind Heal's mission of accessible emotional healing.",
+      expertise:
+        "Manages Mind Heal's digital platform, patient outreach, and remedy logistics. Passionate about making Bach Flower therapy accessible to everyone through technology.",
+      portfolio:
+        "Built and maintains Mind Heal's online platform.\nCoordinates patient consultations and remedy deliveries.\nDrives community outreach and healing awareness programs.",
+      sortOrder: 4,
+    },
+  ];
+
+  for (const member of teamMembers) {
+    await prisma.teamMember.upsert({
+      where: { slug: member.slug },
+      update: member,
+      create: { ...member, published: true },
+    });
+  }
+
   console.log("Seed completed");
   console.log(`Admin login: ${adminEmail} / ${adminPassword}`);
 }

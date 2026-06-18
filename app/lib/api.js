@@ -106,3 +106,11 @@ export const testimonialsApi = {
   update: (id, body) => api(`/testimonials/${id}`, { method: "PUT", body }),
   remove: (id) => api(`/testimonials/${id}`, { method: "DELETE" }),
 };
+
+export const teamMembersApi = {
+  list: () => api("/team-members?published=false"),
+  get: (id) => api(`/team-members/${id}`),
+  create: (body) => api("/team-members", { method: "POST", body }),
+  update: (id, body) => api(`/team-members/${id}`, { method: "PUT", body }),
+  remove: (id) => api(`/team-members/${id}`, { method: "DELETE" }),
+};

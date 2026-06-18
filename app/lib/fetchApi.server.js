@@ -110,6 +110,14 @@ export async function fetchHomeSlides(options = {}) {
   return (await fetchApi("/home-slides", options)) ?? [];
 }
 
+export async function fetchTeamMembers(options = {}) {
+  return (await fetchApi("/team-members", options)) ?? [];
+}
+
+export async function fetchTeamMemberBySlug(slug, options = {}) {
+  return fetchApi(`/team-members/slug/${slug}`, options);
+}
+
 export async function fetchProductBySlug(slug, options = {}) {
   return fetchApi(`/products/slug/${slug}`, options);
 }

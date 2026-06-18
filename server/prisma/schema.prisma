@@ -200,3 +200,26 @@ model HomeSlide {
   @@index([published])
   @@map("home_slides")
 }
+
+model TeamMember {
+  id           Int      @id @default(autoincrement())
+  name         String   @db.VarChar(255)
+  slug         String   @unique @db.VarChar(255)
+  degree       String?  @db.VarChar(255)
+  experience   String?  @db.VarChar(100)
+  image        String?  @db.VarChar(500)
+  bio          String?  @db.Text
+  expertise    String?  @db.LongText
+  portfolio    String?  @db.LongText
+  facebookUrl  String?  @map("facebook_url") @db.VarChar(500)
+  twitterUrl   String?  @map("twitter_url") @db.VarChar(500)
+  linkedinUrl  String?  @map("linkedin_url") @db.VarChar(500)
+  instagramUrl String?  @map("instagram_url") @db.VarChar(500)
+  published    Boolean  @default(true)
+  sortOrder    Int      @default(0) @map("sort_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@index([published])
+  @@map("team_members")
+}

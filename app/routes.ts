@@ -16,6 +16,7 @@ const adminChildren = [
   route("products/new", "routes/admin/products.new.jsx"),
   route("products/:id/edit", "routes/admin/products.$id.edit.jsx"),
   route("testimonials", "routes/admin/testimonials.jsx"),
+  route("team", "routes/admin/team.jsx"),
   route("orders", "routes/admin/orders.jsx"),
 ];
 

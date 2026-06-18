@@ -44,6 +44,11 @@ export default function AdminSidebar() {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/admin/team" className={navLinkClass}>
+            <i className="bi bi-people" /> Team Members
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/admin/orders" className={navLinkClass}>
             <i className="bi bi-bag-check" /> Orders
           </NavLink>
