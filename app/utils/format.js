@@ -16,7 +16,7 @@ function padMindHealNo(mindHealNo, sortOrder = 0) {
 
 export function productMixLabel(mindHealNo, sortOrder = 0) {
   const num = padMindHealNo(mindHealNo, sortOrder);
-  return `Bach flowers mix No-${num}`;
+  return `Mind Heal Mix No-${num}`;
 }
 
 export function productMindHealLabel(mindHealNo, sortOrder = 0) {
@@ -31,8 +31,22 @@ export function formatPrice(price) {
   return `₹${amount.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`;
 }
 
+export function cleanProductName(name) {
+  if (!name) return "";
+  return String(name)
+    .replace(/[（(][^）)]*[）)]/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 export function imageSrc(path) {
   if (!path) return "/assets/img/blog/blog1.png";
   if (path.startsWith("http") || path.startsWith("/")) return path;
   return `/assets/img/${path}`;
+}
+
+export const DEFAULT_BOTTLE_IMAGE = "/assets/img/products/product01.png";
+
+export function bottleImageSrc(product) {
+  return imageSrc(product?.productBottleImage || DEFAULT_BOTTLE_IMAGE);
 }

@@ -1,0 +1,165 @@
+/* ============ Your Trusted Bach Flower Remedies Expert ============ */
+.re-section {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(17, 101, 48, 0.06) 0%,
+      rgba(17, 101, 48, 0) 40%
+    ),
+    #ffffff;
+}
+
+/* ---- media / image + video ---- */
+.re-media {
+  position: relative;
+  border-radius: 24px;
+}
+
+.re-img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 28px 60px -22px rgba(17, 101, 48, 0.45);
+  display: block;
+}
+
+/* keep the play button centered over the image */
+.re-media .re-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.re-media-badge {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #116530;
+  font-size: 0.86rem;
+  font-weight: 700;
+  box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.re-media-badge i {
+  font-size: 1.1rem;
+}
+
+/* subtle gradient so the badge/play stay readable */
+.re-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 45%,
+    rgba(0, 0, 0, 0.28) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- text content ---- */
+.re-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #116530;
+  margin-bottom: 14px;
+}
+
+.re-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: #116530;
+  display: inline-block;
+}
+
+.re-title {
+  color: #1c2b22;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.re-title strong {
+  color: #116530;
+  font-weight: 800;
+}
+
+.re-lead {
+  color: #4a5a51;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 26px;
+}
+
+/* ---- highlight checklist ---- */
+.re-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.re-check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f4f9f2;
+  border: 1px solid #e4efe0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3f33;
+  transition: transform 0.22s ease, box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.re-check-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 26px -16px rgba(17, 101, 48, 0.5);
+  border-color: #bcdcb2;
+}
+
+.re-check-emoji {
+  flex: 0 0 auto;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+@media (max-width: 991.98px) {
+  .re-section {
+    padding: 48px 0;
+  }
+
+  .re-img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .re-checklist {
+    grid-template-columns: 1fr;
+  }
+}

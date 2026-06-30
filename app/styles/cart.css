@@ -5,6 +5,39 @@
   line-height: 1.6;
 }
 
+/* Product detail — bottle image overlay (protrudes like before) on desktop */
+.product-detail-bottle {
+  height: 400px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Mobile / tablet: stop overlapping — place bottle beside the scene image so
+   the image and all the text below stay fully viewable. */
+@media (max-width: 991.98px) {
+  .product-detail-img-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .product-detail-scene {
+    flex: 1 1 58%;
+    min-width: 0;
+  }
+
+  .product-detail-bottle {
+    position: static !important;
+    flex: 0 0 auto;
+    height: auto;
+    max-height: 230px;
+    max-width: 40%;
+    width: auto;
+  }
+}
+
 .product-healing-note h2 {
   font-weight: 600;
   color: #1a3c2e;

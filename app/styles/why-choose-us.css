@@ -1,0 +1,206 @@
+/* ============ Why Choose Us — enhanced ============ */
+.wcu-section .content {
+  background: linear-gradient(135deg, #0e5429 0%, #116530 55%, #0c4a25 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 70px 0;
+}
+
+/* soft decorative glow */
+.wcu-section .content::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ---- media / image ---- */
+.wcu-media {
+  position: relative;
+  border-radius: 22px;
+}
+
+.wcu-img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 26px 60px -20px rgba(0, 0, 0, 0.55);
+  display: block;
+}
+
+.wcu-badge {
+  position: absolute;
+  bottom: -22px;
+  right: -14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #fff;
+  color: #116530;
+  text-align: center;
+  box-shadow: 0 16px 34px -12px rgba(0, 0, 0, 0.5);
+  border: 5px solid #f0f7ee;
+}
+
+.wcu-badge-num {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.wcu-badge-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.wcu-chip {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #116530;
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.wcu-chip i {
+  font-size: 1rem;
+}
+
+/* ---- text content ---- */
+.wcu-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 14px;
+}
+
+.wcu-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+}
+
+.wcu-title {
+  color: #fff;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.wcu-title strong {
+  font-weight: 800;
+}
+
+.wcu-lead {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ---- feature list ---- */
+.wcu-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wcu-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.25s ease, transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.wcu-feature:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateX(4px);
+}
+
+.wcu-feature-icon {
+  flex: 0 0 auto;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #116530;
+  font-size: 1.4rem;
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.45);
+}
+
+.wcu-feature-title {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.wcu-feature-text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 991.98px) {
+  .wcu-section .content {
+    padding: 48px 0;
+  }
+
+  .wcu-img {
+    height: 320px;
+  }
+
+  .wcu-badge {
+    width: 104px;
+    height: 104px;
+    right: 8px;
+    bottom: -18px;
+  }
+
+  .wcu-badge-num {
+    font-size: 1.7rem;
+  }
+}

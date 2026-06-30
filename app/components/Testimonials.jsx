@@ -1,35 +1,59 @@
 import { imageSrc } from "~/utils/format";
 
+function Stars({ rating = 5 }) {
+  const count = Math.max(0, Math.min(5, Number(rating) || 5));
+  return (
+    <div className="tm-stars" aria-label={`${count} out of 5 stars`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <i
+          key={i}
+          className={`bi ${i < count ? "bi-star-fill" : "bi-star"}`}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Testimonials({ items = [] }) {
   if (!items.length) return null;
 
   return (
-    <section className="testimonials-12 testimonials section" id="testimonials">
-      <div className="container section-title" data-aos="fade-up">
-        <h2>TESTIMONIALS</h2>
-        <p>What Our Happy Clients Say</p>
+    <section className="testimonials section tm-section" id="testimonials">
+      <div className="container tm-head" data-aos="fade-up">
+        <span className="tm-eyebrow">Testimonials</span>
+        <h2 className="tm-title">What Our Happy Clients Say</h2>
+        <p className="tm-subtitle">
+          Real stories from people who found calm, balance, and emotional
+          well-being with our Bach Flower remedies
+        </p>
       </div>
-      <div className="testimonial-wrap">
-        <div className="container">
-          <div className="row">
-            {items.map((item) => (
-              <div className="col-md-6 mb-4 mb-md-4" key={item.id}>
-                <div className="testimonial">
+
+      <div className="container">
+        <div className="row g-4">
+          {items.map((item) => (
+            <div className="col-lg-4 col-md-6" key={item.id} data-aos="fade-up">
+              <figure className="tm-card">
+                <i className="bi bi-quote tm-quote" aria-hidden />
+                <Stars rating={item.rating} />
+                <blockquote className="tm-content">{item.content}</blockquote>
+                <figcaption className="tm-author">
                   <img
                     src={imageSrc(item.image)}
                     alt={item.name}
+                    className="tm-avatar"
                     onError={(e) => {
-                      e.currentTarget.src = "/assets/img/testimonials/testi1.png";
+                      e.currentTarget.src =
+                        "/assets/img/testimonials/testi1.png";
                     }}
                   />
-                  <blockquote>
-                    <p>{item.content}</p>
-                  </blockquote>
-                  <p className="client-name">{item.name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                  <div>
+                    <span className="tm-name">{item.name}</span>
+                    <span className="tm-role">Verified Client</span>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
         </div>
       </div>
     </section>

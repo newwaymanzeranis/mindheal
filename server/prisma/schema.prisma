@@ -168,6 +168,7 @@ model Product {
   mrp              Decimal  @default(400) @db.Decimal(10, 2)
   price            Decimal  @default(250) @map("discounted_price") @db.Decimal(10, 2)
   image            String?  @db.VarChar(500)
+  productBottleImage String? @map("product_bottle_image") @db.VarChar(500)
   published      Boolean  @default(true)
   sortOrder      Int      @default(0) @map("sort_order")
   emotionalTags  String?  @map("emotional_tags") @db.Text

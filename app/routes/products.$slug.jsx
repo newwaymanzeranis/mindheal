@@ -5,7 +5,7 @@ import ProductAddToCart from "~/components/ProductAddToCart";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
 import { fetchProductBySlug } from "~/lib/fetchApi.server";
-import { imageSrc, productMindHealLabel } from "~/utils/format";
+import { bottleImageSrc, imageSrc, productMindHealLabel } from "~/utils/format";
 
 import cartCss from "~/styles/cart.css?url";
 
@@ -39,17 +39,17 @@ export default function ProductDetail() {
       <section className="section">
         <div className="container">
           <div className="row gy-4 align-items-start">
-            <div className="col-lg-5">
-              
+            <div className="col-lg-5 product-detail-img-col">
               <img
                 src={imageSrc(product.image)}
                 alt={product.name}
-                className="img-fluid rounded"
+                className="img-fluid rounded product-detail-scene"
               />
-               <img
-                        src="/assets/img/bach/mh_bottole.png"
-                        alt="Mind Heal Bottle"
-                       className=" position-absolute   start-0" style={{ width: '20%' }}/>
+              <img
+                src={bottleImageSrc(product)}
+                alt={`${product.name} bottle`}
+                className="product-detail-bottle position-absolute start-0"
+              />
             </div>
             <div className="col-lg-7">
               <p className="text-success fw-bold mb-2">

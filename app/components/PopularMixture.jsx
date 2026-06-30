@@ -1,14 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
-import { imageSrc } from "~/utils/format";
+import { useCart } from "~/context/CartContext";
+import {
+  bottleImageSrc,
+  cleanProductName,
+  formatPrice,
+  productMindHealLabel,
+} from "~/utils/format";
+import { getProductPricing } from "~/utils/pricing";
 
 export default function PopularMixture({ products = [] }) {
   const swiperContainerRef = useRef(null);
   const swiperRef = useRef(null);
+  const { addToCart } = useCart();
+  const [addedId, setAddedId] = useState(null);
 
   useEffect(() => {
     const container = swiperContainerRef.current;
@@ -19,14 +28,16 @@ export default function PopularMixture({ products = [] }) {
     const prevEl = container.querySelector(".js-custom-prev");
 
     swiperRef.current = new Swiper(container, {
-      loop: products.length > 1,
+      loop: products.length > 3,
       speed: 600,
+      grabCursor: true,
       autoplay: {
-        delay: 5000,
+        delay: 4000,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true,
       },
       slidesPerView: 1,
-      spaceBetween: 30,
+      spaceBetween: 24,
       pagination: {
         el: paginationEl,
         type: "bullets",
@@ -34,8 +45,8 @@ export default function PopularMixture({ products = [] }) {
       },
       navigation: { nextEl, prevEl },
       breakpoints: {
-        768: { slidesPerView: 2, spaceBetween: 30 },
-        1200: { slidesPerView: 3, spaceBetween: 40 },
+        576: { slidesPerView: 2, spaceBetween: 24 },
+        992: { slidesPerView: 3, spaceBetween: 28 },
       },
       observer: true,
       observeParents: true,
@@ -49,57 +60,119 @@ export default function PopularMixture({ products = [] }) {
 
   if (!products.length) return null;
 
+  const handleAdd = (product) => {
+    addToCart(product);
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
+
   return (
-    <section id="services-2" className="services-2 section dark-background">
-      <div className="container section-title">
-        <h2>Popular Mixture</h2>
-        <p>Mostly Prescribe Mixture And Popular Mixture</p>
+    <section id="services-2" className="services-2 section pm-section">
+      <div className="container pm-head">
+        <span className="pm-eyebrow">Popular Mixture</span>
+        <h2 className="pm-title">Mostly Prescribed &amp; Most Loved Blends</h2>
+        <p className="pm-subtitle">
+          Tried, trusted, and recommended Bach Flower remedies for everyday
+          emotional balance
+        </p>
       </div>
 
-      <div className="services-carousel-wrap">
-        <div className="container">
-          <div ref={swiperContainerRef} className="swiper popular-mixture-swiper">
-            <button
-              type="button"
-              className="navigation-prev js-custom-prev"
-              aria-label="Previous slide"
-            >
-              <i className="bi bi-arrow-left-short" />
-            </button>
-            <button
-              type="button"
-              className="navigation-next js-custom-next"
-              aria-label="Next slide"
-            >
-              <i className="bi bi-arrow-right-short" />
-            </button>
+      <div className="container">
+        <div ref={swiperContainerRef} className="swiper pm-swiper">
+          <button
+            type="button"
+            className="pm-nav pm-nav--prev js-custom-prev"
+            aria-label="Previous slide"
+          >
+            <i className="bi bi-chevron-left" />
+          </button>
+          <button
+            type="button"
+            className="pm-nav pm-nav--next js-custom-next"
+            aria-label="Next slide"
+          >
+            <i className="bi bi-chevron-right" />
+          </button>
 
-            <div className="swiper-wrapper">
-              {products.map((product) => (
+          <div className="swiper-wrapper">
+            {products.map((product) => {
+              const { mrp, salePrice, discountPercent } =
+                getProductPricing(product);
+              return (
                 <div className="swiper-slide" key={product.id}>
-                  <div className="service-item">
-                    <div className="service-item-contents">
-                      <Link to={`/products/${product.slug}`}>
-                        <span className="service-item-category">Our Popular Mixture</span>
-                        <h2 className="service-item-title">{product.name}</h2>
-                        <ProductEmotionalTags
-                          emotionalTags={product.emotionalTags}
-                          className="mt-2"
-                        />
-                      </Link>
+                  <article className="pm-card">
+                    <div className="pm-card-media">
+                      <span className="pm-card-pill">
+                        <i className="bi bi-star-fill" /> Popular
+                      </span>
+                      {discountPercent > 0 && (
+                        <span className="pm-card-discount">
+                          {discountPercent}% OFF
+                        </span>
+                      )}
+                      <img
+                        src={bottleImageSrc(product)}
+                        alt={product.name}
+                        className="pm-card-img"
+                        draggable={false}
+                        loading="lazy"
+                      />
                     </div>
-                    <img
-                      src={imageSrc(product.image)}
-                      alt={product.name}
-                      className="img-fluid"
-                    />
-                  </div>
+                    <div className="pm-card-body">
+                      <span className="pm-card-no">
+                        {productMindHealLabel(
+                          product.mindHealNo,
+                          product.sortOrder
+                        )}
+                      </span>
+                      <h3 className="pm-card-name">
+                        {cleanProductName(product.name)}
+                      </h3>
+                      <ProductEmotionalTags
+                        emotionalTags={product.emotionalTags}
+                        className="mb-2 gap-0"
+                      />
+                      <div className="pm-card-price">
+                        <span className="pm-card-sale">
+                          {formatPrice(salePrice)}
+                        </span>
+                        {mrp > salePrice && (
+                          <span className="pm-card-mrp">{formatPrice(mrp)}</span>
+                        )}
+                      </div>
+                      <div className="pm-card-actions">
+                        <button
+                          type="button"
+                          className={`pm-card-cart ${
+                            addedId === product.id ? "pm-card-cart--added" : ""
+                          }`}
+                          onClick={() => handleAdd(product)}
+                        >
+                          <i
+                            className={`bi ${
+                              addedId === product.id
+                                ? "bi-check-lg"
+                                : "bi-cart-plus"
+                            }`}
+                          />
+                          {addedId === product.id ? "Added" : "Add to Cart"}
+                        </button>
+                        <Link
+                          to={`/products/${product.slug}`}
+                          className="pm-card-view"
+                        >
+                          <i className="bi bi-eye" />
+                          View
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
                 </div>
-              ))}
-            </div>
-
-            <div className="swiper-pagination" />
+              );
+            })}
           </div>
+
+          <div className="swiper-pagination" />
         </div>
       </div>
     </section>

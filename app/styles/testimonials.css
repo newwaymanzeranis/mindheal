@@ -1,0 +1,142 @@
+/* ============ Testimonials — enhanced ============ */
+.tm-section {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(17, 101, 48, 0.06) 0%,
+      rgba(17, 101, 48, 0) 40%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f6faf4 100%);
+}
+
+.tm-head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.tm-eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #116530;
+  margin-bottom: 8px;
+}
+
+.tm-title {
+  color: #1c2b22;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  margin: 0 0 8px;
+}
+
+.tm-subtitle {
+  color: #6b8273;
+  font-size: 0.96rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* card */
+.tm-card {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #e8efe6;
+  border-radius: 18px;
+  padding: 30px 26px 24px;
+  box-shadow: 0 10px 30px -22px rgba(17, 101, 48, 0.4);
+  transition: transform 0.28s ease, box-shadow 0.28s ease,
+    border-color 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -22px rgba(17, 101, 48, 0.45);
+  border-color: #c7dcc0;
+}
+
+.tm-quote {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(17, 101, 48, 0.1);
+  pointer-events: none;
+}
+
+.tm-stars {
+  display: flex;
+  gap: 3px;
+  color: #f5b301;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.tm-content {
+  color: #3f5147;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin: 0 0 22px;
+  flex: 1 1 auto;
+}
+
+.tm-content::before {
+  content: "\201C";
+}
+
+.tm-content::after {
+  content: "\201D";
+}
+
+.tm-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #eef3eb;
+}
+
+.tm-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #eaf3e6;
+  flex: 0 0 auto;
+}
+
+.tm-name {
+  display: block;
+  font-weight: 700;
+  color: #1f3329;
+  font-size: 0.98rem;
+}
+
+.tm-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: #7d9488;
+}
+
+.tm-role::before {
+  content: "\F26B";
+  font-family: "bootstrap-icons";
+  color: #116530;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 991.98px) {
+  .tm-section {
+    padding: 48px 0;
+  }
+}

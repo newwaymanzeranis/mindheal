@@ -73,6 +73,7 @@ export const create = async (req, res) => {
     mrp,
     price,
     image,
+    productBottleImage,
     published,
     sortOrder,
     emotionalTags,
@@ -96,6 +97,7 @@ export const create = async (req, res) => {
       mrp: mrp != null ? mrp : 400,
       price: price != null ? price : 250,
       image,
+      productBottleImage: productBottleImage ?? null,
       published: published ?? true,
       sortOrder: sortOrder ?? 0,
       emotionalTags:
@@ -119,6 +121,7 @@ export const update = async (req, res) => {
     mrp,
     price,
     image,
+    productBottleImage,
     published,
     sortOrder,
     emotionalTags,
@@ -143,6 +146,7 @@ export const update = async (req, res) => {
     ...(mrp !== undefined && { mrp }),
     ...(price !== undefined && { price }),
     ...(image !== undefined && { image }),
+    ...(productBottleImage !== undefined && { productBottleImage }),
     ...(published !== undefined && { published }),
     ...(sortOrder !== undefined && { sortOrder: Number(sortOrder) }),
     ...(emotionalTags !== undefined && {

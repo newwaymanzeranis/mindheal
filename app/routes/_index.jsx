@@ -17,6 +17,19 @@ import {
   fetchTestimonials,
 } from "~/lib/fetchApi.server";
 import { initHomePage } from "~/utils/siteInit";
+import productSliderCss from "~/styles/product-slider.css?url";
+import whyChooseUsCss from "~/styles/why-choose-us.css?url";
+import remediesExpertCss from "~/styles/remedies-expert.css?url";
+import popularMixtureCss from "~/styles/popular-mixture.css?url";
+import testimonialsCss from "~/styles/testimonials.css?url";
+
+export const links = () => [
+  { rel: "stylesheet", href: productSliderCss },
+  { rel: "stylesheet", href: whyChooseUsCss },
+  { rel: "stylesheet", href: remediesExpertCss },
+  { rel: "stylesheet", href: popularMixtureCss },
+  { rel: "stylesheet", href: testimonialsCss },
+];
 
 function pickRandomProducts(products, count = 8) {
   if (products.length <= count) return products;

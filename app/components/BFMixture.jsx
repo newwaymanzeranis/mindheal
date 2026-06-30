@@ -2,17 +2,28 @@ import { useCallback, useState } from "react";
 import { Link } from "react-router";
 
 import MixSearchFilter from "~/components/MixSearchFilter";
+import ProductBottleSlider from "~/components/ProductBottleSlider";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
-import { imageSrc, productMixLabel } from "~/utils/format";
+import { useCart } from "~/context/CartContext";
+import { formatPrice, imageSrc, productMixLabel } from "~/utils/format";
+import { getProductPricing } from "~/utils/pricing";
 
 const DISPLAY_LIMIT = 16;
 
 export default function BFMixture({ products = [] }) {
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const { addToCart } = useCart();
+  const [addedId, setAddedId] = useState(null);
 
   const handleFilteredChange = useCallback((next) => {
     setFilteredProducts(next);
   }, []);
+
+  const handleAdd = (product) => {
+    addToCart(product);
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
 
   if (!products.length) return null;
 
@@ -31,8 +42,15 @@ export default function BFMixture({ products = [] }) {
         <p>Providing Pre-Mixed Bach Flower Remedies for Your Well-Being </p>
         <MixSearchFilter products={products} onFilteredChange={handleFilteredChange} />
       </div>
+      <ProductBottleSlider products={filteredProducts} />
       <div className="content">
         <div className="container">
+          <div className="bottle-slider-head">
+            <h3 className="bottle-slider-title">Explore All Bach Flower Combinations</h3>
+            <p className="bottle-slider-subtitle">
+              Browse our complete range of pre-mixed remedies for every emotional need
+            </p>
+          </div>
           {!filteredProducts.length ? (
             <p className="text-center text-muted py-4">
               No mixes match your search. Try different tags or clear filters.
@@ -59,9 +77,42 @@ export default function BFMixture({ products = [] }) {
                       emotionalTags={product.emotionalTags}
                       className="mb-2 gap-0"
                     />
-                    <h6 className="text-right">
-                      <Link to={`/products/${product.slug}`}>Read More....</Link>
-                    </h6>
+                    <div className="mix-grid-price">
+                      <span className="mix-grid-sale">
+                        {formatPrice(getProductPricing(product).salePrice)}
+                      </span>
+                      {getProductPricing(product).mrp >
+                        getProductPricing(product).salePrice && (
+                        <span className="mix-grid-mrp">
+                          {formatPrice(getProductPricing(product).mrp)}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mix-grid-actions">
+                      <button
+                        type="button"
+                        className={`mix-grid-cart ${
+                          addedId === product.id ? "mix-grid-cart--added" : ""
+                        }`}
+                        onClick={() => handleAdd(product)}
+                      >
+                        <i
+                          className={`bi ${
+                            addedId === product.id
+                              ? "bi-check-lg"
+                              : "bi-cart-plus"
+                          }`}
+                        />
+                        {addedId === product.id ? "Added" : "Add to Cart"}
+                      </button>
+                      <Link
+                        to={`/products/${product.slug}`}
+                        className="mix-grid-view"
+                      >
+                        <i className="bi bi-eye" />
+                        View Details
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

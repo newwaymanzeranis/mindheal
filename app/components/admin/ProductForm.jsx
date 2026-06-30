@@ -13,6 +13,7 @@ const empty = {
   mrp: "400",
   price: "250",
   image: "",
+  productBottleImage: "",
   published: true,
   sortOrder: 0,
   emotionalTags: "",
@@ -40,6 +41,7 @@ export default function ProductForm({ productId }) {
           mrp: product.mrp != null ? String(product.mrp) : "400",
           price: product.price != null ? String(product.price) : "250",
           image: product.image || "",
+          productBottleImage: product.productBottleImage || "",
           published: product.published ?? true,
           sortOrder: product.sortOrder ?? 0,
           emotionalTags: product.emotionalTags || "",
@@ -69,6 +71,7 @@ export default function ProductForm({ productId }) {
       mrp: form.mrp ? Number(form.mrp) : 400,
       price: form.price ? Number(form.price) : 250,
       image: form.image,
+      productBottleImage: form.productBottleImage.trim() || null,
       published: form.published,
       sortOrder: Number(form.sortOrder),
       emotionalTags: form.emotionalTags.trim() || null,
@@ -205,6 +208,19 @@ export default function ProductForm({ productId }) {
                 value={form.image}
                 onChange={(e) => update("image", e.target.value)}
               />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Product Bottle Image URL</label>
+              <input
+                className="form-control"
+                placeholder="/assets/img/products/product01.png"
+                value={form.productBottleImage}
+                onChange={(e) => update("productBottleImage", e.target.value)}
+              />
+              <small className="text-muted">
+                Bottle photo shown in the homepage product slider. If empty, the default bottle
+                (/assets/img/products/product01.png) is shown.
+              </small>
             </div>
             <div className="form-check mb-3">
               <input
