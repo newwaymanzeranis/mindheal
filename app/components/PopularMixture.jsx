@@ -28,7 +28,7 @@ export default function PopularMixture({ products = [] }) {
     const prevEl = container.querySelector(".js-custom-prev");
 
     swiperRef.current = new Swiper(container, {
-      loop: products.length > 3,
+      loop: products.length > 4,
       speed: 600,
       grabCursor: true,
       autoplay: {
@@ -46,7 +46,7 @@ export default function PopularMixture({ products = [] }) {
       navigation: { nextEl, prevEl },
       breakpoints: {
         576: { slidesPerView: 2, spaceBetween: 24 },
-        992: { slidesPerView: 3, spaceBetween: 28 },
+        992: { slidesPerView: 4, spaceBetween: 24 },
       },
       observer: true,
       observeParents: true,
