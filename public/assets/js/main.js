@@ -166,10 +166,7 @@
   window.addEventListener("load", initSwiper);
 
   /**
-   * Initiate glightbox
+   * GLightbox is initialized by the React app (siteInit.js).
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
 
 })();

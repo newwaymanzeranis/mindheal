@@ -1,0 +1,221 @@
+/* Buy Mind Heal Mix — header only */
+
+.buy-mh-mix-page {
+  --bmm-green: #2d6a4f;
+  --bmm-green-dark: #1a3c2e;
+  --bmm-cream: #f6faf4;
+}
+
+/* ── Hero ── */
+.bmm-hero {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    #0f3d24 0%,
+    #1a4d2e 28%,
+    #2d6a4f 58%,
+    #1e5631 100%
+  );
+  padding: 18px 0 32px;
+  overflow: hidden;
+}
+
+.bmm-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/img/page-title-bg.webp") center/cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.bmm-hero-glow {
+  position: absolute;
+  top: -100px;
+  right: -80px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    circle,
+    rgba(82, 183, 136, 0.22) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.bmm-hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.bmm-hero-logo {
+  margin-bottom: 10px;
+}
+
+.bmm-hero-logo img {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.4));
+}
+
+.bmm-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d8f3dc;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+.bmm-eyebrow i {
+  color: #95d5b2;
+}
+
+.bmm-hero-title {
+  font-family: "Marcellus", serif;
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0 auto 8px;
+}
+
+.bmm-hero-lead {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto 16px;
+  max-width: 620px;
+}
+
+.bmm-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.bmm-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.bmm-stat i {
+  color: #95d5b2;
+  font-size: 1rem;
+}
+
+/* ── Catalog intro (below hero) ── */
+.bmm-catalog-intro {
+  position: relative;
+  z-index: 2;
+  margin-top: -22px;
+  padding: 32px 0 0;
+  background: linear-gradient(180deg, var(--bmm-cream) 0%, #fff 100%);
+  border-radius: 22px 22px 0 0;
+}
+
+.bmm-catalog-head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.bmm-catalog-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #116530;
+  margin-bottom: 8px;
+}
+
+.bmm-catalog-head h2 {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--bmm-green-dark);
+  margin: 0 0 8px;
+}
+
+.bmm-catalog-head p {
+  color: #6b8273;
+  font-size: 0.96rem;
+  margin: 0 auto;
+}
+
+.bmm-offer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 20px;
+  margin-bottom: 28px;
+  padding: 14px 20px;
+  background: #fff;
+  border: 1px solid #e8efe6;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -12px rgba(45, 106, 79, 0.15);
+}
+
+.bmm-offer-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bmm-green-dark);
+}
+
+.bmm-offer-item strong {
+  color: #e8503a;
+}
+
+.bmm-offer-divider {
+  width: 1px;
+  height: 20px;
+  background: #e8efe6;
+}
+
+@media (max-width: 767.98px) {
+  .bmm-hero {
+    padding: 14px 0 28px;
+  }
+
+  .bmm-hero-logo img {
+    width: 100px;
+  }
+
+  .bmm-offer-divider {
+    display: none;
+  }
+
+  .bmm-offer-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bmm-catalog-intro {
+    margin-top: -14px;
+    padding-top: 24px;
+    border-radius: 18px 18px 0 0;
+  }
+}

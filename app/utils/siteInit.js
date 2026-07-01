@@ -65,11 +65,21 @@ export async function initHomeSwiper() {
   return instances;
 }
 
-export function initGLightbox() {
-  if (typeof window !== "undefined" && window.GLightbox) {
-    return window.GLightbox({ selector: ".glightbox" });
+let glightboxInstance = null;
+
+export function initGLightbox(selector = ".glightbox") {
+  if (typeof window === "undefined" || !window.GLightbox) {
+    return null;
   }
-  return null;
+
+  glightboxInstance?.destroy?.();
+  glightboxInstance = window.GLightbox({ selector });
+  return glightboxInstance;
+}
+
+export function destroyGLightbox() {
+  glightboxInstance?.destroy?.();
+  glightboxInstance = null;
 }
 
 export function initHomePage() {

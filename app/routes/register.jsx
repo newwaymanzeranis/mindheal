@@ -1,13 +1,28 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 
-import PageTitle from "~/components/PageTitle";
 import { useAuth } from "~/context/AuthContext";
 import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
+import authCss from "~/styles/auth.css?url";
 
-import cartCss from "~/styles/cart.css?url";
+export const links = () => [{ rel: "stylesheet", href: authCss }];
 
-export const links = () => [{ rel: "stylesheet", href: cartCss }];
+const HERO_STATS = [
+  { icon: "bi-person-plus", label: "Quick Signup" },
+  { icon: "bi-truck", label: "Cash on Delivery" },
+  { icon: "bi-bag-check", label: "Order in Minutes" },
+];
+
+export function meta() {
+  return [
+    { title: "Create Account | Mind Heal" },
+    {
+      name: "description",
+      content:
+        "Create your Mind Heal account to order Bach Flower mixtures with Cash on Delivery.",
+    },
+  ];
+}
 
 export default function RegisterPage() {
   const { register, isAuthenticated, loading: authLoading } = useAuth();
@@ -71,11 +86,13 @@ export default function RegisterPage() {
 
   if (!authLoading && isAuthenticated) {
     return (
-      <main className="main">
-        <section className="section">
-          <div className="container text-center py-5">
-            <div className="spinner-border text-success" role="status" />
-            <p className="text-muted mt-3 mb-0">Taking you to checkout…</p>
+      <main className="main au-page">
+        <section className="au-main" style={{ marginTop: 0, borderRadius: 0 }}>
+          <div className="container">
+            <div className="au-loading">
+              <div className="spinner-border" role="status" />
+              <p className="mt-3 mb-0">Taking you to checkout…</p>
+            </div>
           </div>
         </section>
       </main>
@@ -83,62 +100,97 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="main">
-      <PageTitle
-        title="Create Account"
-        description="Register to order Mind Heal mixtures with Cash on Delivery"
-        current="Register"
-        backgroundImage="/assets/img/page-title-bg.jpg"
-      />
-
-      <section className="section">
+    <main className="main au-page">
+      <section className="au-hero">
+        <div className="au-hero-glow" aria-hidden />
+        <div className="au-hero-glow au-hero-glow--left" aria-hidden />
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6 col-lg-5">
-              <div className="auth-card">
-                <h2 className="h4 mb-1">Create your account</h2>
-                <p className="text-muted small mb-4">
-                  Quick signup — pay when your order is delivered
-                </p>
+          <div className="au-hero-logo" aria-hidden>
+            <img
+              src="/assets/img/mind-heal-logo-vertical-white.png"
+              alt=""
+            />
+          </div>
 
-                {error && <div className="alert alert-danger">{error}</div>}
+          <h1 className="au-hero-title">Create Account</h1>
 
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="name">
-                      Full name
-                    </label>
+          <p className="au-hero-lead">
+            Register to order Mind Heal mixtures with Cash on Delivery — quick
+            signup, gentle healing delivered to your door.
+          </p>
+
+          <div className="au-hero-stats">
+            {HERO_STATS.map((stat) => (
+              <span className="au-stat" key={stat.label}>
+                <i className={`bi ${stat.icon}`} />
+                {stat.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="au-main">
+        <div className="container">
+          <div className="au-wrap au-wrap--wide">
+            <div className="au-card">
+              <div className="au-card-head">
+                <div className="au-card-icon">
+                  <i className="bi bi-person-plus" />
+                </div>
+                <h2>Create your account</h2>
+                <p>Quick signup — pay when your order is delivered</p>
+              </div>
+
+              {error && (
+                <div className="au-error" role="alert">
+                  <i className="bi bi-exclamation-circle" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <form className="au-form" onSubmit={handleSubmit}>
+                <div className="au-field">
+                  <label htmlFor="name">Full name</label>
+                  <div className="au-input-wrap">
+                    <i className="bi bi-person" />
                     <input
                       id="name"
                       type="text"
-                      className="form-control"
+                      className="au-input"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       autoComplete="name"
+                      placeholder="Your full name"
                     />
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="email">
-                      Email *
-                    </label>
+                </div>
+
+                <div className="au-field">
+                  <label htmlFor="email">Email *</label>
+                  <div className="au-input-wrap">
+                    <i className="bi bi-envelope" />
                     <input
                       id="email"
                       type="email"
-                      className="form-control"
+                      className="au-input"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       autoComplete="email"
+                      placeholder="you@example.com"
                     />
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="phone">
-                      Mobile number *
-                    </label>
+                </div>
+
+                <div className="au-field">
+                  <label htmlFor="phone">Mobile number *</label>
+                  <div className="au-input-wrap">
+                    <i className="bi bi-phone" />
                     <input
                       id="phone"
                       type="tel"
-                      className="form-control"
+                      className="au-input"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
@@ -148,51 +200,83 @@ export default function RegisterPage() {
                       maxLength={14}
                     />
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="password">
-                      Password *
-                    </label>
+                </div>
+
+                <div className="au-field">
+                  <label htmlFor="password">Password *</label>
+                  <div className="au-input-wrap">
+                    <i className="bi bi-lock" />
                     <input
                       id="password"
                       type="password"
-                      className="form-control"
+                      className="au-input"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       minLength={6}
                       autoComplete="new-password"
+                      placeholder="Create a password"
                     />
-                    <div className="form-text">At least 6 characters</div>
                   </div>
-                  <div className="mb-3">
-                    <label className="form-label" htmlFor="confirmPassword">
-                      Confirm password *
-                    </label>
+                  <p className="au-hint">At least 6 characters</p>
+                </div>
+
+                <div className="au-field">
+                  <label htmlFor="confirmPassword">Confirm password *</label>
+                  <div className="au-input-wrap">
+                    <i className="bi bi-shield-lock" />
                     <input
                       id="confirmPassword"
                       type="password"
-                      className="form-control"
+                      className="au-input"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       required
                       minLength={6}
                       autoComplete="new-password"
+                      placeholder="Confirm your password"
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-success w-100"
-                    disabled={loading}
-                  >
-                    {loading ? "Creating account..." : "Register & Continue"}
-                  </button>
-                </form>
+                </div>
 
-                <p className="text-center small text-muted mt-4 mb-0">
-                  Already have an account?{" "}
-                  <Link to={buildAuthRedirectUrl("/login", redirect)}>Login</Link>
-                </p>
+                <button type="submit" className="au-submit" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden
+                      />
+                      Creating account…
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-person-check" />
+                      Register &amp; Continue
+                    </>
+                  )}
+                </button>
+              </form>
+
+              <div className="au-trust">
+                <span>
+                  <i className="bi bi-truck" />
+                  Cash on Delivery
+                </span>
+                <span>
+                  <i className="bi bi-shield-check" />
+                  Secure account
+                </span>
+                <span>
+                  <i className="bi bi-heart" />
+                  Gentle healing
+                </span>
               </div>
+
+              <p className="au-footer">
+                Already have an account?{" "}
+                <Link to={buildAuthRedirectUrl("/login", redirect)}>Login</Link>
+              </p>
             </div>
           </div>
         </div>

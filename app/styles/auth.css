@@ -1,0 +1,489 @@
+/* Auth pages — login, register */
+
+.au-page {
+  --au-green: #2d6a4f;
+  --au-green-dark: #1a3c2e;
+  --au-cream: #f6faf4;
+}
+
+/* ── Hero ── */
+.au-hero {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    #0f3d24 0%,
+    #1a4d2e 28%,
+    #2d6a4f 58%,
+    #1e5631 100%
+  );
+  padding: 18px 0 32px;
+  overflow: hidden;
+}
+
+.au-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/img/page-title-bg.webp") center/cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.au-hero-glow {
+  position: absolute;
+  top: -100px;
+  right: -60px;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(
+    circle,
+    rgba(82, 183, 136, 0.22) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.au-hero-glow--left {
+  top: auto;
+  right: auto;
+  bottom: -120px;
+  left: -80px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.au-hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.au-hero-logo {
+  margin-bottom: 10px;
+}
+
+.au-hero-logo img {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.4));
+}
+
+.au-hero-title {
+  font-family: "Marcellus", serif;
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.au-hero-lead {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto 16px;
+  max-width: 520px;
+}
+
+.au-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.au-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.au-stat i {
+  color: #95d5b2;
+  font-size: 1rem;
+}
+
+/* ── Main ── */
+.au-main {
+  position: relative;
+  z-index: 2;
+  margin-top: -22px;
+  padding: 36px 0 72px;
+  background: linear-gradient(180deg, var(--au-cream) 0%, #fff 100%);
+  border-radius: 22px 22px 0 0;
+}
+
+.au-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.au-wrap--wide {
+  max-width: 520px;
+}
+
+.au-loading {
+  text-align: center;
+  padding: 48px 24px;
+  color: #6b8273;
+}
+
+.au-loading .spinner-border {
+  color: var(--au-green);
+}
+
+.au-card {
+  background: #fff;
+  border: 1px solid #e8efe6;
+  border-radius: 20px;
+  padding: 32px 30px 28px;
+  box-shadow: 0 16px 40px -18px rgba(45, 106, 79, 0.18);
+}
+
+.au-card-head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.au-card-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--au-green);
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-radius: 16px;
+}
+
+.au-card-head h2 {
+  font-family: "Marcellus", serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--au-green-dark);
+  margin: 0 0 6px;
+}
+
+.au-card-head p {
+  font-size: 0.92rem;
+  color: #6b8273;
+  margin: 0;
+}
+
+.au-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  color: #b42318;
+  background: #fef3f2;
+  border: 1px solid #fecdca;
+  border-radius: 12px;
+}
+
+.au-error i {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.au-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.au-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--au-green-dark);
+  margin-bottom: 6px;
+}
+
+.au-field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.au-field-row label {
+  margin-bottom: 0;
+}
+
+.au-input-wrap {
+  position: relative;
+}
+
+.au-input-wrap i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #95a89e;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.au-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  font-size: 0.95rem;
+  color: #1f3329;
+  background: #f9fbf8;
+  border: 1px solid #dce8d8;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.au-input:focus {
+  background: #fff;
+  border-color: var(--au-green);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.12);
+}
+
+.au-hint {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  color: #7d9488;
+}
+
+.au-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+}
+
+.au-info i {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.au-error-detail {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #fecdca;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.au-error-detail ol {
+  margin: 8px 0 0;
+  padding-left: 1.2rem;
+}
+
+.au-error-detail a {
+  color: #b42318;
+  font-weight: 600;
+}
+
+.au-otp-input {
+  text-align: center;
+  letter-spacing: 0.35em;
+  font-size: 1.15rem !important;
+  font-weight: 700;
+  padding-left: 14px !important;
+}
+
+.au-btn-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--au-green);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.au-btn-text:hover:not(:disabled) {
+  color: var(--au-green-dark);
+  text-decoration: underline;
+}
+
+.au-btn-text:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.au-steps {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.au-step {
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: #dce8d8;
+  transition: background 0.2s;
+}
+
+.au-step--active {
+  background: var(--au-green);
+}
+
+.au-step--done {
+  background: #95d5b2;
+}
+
+.au-done {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+
+.au-done-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--au-green);
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-radius: 50%;
+}
+
+.au-done p {
+  font-size: 0.95rem;
+  color: #3f5147;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.au-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--au-green);
+  text-decoration: none;
+}
+
+.au-link:hover {
+  color: var(--au-green-dark);
+  text-decoration: underline;
+}
+
+.au-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #2d6a4f, #1a4d2e);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.au-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(45, 106, 79, 0.5);
+}
+
+.au-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.au-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #eef3eb;
+}
+
+.au-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5a7266;
+}
+
+.au-trust i {
+  color: var(--au-green);
+}
+
+.au-footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: #6b8273;
+}
+
+.au-footer a {
+  font-weight: 700;
+  color: var(--au-green);
+  text-decoration: none;
+}
+
+.au-footer a:hover {
+  color: var(--au-green-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 767.98px) {
+  .au-hero {
+    padding: 14px 0 28px;
+  }
+
+  .au-hero-logo img {
+    width: 100px;
+  }
+
+  .au-main {
+    margin-top: -14px;
+    padding-top: 28px;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .au-card {
+    padding: 24px 20px 22px;
+  }
+}

@@ -1,14 +1,52 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
-import PageTitle from "~/components/PageTitle";
 import { authApi } from "~/lib/api";
+import authCss from "~/styles/auth.css?url";
 
-import cartCss from "~/styles/cart.css?url";
-
-export const links = () => [{ rel: "stylesheet", href: cartCss }];
+export const links = () => [{ rel: "stylesheet", href: authCss }];
 
 const STEPS = { EMAIL: 1, OTP: 2, PASSWORD: 3, DONE: 4 };
+
+const HERO_STATS = [
+  { icon: "bi-envelope-check", label: "Email OTP" },
+  { icon: "bi-shield-lock", label: "Secure Reset" },
+  { icon: "bi-clock", label: "Quick Process" },
+];
+
+const STEP_HINTS = {
+  [STEPS.EMAIL]: "Enter your registered email to receive an OTP",
+  [STEPS.OTP]: "Enter the 6-digit OTP sent to your email",
+  [STEPS.PASSWORD]: "Set your new password",
+  [STEPS.DONE]: "Your password has been updated",
+};
+
+export function meta() {
+  return [
+    { title: "Forgot Password | Mind Heal" },
+    {
+      name: "description",
+      content: "Reset your Mind Heal account password securely via email OTP.",
+    },
+  ];
+}
+
+function StepIndicator({ step }) {
+  const items = [STEPS.EMAIL, STEPS.OTP, STEPS.PASSWORD];
+
+  return (
+    <div className="au-steps" aria-hidden>
+      {items.map((item) => (
+        <span
+          key={item}
+          className={`au-step ${
+            step > item ? "au-step--done" : step === item ? "au-step--active" : ""
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function ForgotPasswordPage() {
   const navigate = useNavigate();
@@ -92,34 +130,59 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="main">
-      <PageTitle
-        title="Forgot Password"
-        description="Reset your Mind Heal account password via email OTP"
-        current="Forgot Password"
-        backgroundImage="/assets/img/page-title-bg.jpg"
-      />
-
-      <section className="section">
+    <main className="main au-page">
+      <section className="au-hero">
+        <div className="au-hero-glow" aria-hidden />
+        <div className="au-hero-glow au-hero-glow--left" aria-hidden />
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6 col-lg-5">
-              <div className="auth-card">
-                <h2 className="h4 mb-1">Reset password</h2>
-                <p className="text-muted small mb-4">
-                  {step === STEPS.EMAIL && "Enter your registered email to receive an OTP"}
-                  {step === STEPS.OTP && "Enter the 6-digit OTP sent to your email"}
-                  {step === STEPS.PASSWORD && "Set your new password"}
-                  {step === STEPS.DONE && "Your password has been updated"}
-                </p>
+          <div className="au-hero-logo" aria-hidden>
+            <img
+              src="/assets/img/mind-heal-logo-vertical-white.png"
+              alt=""
+            />
+          </div>
 
-                {error && (
-                  <div className="alert alert-danger">
-                    <div>{error}</div>
+          <h1 className="au-hero-title">Forgot Password</h1>
+
+          <p className="au-hero-lead">
+            Reset your Mind Heal account password securely — we&apos;ll send a
+            one-time code to your registered email.
+          </p>
+
+          <div className="au-hero-stats">
+            {HERO_STATS.map((stat) => (
+              <span className="au-stat" key={stat.label}>
+                <i className={`bi ${stat.icon}`} />
+                {stat.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="au-main">
+        <div className="container">
+          <div className="au-wrap au-wrap--wide">
+            <div className="au-card">
+              <div className="au-card-head">
+                <div className="au-card-icon">
+                  <i className="bi bi-key" />
+                </div>
+                <h2>Reset password</h2>
+                <p>{STEP_HINTS[step]}</p>
+              </div>
+
+              {step !== STEPS.DONE && <StepIndicator step={step} />}
+
+              {error && (
+                <div className="au-error" role="alert">
+                  <i className="bi bi-exclamation-circle" />
+                  <div>
+                    <span>{error}</span>
                     {error.includes("App Password") && (
-                      <div className="mt-3 small">
+                      <div className="au-error-detail">
                         <strong>Gmail App Password kaise banayein:</strong>
-                        <ol className="mb-0 ps-3 mt-2">
+                        <ol>
                           <li>
                             <a
                               href="https://myaccount.google.com/security"
@@ -141,53 +204,73 @@ export default function ForgotPasswordPage() {
                             </a>{" "}
                             → Mail → &quot;Mind Heal&quot;
                           </li>
-                          <li>16-character password copy karke server/.env mein SMTP_PASS update karein</li>
+                          <li>
+                            16-character password copy karke server/.env mein
+                            SMTP_PASS update karein
+                          </li>
                           <li>Server restart karein: cd server && npm run dev</li>
                         </ol>
                       </div>
                     )}
                   </div>
-                )}
-                {info && step !== STEPS.DONE && (
-                  <div className="alert alert-success">{info}</div>
-                )}
+                </div>
+              )}
 
-                {step === STEPS.EMAIL && (
-                  <form onSubmit={handleSendOtp}>
-                    <div className="mb-3">
-                      <label className="form-label" htmlFor="email">
-                        Email
-                      </label>
+              {info && step !== STEPS.DONE && (
+                <div className="au-info" role="status">
+                  <i className="bi bi-check-circle" />
+                  <span>{info}</span>
+                </div>
+              )}
+
+              {step === STEPS.EMAIL && (
+                <form className="au-form" onSubmit={handleSendOtp}>
+                  <div className="au-field">
+                    <label htmlFor="email">Email</label>
+                    <div className="au-input-wrap">
+                      <i className="bi bi-envelope" />
                       <input
                         id="email"
                         type="email"
-                        className="form-control"
+                        className="au-input"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         autoComplete="email"
+                        placeholder="you@example.com"
                       />
                     </div>
-                    <button
-                      type="submit"
-                      className="btn btn-success w-100"
-                      disabled={loading}
-                    >
-                      {loading ? "Sending OTP..." : "Send OTP"}
-                    </button>
-                  </form>
-                )}
+                  </div>
+                  <button type="submit" className="au-submit" disabled={loading}>
+                    {loading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden
+                        />
+                        Sending OTP…
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-send" />
+                        Send OTP
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
 
-                {step === STEPS.OTP && (
-                  <form onSubmit={handleVerifyOtp}>
-                    <div className="mb-3">
-                      <label className="form-label" htmlFor="otp">
-                        OTP
-                      </label>
+              {step === STEPS.OTP && (
+                <form className="au-form" onSubmit={handleVerifyOtp}>
+                  <div className="au-field">
+                    <label htmlFor="otp">OTP</label>
+                    <div className="au-input-wrap">
+                      <i className="bi bi-shield-check" />
                       <input
                         id="otp"
                         type="text"
-                        className="form-control text-center"
+                        className="au-input au-otp-input"
                         value={otp}
                         onChange={(e) =>
                           setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
@@ -195,98 +278,130 @@ export default function ForgotPasswordPage() {
                         required
                         inputMode="numeric"
                         maxLength={6}
-                        placeholder="6-digit OTP"
+                        placeholder="000000"
                         autoComplete="one-time-code"
-                        style={{ letterSpacing: "4px", fontSize: "1.25rem" }}
                       />
                     </div>
-                    <button
-                      type="submit"
-                      className="btn btn-success w-100 mb-2"
-                      disabled={loading || otp.length !== 6}
-                    >
-                      {loading ? "Verifying..." : "Verify OTP"}
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-link w-100 small"
-                      disabled={loading}
-                      onClick={() => {
-                        setStep(STEPS.EMAIL);
-                        setOtp("");
-                        setError("");
-                      }}
-                    >
-                      Resend OTP — change email
-                    </button>
-                  </form>
-                )}
+                    <p className="au-hint">6-digit code sent to {email}</p>
+                  </div>
+                  <button
+                    type="submit"
+                    className="au-submit"
+                    disabled={loading || otp.length !== 6}
+                  >
+                    {loading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden
+                        />
+                        Verifying…
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-check2-circle" />
+                        Verify OTP
+                      </>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    className="au-btn-text"
+                    disabled={loading}
+                    onClick={() => {
+                      setStep(STEPS.EMAIL);
+                      setOtp("");
+                      setError("");
+                      setInfo("");
+                    }}
+                  >
+                    <i className="bi bi-arrow-left" />
+                    Resend OTP — change email
+                  </button>
+                </form>
+              )}
 
-                {step === STEPS.PASSWORD && (
-                  <form onSubmit={handleResetPassword}>
-                    <div className="mb-3">
-                      <label className="form-label" htmlFor="password">
-                        New password
-                      </label>
+              {step === STEPS.PASSWORD && (
+                <form className="au-form" onSubmit={handleResetPassword}>
+                  <div className="au-field">
+                    <label htmlFor="password">New password</label>
+                    <div className="au-input-wrap">
+                      <i className="bi bi-lock" />
                       <input
                         id="password"
                         type="password"
-                        className="form-control"
+                        className="au-input"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         minLength={6}
                         autoComplete="new-password"
+                        placeholder="New password"
                       />
-                      <div className="form-text">At least 6 characters</div>
                     </div>
-                    <div className="mb-3">
-                      <label className="form-label" htmlFor="confirmPassword">
-                        Confirm new password
-                      </label>
+                    <p className="au-hint">At least 6 characters</p>
+                  </div>
+                  <div className="au-field">
+                    <label htmlFor="confirmPassword">Confirm new password</label>
+                    <div className="au-input-wrap">
+                      <i className="bi bi-shield-lock" />
                       <input
                         id="confirmPassword"
                         type="password"
-                        className="form-control"
+                        className="au-input"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                         minLength={6}
                         autoComplete="new-password"
+                        placeholder="Confirm new password"
                       />
                     </div>
-                    <button
-                      type="submit"
-                      className="btn btn-success w-100"
-                      disabled={loading}
-                    >
-                      {loading ? "Updating..." : "Change Password"}
-                    </button>
-                  </form>
-                )}
-
-                {step === STEPS.DONE && (
-                  <div className="text-center">
-                    <div className="alert alert-success mb-4">
-                      {info || "Password changed successfully!"}
-                    </div>
-                    <button
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => navigate("/login")}
-                    >
-                      Go to Login
-                    </button>
                   </div>
-                )}
+                  <button type="submit" className="au-submit" disabled={loading}>
+                    {loading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden
+                        />
+                        Updating…
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-key" />
+                        Change Password
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
 
-                {step !== STEPS.DONE && (
-                  <p className="text-center small text-muted mt-4 mb-0">
-                    Remember your password?{" "}
-                    <Link to="/login">Back to login</Link>
-                  </p>
-                )}
-              </div>
+              {step === STEPS.DONE && (
+                <div className="au-done">
+                  <div className="au-done-icon">
+                    <i className="bi bi-check-lg" />
+                  </div>
+                  <p>{info || "Password changed successfully!"}</p>
+                  <button
+                    type="button"
+                    className="au-submit"
+                    onClick={() => navigate("/login")}
+                  >
+                    <i className="bi bi-box-arrow-in-right" />
+                    Go to Login
+                  </button>
+                </div>
+              )}
+
+              {step !== STEPS.DONE && (
+                <p className="au-footer">
+                  Remember your password?{" "}
+                  <Link to="/login">Back to login</Link>
+                </p>
+              )}
             </div>
           </div>
         </div>

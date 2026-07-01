@@ -1,8 +1,16 @@
 import { Link, useLoaderData } from "react-router";
 
-import PageTitle from "~/components/PageTitle";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
+import blogCss from "~/styles/blog.css?url";
+
+export const links = () => [{ rel: "stylesheet", href: blogCss }];
+
+const HERO_STATS = [
+  { icon: "bi-journal-richtext", label: "Expert Insights" },
+  { icon: "bi-flower2", label: "Bach Flower Wisdom" },
+  { icon: "bi-lightbulb", label: "Learn & Thrive" },
+];
 
 export async function loader({ request }) {
   const posts = await fetchPosts("published=true&limit=50&categorySlug=bach-flower", {
@@ -11,83 +19,134 @@ export async function loader({ request }) {
   return { posts };
 }
 
+export function meta() {
+  return [
+    { title: "Blogs | Mind Heal" },
+    {
+      name: "description",
+      content:
+        "Learn and thrive with Mind Heal blogs — Bach Flower Remedies wisdom, emotional wellness tips, and expert guidance from our experience.",
+    },
+  ];
+}
+
 export default function Blog() {
   const { posts } = useLoaderData();
 
   return (
-    <main className="main">
-      <PageTitle
-        title="Blogs"
-        description="Your Healing Partner with Bach Flower Remedies -Learn & Thrive with the Wisdom of Our Experience!"
-        current="Blogs"
-        backgroundImage="/assets/img/page-title-bg.jpg"
-      />
-
-      <section id="blog-posts-2" className="blog-posts-2 section">
+    <main className="main blog-page">
+      <section className="bl-hero">
+        <div className="bl-hero-glow" aria-hidden />
+        <div className="bl-hero-glow bl-hero-glow--left" aria-hidden />
         <div className="container">
-          <h2 className="text-center">MIND HEAL is your Healing Partner - Blogs</h2>
-          <p
-            className="text-center"
-            style={{ fontFamily: "var(--heading-font)", fontSize: "32px" }}
-          >
-            Learn & Thrive with the Wisdom of Our Experience!
+          <div className="bl-hero-logo" aria-hidden>
+            <img
+              src="/assets/img/mind-heal-logo-vertical-white.png"
+              alt=""
+            />
+          </div>
+
+          <h1 className="bl-hero-title">Mind Heal Blogs</h1>
+
+          <p className="bl-hero-lead">
+            Your Healing Partner with Bach Flower Remedies — learn and thrive
+            with the wisdom of our experience.
           </p>
-          <div className="row gy-4">
+
+          <div className="bl-hero-stats">
+            {HERO_STATS.map((stat) => (
+              <span className="bl-stat" key={stat.label}>
+                <i className={`bi ${stat.icon}`} />
+                {stat.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bl-main" id="blog-posts">
+        <div className="container" data-aos="fade-up">
+          <div className="bl-section-head">
+            <span className="bl-section-eyebrow">From Our Experience</span>
+            <h2>MIND HEAL is your Healing Partner — Blogs</h2>
+            <p>Learn &amp; Thrive with the Wisdom of Our Experience!</p>
+          </div>
+
+          <div className="bl-grid">
             {posts.length === 0 && (
-              <p className="text-center text-muted">No blog posts yet. Add posts from admin.</p>
+              <div className="bl-empty">
+                <i className="bi bi-journal-text" />
+                <p>No blog posts yet. Add posts from admin.</p>
+              </div>
             )}
+
             {posts.map((post) => {
               const { day, month } = formatPostDate(post.publishedAt);
+
               return (
-                <div className="col-lg-4" key={post.id}>
-                  <article className="position-relative h-100">
-                    <div className="post-img position-relative overflow-hidden">
-                      <img src={imageSrc(post.image)} className="img-fluid" alt={post.title} />
-                    </div>
-                    <div className="meta d-flex align-items-end">
-                      {day && month && (
-                        <span className="post-date">
-                          <span>{day}</span>
-                          {month}
+                <article className="bl-card" key={post.id}>
+                  <div className="bl-card-media">
+                    <img src={imageSrc(post.image)} alt={post.title} />
+                    {day && month && (
+                      <div className="bl-card-date">
+                        <span>{day}</span>
+                        <small>{month}</small>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="bl-card-body">
+                    <div className="bl-card-meta">
+                      {post.author && (
+                        <span>
+                          <i className="bi bi-person" />
+                          {post.author}
                         </span>
                       )}
-                      {post.author && (
-                        <div className="d-flex align-items-center">
-                          <i className="bi bi-person" />
-                          <span className="ps-2">{post.author}</span>
-                        </div>
+                      {post.category?.name && (
+                        <span>
+                          <i className="bi bi-folder2" />
+                          {post.category.name}
+                        </span>
                       )}
                     </div>
-                    <div className="post-content d-flex flex-column">
-                      <h3 className="post-title">{post.title}</h3>
-                      {post.excerpt && (
-                        <p className="text-muted small mb-2">{post.excerpt}</p>
-                      )}
-                      <Link to={`/blog/${post.slug}`} className="readmore stretched-link">
-                        <span>Read More</span>
-                        <i className="bi bi-arrow-right" />
-                      </Link>
-                    </div>
-                  </article>
-                </div>
+
+                    <h3 className="bl-card-title">{post.title}</h3>
+
+                    {post.excerpt && (
+                      <p className="bl-card-excerpt">{post.excerpt}</p>
+                    )}
+
+                    <Link to={`/blog/${post.slug}`} className="bl-card-link">
+                      Read More
+                      <i className="bi bi-arrow-right" />
+                    </Link>
+                  </div>
+                </article>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section id="call-to-action" className="call-to-action section light-background">
-        <div className="content">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-12">
-                <h4>
-                  No pressure. Just gentle healing. Your feelings are valid. We&apos;re here to
-                  support you. Let&apos;s talk, not just treat.
-                </h4>
-                <p className="opacity-50">Begin with calm. Heal with care. Grow with love.</p>
-              </div>
-            </div>
+      <section className="bl-cta">
+        <div className="container">
+          <h4>
+            No pressure. Just gentle healing. Your feelings are valid.
+            We&apos;re here to support you. Let&apos;s talk, not just treat.
+          </h4>
+          <p className="bl-cta-tagline">
+            Begin with calm. Heal with care. Grow with love.
+          </p>
+          <div className="bl-cta-actions">
+            <Link to="/contact" className="bl-cta-btn bl-cta-btn--primary">
+              <i className="bi bi-chat-dots" />
+              Contact Us
+            </Link>
+            <Link to="/buy_mh_mix" className="bl-cta-btn bl-cta-btn--ghost">
+              <i className="bi bi-bag-heart" />
+              Explore Remedies
+            </Link>
           </div>
         </div>
       </section>

@@ -1,9 +1,32 @@
+import { useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
 
-import PageTitle from "~/components/PageTitle";
 import { TeamCardSocialLinks } from "~/components/TeamSocialLinks";
+import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { fetchTeamMembers } from "~/lib/fetchApi.server";
 import { imageSrc } from "~/utils/format";
+
+import aboutCss from "~/styles/about.css?url";
+
+export const links = () => [{ rel: "stylesheet", href: aboutCss }];
+
+const ABOUT_VIDEO_URL = "https://www.youtube.com/watch?v=9PFB2v_fEaA";
+
+const HERO_STATS = [
+  { icon: "bi-flower2", label: "Bach Flower Experts" },
+  { icon: "bi-heart-pulse", label: "Holistic Emotional Care" },
+  { icon: "bi-shield-check", label: "Safe & Natural Remedies" },
+];
+
+const EMOTIONAL_STATES = [
+  "Exam stress and mental blocks",
+  "Relationship issues",
+  "Anxiety and panic",
+  "Mood swings or sadness",
+  "Lack of focus or motivation",
+  "Fear, anger, jealousy, guilt",
+  "Sleeplessness and restlessness",
+];
 
 function formatPosition(member) {
   const parts = [member.degree, member.experience && `(${member.experience})`].filter(Boolean);
@@ -17,59 +40,110 @@ export async function loader({ request }) {
 
 export default function About() {
   const { team } = useLoaderData();
+  const scriptsReady = useSiteScripts();
+
+  useEffect(() => {
+    if (!scriptsReady || typeof window === "undefined" || !window.GLightbox) {
+      return undefined;
+    }
+
+    const lightbox = window.GLightbox({
+      selector: ".about-video-lightbox",
+      touchNavigation: false,
+      loop: false,
+    });
+
+    return () => {
+      lightbox.destroy();
+    };
+  }, [scriptsReady]);
 
   return (
-    <main className="main">
-      <PageTitle
-        title="About"
-        description="Your Healing Partner with Bach Flower Remedies - We provide professionally pre-mixed Bach Flower Remedies"
-        current="About"
-        backgroundImage="/assets/img/page-title-bg.webp"
-      />
-      <section id="about-3" className="about-3 section" style={{ paddingBottom: "0px" }}>
+    <main className="main about-page">
+      <section className="about-hero">
+        <div className="about-hero-glow" aria-hidden />
+        <div className="about-hero-glow about-hero-glow--left" aria-hidden />
         <div className="container">
-          <div className="row">
-            <h2 className="text-center">MIND HEAL is your Healing Partner with Bach Flower Remedies</h2>
+          <div className="about-hero-logo" aria-hidden>
+            <img
+              src="/assets/img/mind-heal-logo-vertical-white.png"
+              alt=""
+            />
           </div>
-          <div className="row gy-4 justify-content-between align-items-center">
-            <div className="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
-              <img src="/assets/img/img_sq_1.jpeg" alt="Mind Heal clinic" className="img-fluid" />
+
+          <span className="about-eyebrow">
+            <i className="bi bi-flower1" />
+            About Mind Heal
+          </span>
+
+          <h1 className="about-hero-title">Your Healing Partner</h1>
+
+          <p className="about-hero-lead">
+            We provide professionally pre-mixed Bach Flower Remedies designed to
+            support your emotional and mental well-being — naturally, gently, and
+            with expert care.
+          </p>
+
+          <div className="about-hero-stats">
+            {HERO_STATS.map((stat) => (
+              <span className="about-stat" key={stat.label}>
+                <i className={`bi ${stat.icon}`} />
+                {stat.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-intro">
+        <div className="container">
+          <div className="about-intro-head">
+            <span className="about-intro-eyebrow">Who We Are</span>
+            <h2>MIND HEAL is your Healing Partner with Bach Flower Remedies</h2>
+          </div>
+
+          <div className="about-intro-grid">
+            <div className="about-intro-text" data-aos="fade-up" data-aos-delay={100}>
+              <p>
+                Welcome to MIND HEAL, your trusted source for Pre-Mixed Bach Flower
+                Remedies designed to support your emotional and mental well-being
+                naturally and gently. At our clinic, we understand that life's
+                emotional challenges—like anxiety, fear, grief, stress, confusion, or
+                mood swings—can deeply affect your overall health. That's why we
+                specialize in personalized Bach Flower therapy, a safe, non-habit
+                forming, and holistic system discovered by Dr. Edward Bach.
+              </p>
+              <h4>
+                We provide professionally pre-mixed Bach Flower Remedies tailored to
+                specific emotional states such as:
+              </h4>
+              <ul className="about-checklist">
+                {EMOTIONAL_STATES.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <Link to="/buy_mh_mix" className="about-products-cta">
+                See All Products
+                <i className="bi bi-arrow-right" />
+              </Link>
+            </div>
+
+            <div className="about-media" data-aos="zoom-out">
+              <div className="about-media-frame">
+                <img
+                  src="/assets/img/img_sq_1.jpeg"
+                  alt="Mind Heal clinic"
+                />
+              </div>
               <a
-                href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-                className="glightbox pulsating-play-btn"
+                href={ABOUT_VIDEO_URL}
+                className="about-video-lightbox pulsating-play-btn"
+                aria-label="Watch Mind Heal video"
               >
                 <span className="play">
                   <i className="bi bi-play-fill" />
                 </span>
               </a>
-            </div>
-            <div className="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay={100}>
-              <p className="mb-4 mt-5">
-                Welcome to MIND HEAL, your trusted source for Pre-Mixed Bach Flower Remedies designed to
-                support your emotional and mental well-being naturally and gently. At our clinic, we
-                understand that life's emotional challenges—like anxiety, fear, grief, stress, confusion,
-                or mood swings—can deeply affect your overall health. That's why we specialize in
-                personalized Bach Flower therapy, a safe, non-habit forming, and holistic system
-                discovered by Dr. Edward Bach.
-              </p>
-              <h4>
-                We provide professionally pre-mixed Bach Flower Remedies tailored to specific emotional
-                states such as:
-              </h4>
-              <br />
-              <ul className="list-unstyled list-check mb-2">
-                <li>Exam stress and mental blocks</li>
-                <li>Relationship issues</li>
-                <li>Anxiety and panic</li>
-                <li>Mood swings or sadness</li>
-                <li>Lack of focus or motivation</li>
-                <li>Fear, anger, jealousy, guilt</li>
-                <li>Sleeplessness and restlessness</li>
-              </ul>
-              <Link to="/buy_mh_mix">
-                <h3>See All Products ➤</h3>
-              </Link>
-              <br />
             </div>
           </div>
         </div>
@@ -119,7 +193,7 @@ export default function About() {
       <section id="services" className="services section">
         <div className="container section-title" data-aos="fade-up">
           <h2>SERVICES</h2>
-          <p>Providing Fresh Produce Every Single Day</p>
+          <p>Personalized Emotional Wellness with Bach Flower Remedies</p>
         </div>
         <div className="content">
           <div className="container">

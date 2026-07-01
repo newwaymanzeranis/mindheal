@@ -31,31 +31,37 @@ export default function BFMixture({ products = [] }) {
   const hasMore = filteredProducts.length > DISPLAY_LIMIT;
 
   return (
-    <section id="services" className="services section">
-      <div className="container section-title"  style={{'padding-bottom': '0px'}} >
-        <h2>BACH FLOWER COMBINATION PRODUCTS</h2>
-        <h1>
-          <blink>
-            <Link to="/buy_mh_mix"> EXPLORE ALL COMBINATIONS ➤</Link>
-          </blink>
-        </h1>
-        <p>Providing Pre-Mixed Bach Flower Remedies for Your Well-Being </p>
+    <section id="services" className="services section bfm-section">
+      <div className="container bfm-head">
+        <span className="bfm-eyebrow">Bach Flower Combination Products</span>
+        <p className="bfm-lead">
+          Providing Mind Heal Mixed Bach Flower Remedies for Your Well-Being
+        </p>
+        <Link to="/buy_mh_mix" className="bfm-explore">
+          Explore All Combinations
+          <i className="bi bi-arrow-right" />
+        </Link>
         <MixSearchFilter products={products} onFilteredChange={handleFilteredChange} />
       </div>
       <ProductBottleSlider products={filteredProducts} />
       <div className="content">
         <div className="container">
-          <div className="bottle-slider-head">
-            <h3 className="bottle-slider-title">Explore All Bach Flower Combinations</h3>
-            <p className="bottle-slider-subtitle">
-              Browse our complete range of pre-mixed remedies for every emotional need
-            </p>
-          </div>
           {!filteredProducts.length ? (
             <p className="text-center text-muted py-4">
               No mixes match your search. Try different tags or clear filters.
             </p>
           ) : (
+          <>
+          <div className="bfm-grid-head">
+            <span className="bfm-grid-eyebrow">Discover Your Healing</span>
+            <h3 className="bfm-grid-title">
+              Your Journey to Inner Peace Starts Here
+            </h3>
+            <p className="bfm-grid-sub">
+              Find the perfect Mind Heal blend to gently support your emotional
+              balance and well-being.
+            </p>
+          </div>
           <div className="row g-0">
             {displayProducts.map((product) => (
               <div className="col-lg-3 col-md-6" key={product.id}>
@@ -118,6 +124,7 @@ export default function BFMixture({ products = [] }) {
               </div>
             ))}
           </div>
+          </>
           )}
           {hasMore && (
             <p className="text-center mt-4 mb-0">
