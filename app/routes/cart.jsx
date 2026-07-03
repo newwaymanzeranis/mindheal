@@ -3,7 +3,11 @@ import { Link } from "react-router";
 import ProductPrice from "~/components/ProductPrice";
 import { useAuth } from "~/context/AuthContext";
 import { useCart } from "~/context/CartContext";
-import { formatPrice, productMindHealLabel } from "~/utils/format";
+import {
+  DEFAULT_BOTTLE_IMAGE,
+  formatPrice,
+  productMindHealLabel,
+} from "~/utils/format";
 import { buildAuthRedirectUrl } from "~/utils/navigation";
 
 import cartCss from "~/styles/cart.css?url";
@@ -140,74 +144,91 @@ export default function CartPage() {
                   <ul className="cart-item-list">
                     {items.map((item) => (
                       <li key={item.id} className="cart-item">
-                        <div className="cart-item-img-wrap">
+                        <div className="cart-item-media">
+                          <div className="cart-item-scene-wrap">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="cart-item-scene"
+                            />
+                          </div>
                           <img
-                            src={item.image}
-                            alt={item.name}
-                            className="cart-item-img"
+                            src={item.bottleImage || DEFAULT_BOTTLE_IMAGE}
+                            alt=""
+                            className="cart-item-bottle"
+                            aria-hidden
                           />
                         </div>
 
-                        <div className="cart-item-info">
-                          <span className="cart-item-mh">
-                            {productMindHealLabel(item.mindHealNo)}
-                          </span>
-                          <h3 className="cart-item-title">{item.name}</h3>
-                          <ProductPrice
-                            product={{ price: item.price, mrp: item.mrp }}
-                          />
-                        </div>
+                        <div className="cart-item-body">
+                          <div className="cart-item-info">
+                            <h3 className="cart-item-title">{item.name}</h3>
+                            <span className="cart-item-mh">
+                              {productMindHealLabel(item.mindHealNo)}
+                            </span>
+                          </div>
 
-                        <div className="cart-item-qty">
-                          <label
-                            className="visually-hidden"
-                            htmlFor={`qty-${item.id}`}
-                          >
-                            Quantity
-                          </label>
-                          <button
-                            type="button"
-                            className="cp-qty-btn"
-                            onClick={() =>
-                              updateQuantity(item.id, item.quantity - 1)
-                            }
-                            disabled={item.quantity <= 1}
-                            aria-label="Decrease quantity"
-                          >
-                            −
-                          </button>
-                          <input
-                            id={`qty-${item.id}`}
-                            type="number"
-                            min={1}
-                            value={item.quantity}
-                            onChange={(e) =>
-                              updateQuantity(item.id, Number(e.target.value))
-                            }
-                            className="cart-qty-input"
-                          />
-                          <button
-                            type="button"
-                            className="cp-qty-btn"
-                            onClick={() =>
-                              updateQuantity(item.id, item.quantity + 1)
-                            }
-                            aria-label="Increase quantity"
-                          >
-                            +
-                          </button>
-                        </div>
+                          <div className="cart-item-footer">
+                            <ProductPrice
+                              product={{ price: item.price, mrp: item.mrp }}
+                            />
 
-                        <div className="cart-item-total">
-                          <strong>{formatPrice(item.price * item.quantity)}</strong>
-                          <button
-                            type="button"
-                            className="cp-remove-btn"
-                            onClick={() => removeFromCart(item.id)}
-                          >
-                            <i className="bi bi-x-lg" />
-                            Remove
-                          </button>
+                            <div className="cart-item-actions">
+                              <button
+                                type="button"
+                                className="cp-remove-btn"
+                                onClick={() => removeFromCart(item.id)}
+                                aria-label={`Remove ${item.name} from cart`}
+                              >
+                                <i className="bi bi-trash3" aria-hidden />
+                              </button>
+
+                              <div className="cart-item-qty">
+                                <label
+                                  className="visually-hidden"
+                                  htmlFor={`qty-${item.id}`}
+                                >
+                                  Quantity
+                                </label>
+                                <button
+                                  type="button"
+                                  className="cp-qty-btn"
+                                  onClick={() =>
+                                    updateQuantity(item.id, item.quantity + 1)
+                                  }
+                                  aria-label="Increase quantity"
+                                >
+                                  +
+                                </button>
+                                <input
+                                  id={`qty-${item.id}`}
+                                  type="number"
+                                  min={1}
+                                  value={item.quantity}
+                                  onChange={(e) =>
+                                    updateQuantity(
+                                      item.id,
+                                      Number(e.target.value)
+                                    )
+                                  }
+                                  className="cart-qty-input"
+                                  readOnly
+                                  tabIndex={-1}
+                                />
+                                <button
+                                  type="button"
+                                  className="cp-qty-btn"
+                                  onClick={() =>
+                                    updateQuantity(item.id, item.quantity - 1)
+                                  }
+                                  disabled={item.quantity <= 1}
+                                  aria-label="Decrease quantity"
+                                >
+                                  −
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </li>
                     ))}

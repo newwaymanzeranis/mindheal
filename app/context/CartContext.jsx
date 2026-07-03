@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { getProductPricing } from "~/utils/pricing";
-import { imageSrc } from "~/utils/format";
+import { bottleImageSrc, imageSrc } from "~/utils/format";
 
 const CART_KEY = "mind_heal_cart";
 
@@ -71,6 +71,7 @@ export function CartProvider({ children }) {
           name: product.name,
           slug: product.slug,
           image: imageSrc(product.image),
+          bottleImage: bottleImageSrc(product),
           mrp,
           price: salePrice,
           quantity,
