@@ -69,6 +69,7 @@ export function CartProvider({ children }) {
           id: product.id,
           mindHealNo: product.mindHealNo,
           name: product.name,
+          nameHi: product.nameHi ?? null,
           slug: product.slug,
           image: imageSrc(product.image),
           bottleImage: bottleImageSrc(product),

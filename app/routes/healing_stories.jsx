@@ -1,16 +1,13 @@
 import { Link, useLoaderData } from "react-router";
 
+import { useLang } from "~/context/LanguageContext";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
 import healingStoriesCss from "~/styles/healing-stories.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: healingStoriesCss }];
 
-const HERO_STATS = [
-  { icon: "bi-heart", label: "Real Journeys Shared" },
-  { icon: "bi-chat-heart", label: "Emotions Honored" },
-  { icon: "bi-flower2", label: "Gentle Healing" },
-];
+const HERO_STAT_ICONS = ["bi-heart", "bi-chat-heart", "bi-flower2"];
 
 export async function loader({ request }) {
   const stories = await fetchPosts("published=true&limit=50&categorySlug=healing-stories", {
@@ -55,7 +52,9 @@ function StoryMeta({ story }) {
 }
 
 export default function HealingStories() {
+  const { t, tc } = useLang();
   const { stories } = useLoaderData();
+  const heroStats = t("healingStories.stats");
 
   return (
     <main className="main hs-page">
@@ -70,18 +69,15 @@ export default function HealingStories() {
             />
           </div>
 
-          <h1 className="hs-hero-title">Healing Stories</h1>
+          <h1 className="hs-hero-title">{t("healingStories.heroTitle")}</h1>
 
-          <p className="hs-hero-lead">
-            Your journey to emotional wellness starts here — real stories of
-            calm, balance, and healing with Bach Flower Remedies.
-          </p>
+          <p className="hs-hero-lead">{t("healingStories.heroLead")}</p>
 
           <div className="hs-hero-stats">
-            {HERO_STATS.map((stat) => (
-              <span className="hs-stat" key={stat.label}>
-                <i className={`bi ${stat.icon}`} />
-                {stat.label}
+            {(Array.isArray(heroStats) ? heroStats : []).map((label, index) => (
+              <span className="hs-stat" key={label}>
+                <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-heart"}`} />
+                {label}
               </span>
             ))}
           </div>
@@ -91,19 +87,18 @@ export default function HealingStories() {
       <section className="hs-main" id="healing-stories">
         <div className="container" data-aos="fade-up">
           <div className="hs-section-head">
-            <span className="hs-section-eyebrow">Shared with Care</span>
-            <h2>MIND HEAL is your Healing Partner — Healing Stories</h2>
-            <p>
-              Your Emotions, Our Care — After Healing, We Honor and Share Every
-              Emotional Story
-            </p>
+            <span className="hs-section-eyebrow">
+              {t("healingStories.sectionEyebrow")}
+            </span>
+            <h2>{t("healingStories.sectionTitle")}</h2>
+            <p>{t("healingStories.sectionSubtitle")}</p>
           </div>
 
           <div className="hs-grid">
             {stories.length === 0 && (
               <div className="hs-empty">
                 <i className="bi bi-journal-heart" />
-                <p>No healing stories yet. Check back soon for inspiring journeys.</p>
+                <p>{t("healingStories.empty")}</p>
               </div>
             )}
 
@@ -117,20 +112,20 @@ export default function HealingStories() {
                     <i className="bi bi-heart-pulse" />
                   </span>
                   <div className="hs-card-title-wrap">
-                    <h3 className="hs-card-title">{story.title}</h3>
+                    <h3 className="hs-card-title">{tc(story, "title")}</h3>
                     <StoryMeta story={story} />
                   </div>
                 </div>
 
                 {story.image && (
                   <div className="hs-card-media">
-                    <img src={imageSrc(story.image)} alt={story.title} />
+                    <img src={imageSrc(story.image)} alt={tc(story, "title")} />
                   </div>
                 )}
 
                 <div
                   className="hs-content"
-                  dangerouslySetInnerHTML={{ __html: story.content }}
+                  dangerouslySetInnerHTML={{ __html: tc(story, "content") }}
                 />
               </article>
             ))}
@@ -140,21 +135,16 @@ export default function HealingStories() {
 
       <section className="hs-cta">
         <div className="container">
-          <h4>
-            No pressure. Just gentle healing. Your feelings are valid.
-            We&apos;re here to support you. Let&apos;s talk, not just treat.
-          </h4>
-          <p className="hs-cta-tagline">
-            Begin with calm. Heal with care. Grow with love.
-          </p>
+          <h4>{t("blog.ctaHeading")}</h4>
+          <p className="hs-cta-tagline">{t("blog.ctaTagline")}</p>
           <div className="hs-cta-actions">
             <Link to="/contact" className="hs-cta-btn hs-cta-btn--primary">
               <i className="bi bi-chat-dots" />
-              Contact Us
+              {t("blog.contactUs")}
             </Link>
             <Link to="/buy_mh_mix" className="hs-cta-btn hs-cta-btn--ghost">
               <i className="bi bi-bag-heart" />
-              Explore Remedies
+              {t("blog.exploreRemedies")}
             </Link>
           </div>
         </div>

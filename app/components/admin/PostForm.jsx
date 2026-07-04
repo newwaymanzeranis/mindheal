@@ -6,9 +6,12 @@ import { slugify } from "~/utils/slugify";
 
 const empty = {
   title: "",
+  titleHi: "",
   slug: "",
   excerpt: "",
+  excerptHi: "",
   content: "",
+  contentHi: "",
   image: "",
   author: "Mind Heal",
   published: false,
@@ -35,9 +38,12 @@ export default function PostForm({ postId }) {
       .then((post) => {
         setForm({
           title: post.title || "",
+          titleHi: post.titleHi || "",
           slug: post.slug || "",
           excerpt: post.excerpt || "",
+          excerptHi: post.excerptHi || "",
           content: post.content || "",
+          contentHi: post.contentHi || "",
           image: post.image || "",
           author: post.author || "",
           published: post.published || false,
@@ -101,6 +107,15 @@ export default function PostForm({ postId }) {
           />
         </div>
         <div className="mb-3">
+          <label className="form-label">Title (Hindi)</label>
+          <input
+            className="form-control"
+            value={form.titleHi}
+            onChange={(e) => update("titleHi", e.target.value)}
+            placeholder="हिंदी में शीर्षक (खाली छोड़ने पर अंग्रेज़ी दिखेगा)"
+          />
+        </div>
+        <div className="mb-3">
           <label className="form-label">Slug</label>
           <input
             className="form-control"
@@ -150,6 +165,16 @@ export default function PostForm({ postId }) {
           />
         </div>
         <div className="mb-3">
+          <label className="form-label">Excerpt (Hindi)</label>
+          <textarea
+            className="form-control"
+            rows={2}
+            placeholder="हिंदी में संक्षिप्त विवरण"
+            value={form.excerptHi}
+            onChange={(e) => update("excerptHi", e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
           <label className="form-label">Content *</label>
           <textarea
             className="form-control"
@@ -157,6 +182,16 @@ export default function PostForm({ postId }) {
             value={form.content}
             onChange={(e) => update("content", e.target.value)}
             required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Content (Hindi)</label>
+          <textarea
+            className="form-control"
+            rows={10}
+            placeholder="हिंदी में पूरा कंटेंट (खाली छोड़ने पर अंग्रेज़ी दिखेगा)"
+            value={form.contentHi}
+            onChange={(e) => update("contentHi", e.target.value)}
           />
         </div>
         <div className="mb-3">

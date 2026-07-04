@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
+import { useLang } from "~/context/LanguageContext";
 import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
 import authCss from "~/styles/auth.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: authCss }];
 
-const HERO_STATS = [
-  { icon: "bi-person-plus", label: "Quick Signup" },
-  { icon: "bi-truck", label: "Cash on Delivery" },
-  { icon: "bi-bag-check", label: "Order in Minutes" },
-];
+const HERO_STAT_ICONS = ["bi-person-plus", "bi-truck", "bi-bag-check"];
 
 export function meta() {
   return [
@@ -26,6 +23,7 @@ export function meta() {
 
 export default function RegisterPage() {
   const { register, isAuthenticated, loading: authLoading } = useAuth();
+  const { t } = useLang();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirect = normalizeRedirect(searchParams.get("redirect"));
@@ -49,12 +47,12 @@ export default function RegisterPage() {
     setError("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t("auth.register.errPasswordMismatch"));
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError(t("auth.register.errPasswordLength"));
       return;
     }
 
@@ -62,7 +60,7 @@ export default function RegisterPage() {
     const mobile =
       digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
     if (!/^[6-9]\d{9}$/.test(mobile)) {
-      setError("Enter a valid 10-digit mobile number");
+      setError(t("auth.register.errInvalidMobile"));
       return;
     }
 
@@ -78,7 +76,7 @@ export default function RegisterPage() {
       });
       navigate(redirect, { replace: true });
     } catch (err) {
-      setError(err.message || "Registration failed");
+      setError(err.message || t("auth.register.failed"));
     } finally {
       setLoading(false);
     }
@@ -91,7 +89,7 @@ export default function RegisterPage() {
           <div className="container">
             <div className="au-loading">
               <div className="spinner-border" role="status" />
-              <p className="mt-3 mb-0">Taking you to checkout…</p>
+              <p className="mt-3 mb-0">{t("auth.takingToCheckout")}</p>
             </div>
           </div>
         </section>
@@ -112,18 +110,18 @@ export default function RegisterPage() {
             />
           </div>
 
-          <h1 className="au-hero-title">Create Account</h1>
+          <h1 className="au-hero-title">{t("auth.register.heroTitle")}</h1>
 
-          <p className="au-hero-lead">
-            Register to order Mind Heal mixtures with Cash on Delivery — quick
-            signup, gentle healing delivered to your door.
-          </p>
+          <p className="au-hero-lead">{t("auth.register.heroLead")}</p>
 
           <div className="au-hero-stats">
-            {HERO_STATS.map((stat) => (
-              <span className="au-stat" key={stat.label}>
-                <i className={`bi ${stat.icon}`} />
-                {stat.label}
+            {(Array.isArray(t("auth.register.heroStats"))
+              ? t("auth.register.heroStats")
+              : []
+            ).map((label, index) => (
+              <span className="au-stat" key={label}>
+                <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-bag-check"}`} />
+                {label}
               </span>
             ))}
           </div>
@@ -138,8 +136,8 @@ export default function RegisterPage() {
                 <div className="au-card-icon">
                   <i className="bi bi-person-plus" />
                 </div>
-                <h2>Create your account</h2>
-                <p>Quick signup — pay when your order is delivered</p>
+                <h2>{t("auth.register.cardTitle")}</h2>
+                <p>{t("auth.register.cardSubtitle")}</p>
               </div>
 
               {error && (
@@ -151,7 +149,7 @@ export default function RegisterPage() {
 
               <form className="au-form" onSubmit={handleSubmit}>
                 <div className="au-field">
-                  <label htmlFor="name">Full name</label>
+                  <label htmlFor="name">{t("auth.register.nameLabel")}</label>
                   <div className="au-input-wrap">
                     <i className="bi bi-person" />
                     <input
@@ -161,13 +159,13 @@ export default function RegisterPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       autoComplete="name"
-                      placeholder="Your full name"
+                      placeholder={t("auth.register.namePlaceholder")}
                     />
                   </div>
                 </div>
 
                 <div className="au-field">
-                  <label htmlFor="email">Email *</label>
+                  <label htmlFor="email">{t("auth.register.emailLabel")}</label>
                   <div className="au-input-wrap">
                     <i className="bi bi-envelope" />
                     <input
@@ -178,13 +176,13 @@ export default function RegisterPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       autoComplete="email"
-                      placeholder="you@example.com"
+                      placeholder={t("auth.register.emailPlaceholder")}
                     />
                   </div>
                 </div>
 
                 <div className="au-field">
-                  <label htmlFor="phone">Mobile number *</label>
+                  <label htmlFor="phone">{t("auth.register.phoneLabel")}</label>
                   <div className="au-input-wrap">
                     <i className="bi bi-phone" />
                     <input
@@ -196,14 +194,14 @@ export default function RegisterPage() {
                       required
                       inputMode="numeric"
                       autoComplete="tel"
-                      placeholder="10-digit mobile"
+                      placeholder={t("auth.register.phonePlaceholder")}
                       maxLength={14}
                     />
                   </div>
                 </div>
 
                 <div className="au-field">
-                  <label htmlFor="password">Password *</label>
+                  <label htmlFor="password">{t("auth.register.passwordLabel")}</label>
                   <div className="au-input-wrap">
                     <i className="bi bi-lock" />
                     <input
@@ -215,14 +213,14 @@ export default function RegisterPage() {
                       required
                       minLength={6}
                       autoComplete="new-password"
-                      placeholder="Create a password"
+                      placeholder={t("auth.register.passwordPlaceholder")}
                     />
                   </div>
-                  <p className="au-hint">At least 6 characters</p>
+                  <p className="au-hint">{t("auth.register.passwordHint")}</p>
                 </div>
 
                 <div className="au-field">
-                  <label htmlFor="confirmPassword">Confirm password *</label>
+                  <label htmlFor="confirmPassword">{t("auth.register.confirmLabel")}</label>
                   <div className="au-input-wrap">
                     <i className="bi bi-shield-lock" />
                     <input
@@ -234,7 +232,7 @@ export default function RegisterPage() {
                       required
                       minLength={6}
                       autoComplete="new-password"
-                      placeholder="Confirm your password"
+                      placeholder={t("auth.register.confirmPlaceholder")}
                     />
                   </div>
                 </div>
@@ -247,12 +245,12 @@ export default function RegisterPage() {
                         role="status"
                         aria-hidden
                       />
-                      Creating account…
+                      {t("auth.register.submitting")}
                     </>
                   ) : (
                     <>
                       <i className="bi bi-person-check" />
-                      Register &amp; Continue
+                      {t("auth.register.submit")}
                     </>
                   )}
                 </button>
@@ -261,21 +259,23 @@ export default function RegisterPage() {
               <div className="au-trust">
                 <span>
                   <i className="bi bi-truck" />
-                  Cash on Delivery
+                  {t("auth.trustCod")}
                 </span>
                 <span>
                   <i className="bi bi-shield-check" />
-                  Secure account
+                  {t("auth.trustSecure")}
                 </span>
                 <span>
                   <i className="bi bi-heart" />
-                  Gentle healing
+                  {t("auth.trustGentle")}
                 </span>
               </div>
 
               <p className="au-footer">
-                Already have an account?{" "}
-                <Link to={buildAuthRedirectUrl("/login", redirect)}>Login</Link>
+                {t("auth.register.haveAccount")}{" "}
+                <Link to={buildAuthRedirectUrl("/login", redirect)}>
+                  {t("auth.register.login")}
+                </Link>
               </p>
             </div>
           </div>

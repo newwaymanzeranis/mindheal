@@ -1,15 +1,17 @@
 import { Link } from "react-router";
 
+import { useLang } from "~/context/LanguageContext";
 import { formatPostDate, imageSrc } from "~/utils/format";
 
 export default function RecentPosts({ posts = [] }) {
+  const { t, tc } = useLang();
   if (!posts.length) return null;
 
   return (
     <section id="recent-posts" className="recent-posts section">
       <div className="container section-title" data-aos="fade-up">
-        <h2>RECENT POSTS</h2>
-        <p>Learn & Thrive with the Wisdom of Our Experience!</p>
+        <h2>{t("recentPosts.title")}</h2>
+        <p>{t("recentPosts.subtitle")}</p>
       </div>
       <div className="container">
         <div className="row gy-5">
@@ -27,7 +29,7 @@ export default function RecentPosts({ posts = [] }) {
                     <img
                       src={imageSrc(post.image)}
                       className="img-fluid"
-                      alt={post.title}
+                      alt={tc(post, "title")}
                     />
                     {day && month && (
                       <span className="post-date">
@@ -36,7 +38,7 @@ export default function RecentPosts({ posts = [] }) {
                     )}
                   </div>
                   <div className="post-content d-flex flex-column">
-                    <h3 className="post-title">{post.title}</h3>
+                    <h3 className="post-title">{tc(post, "title")}</h3>
                     <div className="meta d-flex align-items-center">
                       {post.author && (
                         <>
@@ -61,7 +63,7 @@ export default function RecentPosts({ posts = [] }) {
                       to={`/blog/${post.slug}`}
                       className="readmore stretched-link"
                     >
-                      <span>Read More</span>
+                      <span>{t("common.readMore")}</span>
                       <i className="bi bi-arrow-right" />
                     </Link>
                   </div>

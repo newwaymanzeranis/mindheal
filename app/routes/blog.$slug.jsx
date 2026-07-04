@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 
 import PageTitle from "~/components/PageTitle";
+import { useLang } from "~/context/LanguageContext";
 import { fetchPostBySlug } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
 
@@ -26,16 +27,20 @@ export function meta({ data }) {
 }
 
 export default function BlogPost() {
+  const { t, tc } = useLang();
   const { post } = useLoaderData();
   const { day, month } = formatPostDate(post.publishedAt);
   const dateLabel = day && month ? `${month} ${day}` : "";
+  const title = tc(post, "title");
+  const excerpt = tc(post, "excerpt");
+  const content = tc(post, "content");
 
   return (
     <main className="main">
       <PageTitle
-        title={post.title}
-        description={post.excerpt || post.title}
-        current="Blog"
+        title={title}
+        description={excerpt || title}
+        current={t("blog.current")}
         backgroundImage="/assets/img/page-title-bg.jpg"
       />
 
@@ -45,7 +50,7 @@ export default function BlogPost() {
             <div className="blog-single-header">
               {post.image && (
                 <div className="blog-single-media">
-                  <img src={imageSrc(post.image)} alt={post.title} />
+                  <img src={imageSrc(post.image)} alt={title} />
                 </div>
               )}
 
@@ -64,29 +69,29 @@ export default function BlogPost() {
                   )}
                 </div>
 
-                <h1 className="blog-single-title">{post.title}</h1>
+                <h1 className="blog-single-title">{title}</h1>
 
-                {post.excerpt && (
-                  <p className="blog-single-excerpt">{post.excerpt}</p>
+                {excerpt && (
+                  <p className="blog-single-excerpt">{excerpt}</p>
                 )}
               </div>
             </div>
 
             <div
               className="blog-single-body"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
 
             <div className="blog-single-footer">
               <Link to="/blog" className="btn btn-success">
                 <i className="bi bi-arrow-left me-1" />
-                Back to All Blogs
+                {t("blog.backToBlogs")}
               </Link>
               <Link to="/contact" className="btn btn-outline-success">
-                Contact Us
+                {t("blog.contactUs")}
               </Link>
               <Link to="/buy_mh_mix" className="btn btn-outline-secondary">
-                Shop Mind Heal Mix
+                {t("blog.shopMix")}
               </Link>
             </div>
           </article>

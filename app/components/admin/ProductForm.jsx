@@ -6,10 +6,13 @@ import { slugify } from "~/utils/slugify";
 
 const empty = {
   name: "",
+  nameHi: "",
   slug: "",
   mindHealNo: "",
   description: "",
+  descriptionHi: "",
   shortDescription: "",
+  shortDescriptionHi: "",
   mrp: "400",
   price: "250",
   image: "",
@@ -17,6 +20,7 @@ const empty = {
   published: true,
   sortOrder: 0,
   emotionalTags: "",
+  emotionalTagsHi: "",
 };
 
 export default function ProductForm({ productId }) {
@@ -34,10 +38,13 @@ export default function ProductForm({ productId }) {
       .then((product) => {
         setForm({
           name: product.name || "",
+          nameHi: product.nameHi || "",
           slug: product.slug || "",
           mindHealNo: product.mindHealNo || "",
           description: product.description || "",
+          descriptionHi: product.descriptionHi || "",
           shortDescription: product.shortDescription || "",
+          shortDescriptionHi: product.shortDescriptionHi || "",
           mrp: product.mrp != null ? String(product.mrp) : "400",
           price: product.price != null ? String(product.price) : "250",
           image: product.image || "",
@@ -45,6 +52,7 @@ export default function ProductForm({ productId }) {
           published: product.published ?? true,
           sortOrder: product.sortOrder ?? 0,
           emotionalTags: product.emotionalTags || "",
+          emotionalTagsHi: product.emotionalTagsHi || "",
         });
       })
       .catch((e) => setError(e.message))
@@ -64,10 +72,13 @@ export default function ProductForm({ productId }) {
 
     const body = {
       name: form.name,
+      nameHi: form.nameHi.trim() || null,
       slug: form.slug,
       mindHealNo: form.mindHealNo.trim(),
       description: form.description,
+      descriptionHi: form.descriptionHi.trim() || null,
       shortDescription: form.shortDescription.trim() || null,
+      shortDescriptionHi: form.shortDescriptionHi.trim() || null,
       mrp: form.mrp ? Number(form.mrp) : 400,
       price: form.price ? Number(form.price) : 250,
       image: form.image,
@@ -75,6 +86,7 @@ export default function ProductForm({ productId }) {
       published: form.published,
       sortOrder: Number(form.sortOrder),
       emotionalTags: form.emotionalTags.trim() || null,
+      emotionalTagsHi: form.emotionalTagsHi.trim() || null,
     };
 
     try {
@@ -123,6 +135,15 @@ export default function ProductForm({ productId }) {
               />
             </div>
             <div className="mb-3">
+              <label className="form-label">Product Name (Hindi)</label>
+              <input
+                className="form-control"
+                value={form.nameHi}
+                onChange={(e) => update("nameHi", e.target.value)}
+                placeholder="हिंदी में नाम (खाली छोड़ने पर अंग्रेज़ी दिखेगी)"
+              />
+            </div>
+            <div className="mb-3">
               <label className="form-label">Slug</label>
               <input
                 className="form-control"
@@ -144,12 +165,32 @@ export default function ProductForm({ productId }) {
               </small>
             </div>
             <div className="mb-3">
+              <label className="form-label">Short Description (Hindi)</label>
+              <textarea
+                className="form-control"
+                rows={2}
+                placeholder="हिंदी में संक्षिप्त विवरण"
+                value={form.shortDescriptionHi}
+                onChange={(e) => update("shortDescriptionHi", e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
               <label className="form-label">Full Description</label>
               <textarea
                 className="form-control"
                 rows={5}
                 value={form.description}
                 onChange={(e) => update("description", e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Full Description (Hindi)</label>
+              <textarea
+                className="form-control"
+                rows={5}
+                placeholder="हिंदी में पूरा विवरण"
+                value={form.descriptionHi}
+                onChange={(e) => update("descriptionHi", e.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -163,6 +204,19 @@ export default function ProductForm({ productId }) {
               />
               <small className="text-muted">
                 Comma-separated tags (no link to other tables). Shown on product cards and detail page.
+              </small>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Emotional Tags (Hindi)</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="ओसीडी, चिंता, दोहराव-वाले-विचार"
+                value={form.emotionalTagsHi}
+                onChange={(e) => update("emotionalTagsHi", e.target.value)}
+              />
+              <small className="text-muted">
+                कॉमा से अलग किए गए हिंदी टैग। खाली छोड़ने पर अंग्रेज़ी टैग दिखेंगे।
               </small>
             </div>
           </div>

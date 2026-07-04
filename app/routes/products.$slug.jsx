@@ -6,6 +6,7 @@ import "swiper/css/bundle";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
 import { fetchAllProducts, fetchProductBySlug } from "~/lib/fetchApi.server";
 import {
   bottleImageSrc,
@@ -23,28 +24,7 @@ export const links = () => [
   { rel: "stylesheet", href: productSliderCss },
 ];
 
-const TRUST_ITEMS = [
-  {
-    icon: "bi-flower1",
-    title: "Bach Flower Remedies",
-    text: "Authentic Dr. Bach flower essences in every blend",
-  },
-  {
-    icon: "bi-droplet",
-    title: "100% Natural",
-    text: "Gentle, plant-based support with no harsh chemicals",
-  },
-  {
-    icon: "bi-patch-check",
-    title: "Expert Curated",
-    text: "Formulated by Mind Heal practitioners for real needs",
-  },
-  {
-    icon: "bi-heart-pulse",
-    title: "Emotional Wellness",
-    text: "Designed to restore calm, balance, and inner peace",
-  },
-];
+const TRUST_ICONS = ["bi-flower1", "bi-droplet", "bi-patch-check", "bi-heart-pulse"];
 
 function pickRandomProducts(products, count = 20) {
   if (products.length <= count) return products;
@@ -94,10 +74,15 @@ export function meta({ data }) {
 }
 
 export default function ProductDetail() {
+  const { t, tc } = useLang();
   const { product, relatedProducts } = useLoaderData();
+  const name = tc(product, "name");
+  const shortDescription = tc(product, "shortDescription");
+  const description = tc(product, "description");
   const showHealingNote =
-    product.description &&
-    product.description.trim() !== (product.shortDescription || "").trim();
+    description &&
+    description.trim() !== (shortDescription || "").trim();
+  const trustItems = t("productDetail.trust");
 
   return (
     <main className="main product-detail-page">
@@ -107,7 +92,7 @@ export default function ProductDetail() {
         <div className="container">
           <Link to="/buy_mh_mix" className="pd-back">
             <i className="bi bi-arrow-left" />
-            Back to All Mixes
+            {t("productDetail.backToMixes")}
           </Link>
 
           <div className="pd-hero-grid">
@@ -121,13 +106,13 @@ export default function ProductDetail() {
               <div className="pd-showcase-frame">
                 <img
                   src={imageSrc(product.image)}
-                  alt={product.name}
+                  alt={name}
                   className="pd-showcase-scene"
                 />
               </div>
               <img
                 src={bottleImageSrc(product)}
-                alt={`${product.name} bottle`}
+                alt={`${name} ${t("productDetail.bottleAlt")}`}
                 className="pd-showcase-bottle"
               />
             </div>
@@ -138,21 +123,22 @@ export default function ProductDetail() {
                 {productMindHealLabel(product.mindHealNo, product.sortOrder)}
               </span>
 
-              <h1 className="pd-title">{product.name}</h1>
+              <h1 className="pd-title">{name}</h1>
 
-              {product.shortDescription && (
-                <p className="pd-lead">{product.shortDescription}</p>
+              {shortDescription && (
+                <p className="pd-lead">{shortDescription}</p>
               )}
 
               <div className="pd-hero-tags">
-                <ProductEmotionalTags emotionalTags={product.emotionalTags} />
+                <ProductEmotionalTags
+                  emotionalTags={product.emotionalTags}
+                  emotionalTagsHi={product.emotionalTagsHi}
+                />
               </div>
 
               <div className="pd-price-card">
                 <ProductPrice product={product} size="lg" />
-                <p className="pd-price-note">
-                  Inclusive pricing · Cash on delivery available
-                </p>
+                <p className="pd-price-note">{t("productDetail.priceNote")}</p>
               </div>
 
               <ProductDetailActions product={product} />
@@ -164,10 +150,10 @@ export default function ProductDetail() {
       <section className="pd-trust">
         <div className="container">
           <div className="pd-trust-grid">
-            {TRUST_ITEMS.map((item) => (
+            {(Array.isArray(trustItems) ? trustItems : []).map((item, index) => (
               <article className="pd-trust-item" key={item.title}>
                 <span className="pd-trust-icon">
-                  <i className={`bi ${item.icon}`} />
+                  <i className={`bi ${TRUST_ICONS[index] ?? "bi-flower1"}`} />
                 </span>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -185,8 +171,8 @@ export default function ProductDetail() {
                 <i className="bi bi-journal-richtext" />
               </span>
               <div>
-                <h2>Healing Note</h2>
-                <p className="pd-healing-text">{product.description}</p>
+                <h2>{t("productDetail.healingNote")}</h2>
+                <p className="pd-healing-text">{description}</p>
               </div>
             </article>
           </div>
@@ -201,6 +187,7 @@ export default function ProductDetail() {
 }
 
 function RelatedProducts({ products }) {
+  const { t, tc } = useLang();
   const containerRef = useRef(null);
   const swiperRef = useRef(null);
   const { addToCart } = useCart();
@@ -251,9 +238,11 @@ function RelatedProducts({ products }) {
     <section className="pd-related">
       <div className="container">
         <div className="pd-related-head">
-          <span className="pd-related-eyebrow">You may also like</span>
-          <h2>Explore More Remedies</h2>
-          <p>Discover other Bach Flower blends crafted for emotional balance</p>
+          <span className="pd-related-eyebrow">
+            {t("productDetail.relatedEyebrow")}
+          </span>
+          <h2>{t("productDetail.relatedTitle")}</h2>
+          <p>{t("productDetail.relatedSubtitle")}</p>
         </div>
 
         <div ref={containerRef} className="swiper pd-related-slider bottle-slider">
@@ -281,12 +270,12 @@ function RelatedProducts({ products }) {
                     <div className="bottle-card-media">
                       {discountPercent > 0 && (
                         <span className="bottle-card-discount">
-                          {discountPercent}% OFF
+                          {discountPercent}% {t("common.off")}
                         </span>
                       )}
                       <img
                         src={bottleImageSrc(item)}
-                        alt={item.name}
+                        alt={tc(item, "name")}
                         className="bottle-card-img"
                         loading="lazy"
                         draggable={false}
@@ -297,7 +286,7 @@ function RelatedProducts({ products }) {
                         {productMindHealLabel(item.mindHealNo, item.sortOrder)}
                       </span>
                       <h3 className="bottle-card-name pd-related-name">
-                        {item.name}
+                        {tc(item, "name")}
                       </h3>
                       <div className="bottle-card-price">
                         <span className="bottle-card-sale">
@@ -320,14 +309,16 @@ function RelatedProducts({ products }) {
                               addedId === item.id ? "bi-check-lg" : "bi-cart-plus"
                             }`}
                           />
-                          {addedId === item.id ? "Added" : "Add to Cart"}
+                          {addedId === item.id
+                            ? t("common.added")
+                            : t("common.addToCart")}
                         </button>
                         <Link
                           to={`/products/${item.slug}`}
                           className="mix-grid-view"
                         >
                           <i className="bi bi-eye" />
-                          View
+                          {t("common.view")}
                         </Link>
                       </div>
                     </div>
@@ -340,7 +331,7 @@ function RelatedProducts({ products }) {
 
         <div className="text-center">
           <Link to="/buy_mh_mix" className="pd-related-cta">
-            View All Mixes
+            {t("productDetail.viewAllMixes")}
             <i className="bi bi-arrow-right" />
           </Link>
         </div>
@@ -350,6 +341,7 @@ function RelatedProducts({ products }) {
 }
 
 function ProductDetailActions({ product }) {
+  const { t } = useLang();
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
 
@@ -368,15 +360,15 @@ function ProductDetailActions({ product }) {
           onClick={handleAdd}
         >
           <i className={`bi ${added ? "bi-check-lg" : "bi-cart-plus"}`} />
-          {added ? "Added to Cart" : "Add to Cart"}
+          {added ? t("productDetail.addedToCart") : t("common.addToCart")}
         </button>
         <Link to="/cart" className="pd-btn pd-btn--ghost">
           <i className="bi bi-cart3" />
-          View Cart
+          {t("productDetail.viewCart")}
         </Link>
       </div>
       <Link to="/contact" className="pd-help-link">
-        Need help finding the right remedy? Talk to us
+        {t("productDetail.helpLink")}
         <i className="bi bi-arrow-right" />
       </Link>
     </>

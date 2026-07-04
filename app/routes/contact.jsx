@@ -1,12 +1,9 @@
+import { useLang } from "~/context/LanguageContext";
 import contactCss from "~/styles/contact.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: contactCss }];
 
-const HERO_STATS = [
-  { icon: "bi-chat-heart", label: "We're Here to Listen" },
-  { icon: "bi-flower2", label: "Bach Flower Guidance" },
-  { icon: "bi-clock", label: "Reach Out Anytime" },
-];
+const HERO_STAT_ICONS = ["bi-chat-heart", "bi-flower2", "bi-clock"];
 
 const MAP_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1487758210487!2d80.95561882410848!3d26.907787495698997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957bf17d5cee9%3A0xe3d4fb0de752fd8d!2sTedhi%20Pulia%2C%20Adil%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh%20226022!5e1!3m2!1sen!2sin!4v1744911510772!5m2!1sen!2sin";
@@ -23,6 +20,9 @@ export function meta() {
 }
 
 export default function Contact() {
+  const { t } = useLang();
+  const heroStats = t("contact.heroStats");
+
   return (
     <main className="main contact-page">
       <section className="ct-hero">
@@ -36,18 +36,15 @@ export default function Contact() {
             />
           </div>
 
-          <h1 className="ct-hero-title">Contact Mind Heal</h1>
+          <h1 className="ct-hero-title">{t("contact.heroTitle")}</h1>
 
-          <p className="ct-hero-lead">
-            Your Healing Partner with Bach Flower Remedies — reach out for
-            guidance, support, or help choosing the right remedy for you.
-          </p>
+          <p className="ct-hero-lead">{t("contact.heroLead")}</p>
 
           <div className="ct-hero-stats">
-            {HERO_STATS.map((stat) => (
-              <span className="ct-stat" key={stat.label}>
-                <i className={`bi ${stat.icon}`} />
-                {stat.label}
+            {(Array.isArray(heroStats) ? heroStats : []).map((label, index) => (
+              <span className="ct-stat" key={label}>
+                <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-clock"}`} />
+                {label}
               </span>
             ))}
           </div>
@@ -57,9 +54,9 @@ export default function Contact() {
       <section id="contact" className="ct-main">
         <div className="container" data-aos="fade">
           <div className="ct-section-head">
-            <span className="ct-section-eyebrow">Get in Touch</span>
-            <h2>MIND HEAL is your Healing Partner — Contact Us</h2>
-            <p className="ct-section-tagline">Your Healing Starts with a Message</p>
+            <span className="ct-section-eyebrow">{t("contact.sectionEyebrow")}</span>
+            <h2>{t("contact.sectionTitle")}</h2>
+            <p className="ct-section-tagline">{t("contact.sectionTagline")}</p>
           </div>
 
           <div className="ct-map-wrap">
@@ -74,27 +71,22 @@ export default function Contact() {
 
           <div className="ct-grid">
             <div className="ct-info-card">
-              <h3>Get in touch</h3>
-              <h5>We&apos;re here to listen, guide, and support you.</h5>
-              <p>
-                Whether you have a question, need help choosing the right remedy,
-                or just want to share your story — feel free to reach out to us
-                anytime. Your emotional wellness matters, and we&apos;re just a
-                message away.
-              </p>
+              <h3>{t("contact.infoTitle")}</h3>
+              <h5>{t("contact.infoSubtitle")}</h5>
+              <p>{t("contact.infoText")}</p>
 
               <div className="ct-info-item">
                 <i className="bi bi-geo-alt" />
                 <div>
-                  <h4>Location</h4>
-                  <p>Aadil Nagar Tehri Pulia Lucknow</p>
+                  <h4>{t("contact.locationLabel")}</h4>
+                  <p>{t("contact.locationValue")}</p>
                 </div>
               </div>
 
               <div className="ct-info-item">
                 <i className="bi bi-envelope" />
                 <div>
-                  <h4>Email</h4>
+                  <h4>{t("contact.emailLabel")}</h4>
                   <p>
                     <a href="mailto:mindheal@gmail.com">mindheal@gmail.com</a>
                   </p>
@@ -104,7 +96,7 @@ export default function Contact() {
               <div className="ct-info-item">
                 <i className="bi bi-phone" />
                 <div>
-                  <h4>Call</h4>
+                  <h4>{t("contact.callLabel")}</h4>
                   <p>
                     <a href="tel:+917457988355">+91 7457988355</a>
                   </p>
@@ -126,7 +118,7 @@ export default function Contact() {
                       name="name"
                       className="form-control"
                       id="name"
-                      placeholder="Your Name"
+                      placeholder={t("contact.formName")}
                       required
                     />
                   </div>
@@ -136,7 +128,7 @@ export default function Contact() {
                       className="form-control"
                       name="email"
                       id="email"
-                      placeholder="Your Email"
+                      placeholder={t("contact.formEmail")}
                       required
                     />
                   </div>
@@ -147,7 +139,7 @@ export default function Contact() {
                     className="form-control"
                     name="subject"
                     id="subject"
-                    placeholder="Subject"
+                    placeholder={t("contact.formSubject")}
                     required
                   />
                 </div>
@@ -155,22 +147,20 @@ export default function Contact() {
                   <textarea
                     className="form-control"
                     name="message"
-                    placeholder="Message"
+                    placeholder={t("contact.formMessage")}
                     required
                     defaultValue=""
                   />
                 </div>
                 <div className="my-3">
-                  <div className="loading">Loading</div>
+                  <div className="loading">{t("contact.formLoading")}</div>
                   <div className="error-message" />
-                  <div className="sent-message">
-                    Your message has been sent. Thank you!
-                  </div>
+                  <div className="sent-message">{t("contact.formSent")}</div>
                 </div>
                 <div className="text-center">
                   <button type="submit">
                     <i className="bi bi-send" />
-                    Send Message
+                    {t("contact.formSend")}
                   </button>
                 </div>
               </form>
@@ -181,13 +171,8 @@ export default function Contact() {
 
       <section className="ct-cta">
         <div className="container">
-          <h4>
-            No pressure. Just gentle healing. Your feelings are valid.
-            We&apos;re here to support you. Let&apos;s talk, not just treat.
-          </h4>
-          <p className="ct-cta-tagline">
-            Begin with calm. Heal with care. Grow with love.
-          </p>
+          <h4>{t("contact.ctaHeading")}</h4>
+          <p className="ct-cta-tagline">{t("contact.ctaTagline")}</p>
         </div>
       </section>
     </main>

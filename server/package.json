@@ -15,6 +15,7 @@
     "db:migrate-emotional-tags": "node prisma/migrate-emotional-tags-string.js",
     "db:migrate-short-description": "node prisma/migrate-product-short-description.js",
     "db:migrate-bottle-image": "node prisma/migrate-product-bottle-image.js",
+    "db:migrate-hindi": "node prisma/migrate-hindi-columns.js",
     "db:studio": "prisma studio",
     "test:email": "node scripts/test-email.js"
   },

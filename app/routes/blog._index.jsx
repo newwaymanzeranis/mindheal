@@ -1,16 +1,13 @@
 import { Link, useLoaderData } from "react-router";
 
+import { useLang } from "~/context/LanguageContext";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
 import blogCss from "~/styles/blog.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: blogCss }];
 
-const HERO_STATS = [
-  { icon: "bi-journal-richtext", label: "Expert Insights" },
-  { icon: "bi-flower2", label: "Bach Flower Wisdom" },
-  { icon: "bi-lightbulb", label: "Learn & Thrive" },
-];
+const HERO_STAT_ICONS = ["bi-journal-richtext", "bi-flower2", "bi-lightbulb"];
 
 export async function loader({ request }) {
   const posts = await fetchPosts("published=true&limit=50&categorySlug=bach-flower", {
@@ -31,7 +28,9 @@ export function meta() {
 }
 
 export default function Blog() {
+  const { t, tc } = useLang();
   const { posts } = useLoaderData();
+  const heroStats = t("blog.stats");
 
   return (
     <main className="main blog-page">
@@ -46,18 +45,15 @@ export default function Blog() {
             />
           </div>
 
-          <h1 className="bl-hero-title">Mind Heal Blogs</h1>
+          <h1 className="bl-hero-title">{t("blog.heroTitle")}</h1>
 
-          <p className="bl-hero-lead">
-            Your Healing Partner with Bach Flower Remedies — learn and thrive
-            with the wisdom of our experience.
-          </p>
+          <p className="bl-hero-lead">{t("blog.heroLead")}</p>
 
           <div className="bl-hero-stats">
-            {HERO_STATS.map((stat) => (
-              <span className="bl-stat" key={stat.label}>
-                <i className={`bi ${stat.icon}`} />
-                {stat.label}
+            {(Array.isArray(heroStats) ? heroStats : []).map((label, index) => (
+              <span className="bl-stat" key={label}>
+                <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-lightbulb"}`} />
+                {label}
               </span>
             ))}
           </div>
@@ -67,16 +63,16 @@ export default function Blog() {
       <section className="bl-main" id="blog-posts">
         <div className="container" data-aos="fade-up">
           <div className="bl-section-head">
-            <span className="bl-section-eyebrow">From Our Experience</span>
-            <h2>MIND HEAL is your Healing Partner — Blogs</h2>
-            <p>Learn &amp; Thrive with the Wisdom of Our Experience!</p>
+            <span className="bl-section-eyebrow">{t("blog.sectionEyebrow")}</span>
+            <h2>{t("blog.sectionTitle")}</h2>
+            <p>{t("blog.sectionSubtitle")}</p>
           </div>
 
           <div className="bl-grid">
             {posts.length === 0 && (
               <div className="bl-empty">
                 <i className="bi bi-journal-text" />
-                <p>No blog posts yet. Add posts from admin.</p>
+                <p>{t("blog.empty")}</p>
               </div>
             )}
 
@@ -86,7 +82,7 @@ export default function Blog() {
               return (
                 <article className="bl-card" key={post.id}>
                   <div className="bl-card-media">
-                    <img src={imageSrc(post.image)} alt={post.title} />
+                    <img src={imageSrc(post.image)} alt={tc(post, "title")} />
                     {day && month && (
                       <div className="bl-card-date">
                         <span>{day}</span>
@@ -111,14 +107,14 @@ export default function Blog() {
                       )}
                     </div>
 
-                    <h3 className="bl-card-title">{post.title}</h3>
+                    <h3 className="bl-card-title">{tc(post, "title")}</h3>
 
-                    {post.excerpt && (
-                      <p className="bl-card-excerpt">{post.excerpt}</p>
+                    {tc(post, "excerpt") && (
+                      <p className="bl-card-excerpt">{tc(post, "excerpt")}</p>
                     )}
 
                     <Link to={`/blog/${post.slug}`} className="bl-card-link">
-                      Read More
+                      {t("common.readMore")}
                       <i className="bi bi-arrow-right" />
                     </Link>
                   </div>
@@ -131,21 +127,16 @@ export default function Blog() {
 
       <section className="bl-cta">
         <div className="container">
-          <h4>
-            No pressure. Just gentle healing. Your feelings are valid.
-            We&apos;re here to support you. Let&apos;s talk, not just treat.
-          </h4>
-          <p className="bl-cta-tagline">
-            Begin with calm. Heal with care. Grow with love.
-          </p>
+          <h4>{t("blog.ctaHeading")}</h4>
+          <p className="bl-cta-tagline">{t("blog.ctaTagline")}</p>
           <div className="bl-cta-actions">
             <Link to="/contact" className="bl-cta-btn bl-cta-btn--primary">
               <i className="bi bi-chat-dots" />
-              Contact Us
+              {t("blog.contactUs")}
             </Link>
             <Link to="/buy_mh_mix" className="bl-cta-btn bl-cta-btn--ghost">
               <i className="bi bi-bag-heart" />
-              Explore Remedies
+              {t("blog.exploreRemedies")}
             </Link>
           </div>
         </div>

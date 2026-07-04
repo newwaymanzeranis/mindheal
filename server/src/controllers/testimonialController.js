@@ -19,13 +19,15 @@ export const getById = async (req, res) => {
 };
 
 export const create = async (req, res) => {
-  const { name, content, image, rating, published, sortOrder } = req.body;
+  const { name, content, contentHi, image, rating, published, sortOrder } =
+    req.body;
   if (!name || !content) return fail(res, "Name and content are required");
 
   const testimonial = await prisma.testimonial.create({
     data: {
       name,
       content,
+      contentHi: contentHi ?? null,
       image,
       rating: rating ?? 5,
       published: published ?? true,
@@ -36,12 +38,14 @@ export const create = async (req, res) => {
 };
 
 export const update = async (req, res) => {
-  const { name, content, image, rating, published, sortOrder } = req.body;
+  const { name, content, contentHi, image, rating, published, sortOrder } =
+    req.body;
   const testimonial = await prisma.testimonial.update({
     where: { id: Number(req.params.id) },
     data: {
       ...(name && { name }),
       ...(content && { content }),
+      ...(contentHi !== undefined && { contentHi }),
       ...(image !== undefined && { image }),
       ...(rating !== undefined && { rating }),
       ...(published !== undefined && { published }),

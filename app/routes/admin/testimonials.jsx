@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { testimonialsApi } from "~/lib/api";
 
-const empty = { name: "", content: "", image: "", rating: 5, published: true, sortOrder: 0 };
+const empty = { name: "", content: "", contentHi: "", image: "", rating: 5, published: true, sortOrder: 0 };
 
 export default function AdminTestimonials() {
   const [items, setItems] = useState([]);
@@ -35,6 +35,7 @@ export default function AdminTestimonials() {
     setForm({
       name: t.name,
       content: t.content,
+      contentHi: t.contentHi || "",
       image: t.image || "",
       rating: t.rating ?? 5,
       published: t.published,
@@ -92,6 +93,16 @@ export default function AdminTestimonials() {
               value={form.content}
               onChange={(e) => setForm({ ...form, content: e.target.value })}
               required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Content (Hindi)</label>
+            <textarea
+              className="form-control"
+              rows={3}
+              placeholder="हिंदी में प्रशंसापत्र (खाली छोड़ने पर अंग्रेज़ी दिखेगा)"
+              value={form.contentHi}
+              onChange={(e) => setForm({ ...form, contentHi: e.target.value })}
             />
           </div>
           <div className="mb-3">

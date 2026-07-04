@@ -1,3 +1,4 @@
+import { useLang } from "~/context/LanguageContext";
 import { imageSrc } from "~/utils/format";
 
 function Stars({ rating = 5 }) {
@@ -15,17 +16,15 @@ function Stars({ rating = 5 }) {
 }
 
 export default function Testimonials({ items = [] }) {
+  const { t, tc } = useLang();
   if (!items.length) return null;
 
   return (
     <section className="testimonials section tm-section" id="testimonials">
       <div className="container tm-head" data-aos="fade-up">
-        <span className="tm-eyebrow">Testimonials</span>
-        <h2 className="tm-title">What Our Happy Clients Say</h2>
-        <p className="tm-subtitle">
-          Real stories from people who found calm, balance, and emotional
-          well-being with our Bach Flower remedies
-        </p>
+        <span className="tm-eyebrow">{t("testimonials.eyebrow")}</span>
+        <h2 className="tm-title">{t("testimonials.title")}</h2>
+        <p className="tm-subtitle">{t("testimonials.subtitle")}</p>
       </div>
 
       <div className="container">
@@ -35,7 +34,9 @@ export default function Testimonials({ items = [] }) {
               <figure className="tm-card">
                 <i className="bi bi-quote tm-quote" aria-hidden />
                 <Stars rating={item.rating} />
-                <blockquote className="tm-content">{item.content}</blockquote>
+                <blockquote className="tm-content">
+                  {tc(item, "content")}
+                </blockquote>
                 <figcaption className="tm-author">
                   <img
                     src={imageSrc(item.image)}
@@ -48,7 +49,7 @@ export default function Testimonials({ items = [] }) {
                   />
                   <div>
                     <span className="tm-name">{item.name}</span>
-                    <span className="tm-role">Verified Client</span>
+                    <span className="tm-role">{t("testimonials.role")}</span>
                   </div>
                 </figcaption>
               </figure>

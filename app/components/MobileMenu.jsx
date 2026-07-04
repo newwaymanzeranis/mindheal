@@ -4,12 +4,15 @@ import { Link, NavLink } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
+import LanguageSwitcher from "~/components/LanguageSwitcher";
 
 function navClass({ isActive }) {
   return isActive ? "active" : undefined;
 }
 
 export default function MobileMenu({ open, onClose, aboutOpen, setAboutOpen }) {
+  const { t } = useLang();
   const { user, isAuthenticated, loading, logout } = useAuth();
   const { cartCount, hydrated } = useCart();
 
@@ -46,52 +49,54 @@ export default function MobileMenu({ open, onClose, aboutOpen, setAboutOpen }) {
             type="button"
             className="site-mobile-close"
             onClick={onClose}
-            aria-label="Close menu"
+            aria-label={t("nav.closeMenu")}
           >
             <i className="bi bi-x-lg" />
           </button>
         </div>
 
         <nav className="site-mobile-nav">
+          <LanguageSwitcher className="site-mobile-lang" />
+
           <NavLink to="/" end className={navClass} onClick={onClose}>
-            Home
+            {t("nav.home")}
           </NavLink>
           <button
             type="button"
             className={`site-mobile-nav__toggle${aboutOpen ? " is-open" : ""}`}
             onClick={() => setAboutOpen((o) => !o)}
           >
-            About & Contact
+            {t("nav.aboutContact")}
             <i className="bi bi-chevron-down" />
           </button>
           {aboutOpen && (
             <div className="site-mobile-sub">
               <NavLink to="/about" className={navClass} onClick={onClose}>
-                About Us
+                {t("nav.about")}
               </NavLink>
               <NavLink to="/contact" className={navClass} onClick={onClose}>
-                Contact
+                {t("nav.contact")}
               </NavLink>
             </div>
           )}
           <NavLink to="/services" className={navClass} onClick={onClose}>
-            Services
+            {t("nav.services")}
           </NavLink>
           <NavLink to="/healing_stories" className={navClass} onClick={onClose}>
-            Stories
+            {t("nav.stories")}
           </NavLink>
           <NavLink to="/buy_mh_mix" className={navClass} onClick={onClose}>
-            Shop
+            {t("nav.shop")}
           </NavLink>
           <NavLink to="/blog" className={navClass} onClick={onClose}>
-            Blog
+            {t("nav.blog")}
           </NavLink>
 
           <div className="site-mobile-nav__divider" />
 
           {!loading && !isAuthenticated && (
             <NavLink to="/login" className={navClass} onClick={onClose}>
-              Login
+              {t("nav.login")}
             </NavLink>
           )}
           {!loading && isAuthenticated && (
@@ -100,21 +105,21 @@ export default function MobileMenu({ open, onClose, aboutOpen, setAboutOpen }) {
                 {user?.name || user?.email}
               </span>
               <NavLink to="/account/orders" className={navClass} onClick={onClose}>
-                My Orders
+                {t("nav.myOrders")}
               </NavLink>
               <button
                 type="button"
                 className="site-mobile-nav__btn"
                 onClick={handleLogout}
               >
-                Logout
+                {t("nav.logout")}
               </button>
             </>
           )}
 
           <Link to="/cart" className="site-mobile-cart" onClick={onClose}>
             <i className="bi bi-cart3" />
-            <span>View Cart</span>
+            <span>{t("nav.viewCart")}</span>
             {hydrated && cartCount > 0 && (
               <span className="site-mobile-cart-count">
                 {cartCount > 99 ? "99+" : cartCount}

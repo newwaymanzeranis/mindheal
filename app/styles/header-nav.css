@@ -111,6 +111,36 @@ body.page-navigating {
   min-height: 56px;
 }
 
+/* Compact lotus logo only on narrow phones (360–480px) so the
+   language switcher, cart and menu button stay on one row.
+   Outside this range the layout is left unchanged. */
+.site-logo-icon {
+  display: none;
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+  .header .logo img.site-logo-full {
+    display: none;
+  }
+
+  .header .logo img.site-logo-icon {
+    display: block;
+    max-height: 55px;
+    width: auto;
+    margin-right: 0;
+    object-fit: contain;
+  }
+
+  .header .container-xl.site-header-inner {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .site-mobile-actions {
+    gap: 6px;
+  }
+}
+
 .site-mobile-actions {
   display: none;
   align-items: center;

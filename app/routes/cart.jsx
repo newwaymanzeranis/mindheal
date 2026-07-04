@@ -1,8 +1,10 @@
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 import ProductPrice from "~/components/ProductPrice";
 import { useAuth } from "~/context/AuthContext";
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
+import { fetchAllProducts } from "~/lib/fetchApi.server";
 import {
   DEFAULT_BOTTLE_IMAGE,
   formatPrice,
@@ -14,11 +16,7 @@ import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
 
-const HERO_STATS = [
-  { icon: "bi-bag-heart", label: "Bach Flower Mixes" },
-  { icon: "bi-percent", label: "38% Off Every Mix" },
-  { icon: "bi-truck", label: "Cash on Delivery" },
-];
+const HERO_STAT_ICONS = ["bi-bag-heart", "bi-percent", "bi-truck"];
 
 export function meta() {
   return [
@@ -30,7 +28,15 @@ export function meta() {
   ];
 }
 
+export async function loader({ request }) {
+  const products = await fetchAllProducts("published=true", { request });
+  return { products: products ?? [] };
+}
+
 function CartHero({ itemCount }) {
+  const { t } = useLang();
+  const heroStats = t("cart.heroStats");
+
   return (
     <section className="cp-hero">
       <div className="cp-hero-glow" aria-hidden />
@@ -43,24 +49,22 @@ function CartHero({ itemCount }) {
           />
         </div>
 
-        <h1 className="cp-hero-title">Your Cart</h1>
+        <h1 className="cp-hero-title">{t("cart.heroTitle")}</h1>
 
-        <p className="cp-hero-lead">
-          Review your Mind Heal mixtures before checkout — gentle healing,
-          delivered to your door.
-        </p>
+        <p className="cp-hero-lead">{t("cart.heroLead")}</p>
 
         <div className="cp-hero-stats">
-          {HERO_STATS.map((stat) => (
-            <span className="cp-stat" key={stat.label}>
-              <i className={`bi ${stat.icon}`} />
-              {stat.label}
+          {(Array.isArray(heroStats) ? heroStats : []).map((label, index) => (
+            <span className="cp-stat" key={label}>
+              <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-truck"}`} />
+              {label}
             </span>
           ))}
           {itemCount > 0 && (
             <span className="cp-stat">
               <i className="bi bi-cart-check" />
-              {itemCount} {itemCount === 1 ? "Item" : "Items"}
+              {itemCount}{" "}
+              {itemCount === 1 ? t("cart.itemSingular") : t("cart.itemPlural")}
             </span>
           )}
         </div>
@@ -71,6 +75,8 @@ function CartHero({ itemCount }) {
 
 export default function CartPage() {
   const { isAuthenticated } = useAuth();
+  const { t, tc } = useLang();
+  const { products } = useLoaderData();
   const {
     items,
     hydrated,
@@ -81,6 +87,13 @@ export default function CartPage() {
     removeFromCart,
     clearCart,
   } = useCart();
+
+  const productMap = new Map((products ?? []).map((p) => [p.id, p]));
+  const displayName = (item) => {
+    const product = productMap.get(item.id);
+    if (product) return tc(product, "name");
+    return tc(item, "name") || item.name;
+  };
 
   const loginHref = buildAuthRedirectUrl("/login", "/checkout");
   const registerHref = buildAuthRedirectUrl("/register", "/checkout");
@@ -93,7 +106,7 @@ export default function CartPage() {
           <div className="container">
             <div className="cp-loading">
               <div className="spinner-border" role="status" />
-              <p className="mt-3 mb-0">Loading your cart…</p>
+              <p className="mt-3 mb-0">{t("cart.loading")}</p>
             </div>
           </div>
         </section>
@@ -112,14 +125,11 @@ export default function CartPage() {
               <div className="cp-empty-icon">
                 <i className="bi bi-cart-x" />
               </div>
-              <h2>Your cart is empty</h2>
-              <p>
-                Browse our Bach Flower mixtures and add your favourites to begin
-                your healing journey.
-              </p>
+              <h2>{t("cart.emptyTitle")}</h2>
+              <p>{t("cart.emptyText")}</p>
               <Link to="/buy_mh_mix" className="cp-btn cp-btn--primary">
                 <i className="bi bi-bag-heart" />
-                Shop Mind Heal Mix
+                {t("cart.shopMix")}
               </Link>
             </div>
           ) : (
@@ -129,7 +139,7 @@ export default function CartPage() {
                   <div className="cp-items-head">
                     <h2>
                       <i className="bi bi-cart3" />
-                      Cart Items ({items.length})
+                      {t("cart.itemsHead", { count: items.length })}
                     </h2>
                     <button
                       type="button"
@@ -137,7 +147,7 @@ export default function CartPage() {
                       onClick={clearCart}
                     >
                       <i className="bi bi-trash3" />
-                      Clear cart
+                      {t("cart.clearCart")}
                     </button>
                   </div>
 
@@ -148,7 +158,7 @@ export default function CartPage() {
                           <div className="cart-item-scene-wrap">
                             <img
                               src={item.image}
-                              alt={item.name}
+                              alt={displayName(item)}
                               className="cart-item-scene"
                             />
                           </div>
@@ -162,7 +172,7 @@ export default function CartPage() {
 
                         <div className="cart-item-body">
                           <div className="cart-item-info">
-                            <h3 className="cart-item-title">{item.name}</h3>
+                            <h3 className="cart-item-title">{displayName(item)}</h3>
                             <span className="cart-item-mh">
                               {productMindHealLabel(item.mindHealNo)}
                             </span>
@@ -178,7 +188,9 @@ export default function CartPage() {
                                 type="button"
                                 className="cp-remove-btn"
                                 onClick={() => removeFromCart(item.id)}
-                                aria-label={`Remove ${item.name} from cart`}
+                                aria-label={t("cart.removeAria", {
+                                  name: displayName(item),
+                                })}
                               >
                                 <i className="bi bi-trash3" aria-hidden />
                               </button>
@@ -188,7 +200,7 @@ export default function CartPage() {
                                   className="visually-hidden"
                                   htmlFor={`qty-${item.id}`}
                                 >
-                                  Quantity
+                                  {t("cart.quantity")}
                                 </label>
                                 <button
                                   type="button"
@@ -240,56 +252,56 @@ export default function CartPage() {
                 <div className="cart-summary">
                   <h2 className="cp-summary-title">
                     <i className="bi bi-receipt" />
-                    Order Summary
+                    {t("cart.orderSummary")}
                   </h2>
 
                   <div className="cart-summary-row">
-                    <span>MRP Total</span>
+                    <span>{t("cart.mrpTotal")}</span>
                     <span className="cp-mrp">{formatPrice(totalMrp)}</span>
                   </div>
                   <div className="cart-summary-row cp-savings">
-                    <span>You save</span>
+                    <span>{t("cart.youSave")}</span>
                     <strong>{formatPrice(totalSavings)}</strong>
                   </div>
                   <div className="cart-summary-row cart-summary-total">
-                    <span>Subtotal</span>
+                    <span>{t("cart.subtotal")}</span>
                     <strong>{formatPrice(subtotal)}</strong>
                   </div>
 
                   <p className="cart-summary-note">
                     <i className="bi bi-info-circle" />
-                    MRP ₹400 per mix · Special price ₹250 each
+                    {t("cart.summaryNote")}
                   </p>
 
                   <div className="cp-cod-badge">
                     <i className="bi bi-truck" />
-                    Cash on Delivery available
+                    {t("cart.codAvailable")}
                   </div>
 
                   {isAuthenticated ? (
                     <Link to="/checkout" className="cp-btn cp-btn--primary">
                       <i className="bi bi-bag-check" />
-                      Proceed to Checkout (COD)
+                      {t("cart.proceedCheckout")}
                     </Link>
                   ) : (
                     <>
                       <Link to={loginHref} className="cp-btn cp-btn--primary">
                         <i className="bi bi-box-arrow-in-right" />
-                        Login to Checkout
+                        {t("cart.loginToCheckout")}
                       </Link>
                       <Link
                         to={registerHref}
                         className="cp-btn cp-btn--outline"
                       >
                         <i className="bi bi-person-plus" />
-                        Create Account &amp; Checkout
+                        {t("cart.createAccountCheckout")}
                       </Link>
                     </>
                   )}
 
                   <Link to="/buy_mh_mix" className="cp-btn cp-btn--ghost">
                     <i className="bi bi-arrow-left" />
-                    Continue Shopping
+                    {t("cart.continueShopping")}
                   </Link>
                 </div>
               </aside>

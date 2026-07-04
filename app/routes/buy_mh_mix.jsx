@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 
 import BuyMhMixGrid from "~/components/BuyMhMixGrid";
 import MixSearchFilter from "~/components/MixSearchFilter";
+import { useLang } from "~/context/LanguageContext";
 import { fetchAllProducts } from "~/lib/fetchApi.server";
 
 import buyMhMixCss from "~/styles/buy-mh-mix.css?url";
@@ -13,11 +14,7 @@ export const links = () => [
   { rel: "stylesheet", href: cartCss },
 ];
 
-const HERO_STATS = [
-  { icon: "bi-flower2", label: "50+ Healing Blends" },
-  { icon: "bi-tag", label: "38% OFF Every Mix" },
-  { icon: "bi-truck", label: "Cash on Delivery" },
-];
+const HERO_STAT_ICONS = ["bi-flower2", "bi-tag", "bi-truck"];
 
 export async function loader({ request }) {
   const products = (await fetchAllProducts("published=true", { request })).sort(
@@ -27,8 +24,10 @@ export async function loader({ request }) {
 }
 
 export default function BuyMhMix() {
+  const { t } = useLang();
   const { products } = useLoaderData();
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const heroStats = t("buyMhMix.stats");
 
   const handleFilteredChange = useCallback((next) => {
     setFilteredProducts(next);
@@ -48,23 +47,18 @@ export default function BuyMhMix() {
 
           <span className="bmm-eyebrow">
             <i className="bi bi-flower1" />
-            Bach Flower Remedies
+            {t("buyMhMix.eyebrow")}
           </span>
 
-          <h1 className="bmm-hero-title">
-            Choose &amp; Order Your Mind Heal Mix
-          </h1>
+          <h1 className="bmm-hero-title">{t("buyMhMix.heroTitle")}</h1>
 
-          <p className="bmm-hero-lead">
-            Your healing partner with authentic Bach Flower blends — pick the
-            remedy that feels right for you or your loved one.
-          </p>
+          <p className="bmm-hero-lead">{t("buyMhMix.heroLead")}</p>
 
           <div className="bmm-hero-stats">
-            {HERO_STATS.map((stat) => (
-              <span className="bmm-stat" key={stat.label}>
-                <i className={`bi ${stat.icon}`} />
-                {stat.label}
+            {(Array.isArray(heroStats) ? heroStats : []).map((label, index) => (
+              <span className="bmm-stat" key={label}>
+                <i className={`bi ${HERO_STAT_ICONS[index] ?? "bi-flower2"}`} />
+                {label}
               </span>
             ))}
           </div>
@@ -74,28 +68,28 @@ export default function BuyMhMix() {
       <section className="bmm-catalog-intro">
         <div className="container">
           <div className="bmm-catalog-head">
-            <span className="bmm-catalog-eyebrow">Our Collection</span>
-            <h2>Find the Perfect Mix Made Just for You</h2>
-            <p>
-              Search by emotional need, browse all blends, and add your favourites
-              to cart in seconds.
-            </p>
+            <span className="bmm-catalog-eyebrow">
+              {t("buyMhMix.catalogEyebrow")}
+            </span>
+            <h2>{t("buyMhMix.catalogTitle")}</h2>
+            <p>{t("buyMhMix.catalogSubtitle")}</p>
           </div>
 
           <div className="bmm-offer-bar">
             <span className="bmm-offer-item">
               <i className="bi bi-tag-fill" />
-              MRP <strong>₹400</strong>
+              {t("buyMhMix.offerMrp")} <strong>₹400</strong>
             </span>
             <span className="bmm-offer-divider" aria-hidden />
             <span className="bmm-offer-item">
               <i className="bi bi-lightning-fill" />
-              Special Offer <strong>₹250</strong>
+              {t("buyMhMix.offerSpecial")} <strong>₹250</strong>
             </span>
             <span className="bmm-offer-divider" aria-hidden />
             <span className="bmm-offer-item">
               <i className="bi bi-percent" />
-              Save <strong>38%</strong> on every mix
+              {t("buyMhMix.offerSave")} <strong>38%</strong>{" "}
+              {t("buyMhMix.offerSaveSuffix")}
             </span>
           </div>
         </div>

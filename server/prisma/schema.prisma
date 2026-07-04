@@ -128,9 +128,12 @@ model BlogCategory {
 model Post {
   id          Int       @id @default(autoincrement())
   title       String    @db.VarChar(500)
+  titleHi     String?   @map("title_hi") @db.VarChar(500)
   slug        String    @unique @db.VarChar(500)
   excerpt     String?   @db.Text
+  excerptHi   String?   @map("excerpt_hi") @db.Text
   content     String    @db.LongText
+  contentHi   String?   @map("content_hi") @db.LongText
   image       String?   @db.VarChar(500)
   author      String?   @db.VarChar(255)
   published   Boolean   @default(false)
@@ -162,9 +165,12 @@ model Product {
   id             Int      @id @default(autoincrement())
   mindHealNo     String   @map("mind_heal_no") @db.VarChar(20)
   name           String   @db.VarChar(500)
+  nameHi         String?  @map("name_hi") @db.VarChar(500)
   slug           String   @unique @db.VarChar(500)
   description      String?  @db.LongText
+  descriptionHi    String?  @map("description_hi") @db.LongText
   shortDescription String?  @map("short_description") @db.Text
+  shortDescriptionHi String? @map("short_description_hi") @db.Text
   mrp              Decimal  @default(400) @db.Decimal(10, 2)
   price            Decimal  @default(250) @map("discounted_price") @db.Decimal(10, 2)
   image            String?  @db.VarChar(500)
@@ -172,6 +178,7 @@ model Product {
   published      Boolean  @default(true)
   sortOrder      Int      @default(0) @map("sort_order")
   emotionalTags  String?  @map("emotional_tags") @db.Text
+  emotionalTagsHi String? @map("emotional_tags_hi") @db.Text
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt @map("updated_at")
 
@@ -186,6 +193,7 @@ model Testimonial {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
   content   String   @db.Text
+  contentHi String?  @map("content_hi") @db.Text
   image     String?  @db.VarChar(500)
   rating    Int?     @default(5)
   published Boolean  @default(true)
@@ -200,7 +208,9 @@ model Testimonial {
 model HomeSlide {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(500)
+  titleHi   String?  @map("title_hi") @db.VarChar(500)
   subtitle  String?  @db.Text
+  subtitleHi String? @map("subtitle_hi") @db.Text
   image     String   @db.VarChar(500)
   published Boolean  @default(true)
   sortOrder Int      @default(0) @map("sort_order")
@@ -216,11 +226,15 @@ model TeamMember {
   name         String   @db.VarChar(255)
   slug         String   @unique @db.VarChar(255)
   degree       String?  @db.VarChar(255)
+  degreeHi     String?  @map("degree_hi") @db.VarChar(255)
   experience   String?  @db.VarChar(100)
   image        String?  @db.VarChar(500)
   bio          String?  @db.Text
+  bioHi        String?  @map("bio_hi") @db.Text
   expertise    String?  @db.LongText
+  expertiseHi  String?  @map("expertise_hi") @db.LongText
   portfolio    String?  @db.LongText
+  portfolioHi  String?  @map("portfolio_hi") @db.LongText
   facebookUrl  String?  @map("facebook_url") @db.VarChar(500)
   twitterUrl   String?  @map("twitter_url") @db.VarChar(500)
   linkedinUrl  String?  @map("linkedin_url") @db.VarChar(500)

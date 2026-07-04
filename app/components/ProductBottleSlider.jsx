@@ -4,6 +4,7 @@ import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
 import {
   bottleImageSrc,
   cleanProductName,
@@ -13,6 +14,7 @@ import {
 import { getProductPricing } from "~/utils/pricing";
 
 export default function ProductBottleSlider({ products = [] }) {
+  const { t, tc } = useLang();
   const containerRef = useRef(null);
   const swiperRef = useRef(null);
   const { addToCart } = useCart();
@@ -66,10 +68,8 @@ export default function ProductBottleSlider({ products = [] }) {
     <section className="bottle-slider-section">
       <div className="container">
         <div className="bottle-slider-head">
-          <h3 className="bottle-slider-title">Shop Our Bach Flower Remedies</h3>
-          <p className="bottle-slider-subtitle">
-            Hand-picked remedies, ready to bring calm and balance to your day
-          </p>
+          <h3 className="bottle-slider-title">{t("shop.bottleTitle")}</h3>
+          <p className="bottle-slider-subtitle">{t("shop.bottleSubtitle")}</p>
         </div>
 
         <div ref={containerRef} className="swiper bottle-slider">
@@ -97,13 +97,13 @@ export default function ProductBottleSlider({ products = [] }) {
                   <article className="bottle-card">
                     {discountPercent > 0 && (
                       <span className="bottle-card-discount">
-                        {discountPercent}% OFF
+                        {discountPercent}% {t("common.off")}
                       </span>
                     )}
                     <div className="bottle-card-media">
                       <img
                         src={bottleImageSrc(product)}
-                        alt={product.name}
+                        alt={tc(product, "name")}
                         className="bottle-card-img"
                         draggable={false}
                         loading="lazy"
@@ -117,7 +117,10 @@ export default function ProductBottleSlider({ products = [] }) {
                               : ""
                           }`}
                           onClick={() => handleAdd(product)}
-                          aria-label={`Add ${product.name} to cart`}
+                          aria-label={`${t("common.addToCart")} — ${tc(
+                            product,
+                            "name"
+                          )}`}
                         >
                           <i
                             className={`bi ${
@@ -127,7 +130,9 @@ export default function ProductBottleSlider({ products = [] }) {
                             }`}
                           />
                           <span>
-                            {addedId === product.id ? "Added" : "Add to Cart"}
+                            {addedId === product.id
+                              ? t("common.added")
+                              : t("common.addToCart")}
                           </span>
                         </button>
                         <Link
@@ -135,7 +140,7 @@ export default function ProductBottleSlider({ products = [] }) {
                           className="bottle-card-view"
                         >
                           <i className="bi bi-eye" />
-                          <span>View Details</span>
+                          <span>{t("common.viewDetails")}</span>
                         </Link>
                       </div>
                     </div>
@@ -147,7 +152,7 @@ export default function ProductBottleSlider({ products = [] }) {
                         )}
                       </span>
                       <h4 className="bottle-card-name">
-                        {cleanProductName(product.name)}
+                        {cleanProductName(tc(product, "name"))}
                       </h4>
                       <div className="bottle-card-price">
                         <span className="bottle-card-sale">

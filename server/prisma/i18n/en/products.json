@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "mindHealNo": "01",
+    "name": "Repetitive Thoughts & Mental Loops (Baar-baar ek hi soch aana)",
+    "description": "Sometimes the mind gets stuck on the same thought again and again. A person may repeatedly check locks, switches, bags, messages, or small daily things even after already checking them once.\nEven when everything is fine, the mind still says:\n    • “Check one more time.”\n    • “Maybe something went wrong.”\n    • “What if I forgot something?”\nThis constant mental pressure can slowly make a person feel restless, emotionally tired, and unable to relax.\nMind Heal No. 01 is created for people who:\n    • overthink small things,\n    • feel trapped in repeating thoughts,\n    • cannot relax mentally,\n    • or struggle to feel inner peace.\nThis gentle Bach flower blend is designed to support emotional calmness and help the mind slowly feel lighter, quieter, and more balanced.",
+    "shortDescription": "Do you keep checking things again and again? Thoughts like ‘Did I lock the door?’ or ‘Is everything okay?’ just don’t stop. Mind Heal No. 01 is for people who feel mentally tired from repeated thoughts and want a calm, peaceful mind.",
+    "emotionalTags": "ocd, anxiety, repetitive-thoughts, mental-loop, overthinking"
+  },
+  {
+    "id": 2,
+    "mindHealNo": "02",
+    "name": "Social Anxiety & Emotional Wellness(Logon se milne ka darr)",
+    "description": "Some people deeply want to connect with others, but inside they feel shy, nervous, or emotionally uncomfortable.\nSimple situations like:\n    • meeting new people,\n    • speaking in groups,\n    • attending functions,\n    • or starting conversations\ncan feel emotionally heavy.\nThe mind may constantly worry:\n    • “What will people think?”\n    • “What if I say something wrong?”\n    • “Why do I feel so uncomfortable?”\nMind Heal No. 02 is created to gently support emotional ease, social confidence, and inner comfort.\nIt is for people who:\n    • avoid social situations,\n    • feel emotionally closed,\n    • struggle with shyness,\n    • or feel lonely even around people.\nThis blend is designed to help the mind feel calmer, softer, and emotionally more open.",
+    "shortDescription": "Do you feel nervous while talking to people? Does your heart feel uncomfortable in social situations? Mind Heal No. 02 is made for people who want to feel emotionally comfortable and confident around others.",
+    "emotionalTags": "social-anxiety, fear, shyness, isolation, introvert"
+  },
+  {
+    "id": 3,
+    "mindHealNo": "03",
+    "name": "Hyperactivity & concentration problems (Bachon ki chanchalta aur ekagrata)",
+    "description": "Some children are naturally energetic, but sometimes their mind becomes too restless.\nThey may:\n    • jump from one thing to another,\n    • lose focus quickly,\n    • feel emotionally overactive,\n    • or struggle to sit peacefully.\nParents often feel worried because:\n    • homework becomes difficult,\n    • concentration becomes weak,\n    • and daily routines become stressful.\nMind Heal No. 03 is designed to gently support emotional balance, calmness, and focus in children.\nThis blend may help children feel:\n    • emotionally lighter,\n    • calmer during study time,\n    • and more relaxed in daily activities.",
+    "shortDescription": "Does your child feel too restless, distracted, or unable to sit calmly? Mind Heal No. 03 is made for children who need gentle emotional support for better calmness and focus.",
+    "emotionalTags": "adhd, kids-health, focus, hyperactivity, concentration, parenting"
+  },
+  {
+    "id": 4,
+    "mindHealNo": "04",
+    "name": "Exam Stress & Academic Pressure (Padhai aur result ka tanaav)",
+    "description": "Many students study hard but still feel emotionally stressed before exams.\nThe pressure of:\n    • marks,\n    • expectations,\n    • fear of failure,\n    • and overthinking\ncan make the mind feel heavy.\nSome students:\n    • forget answers during exams,\n    • panic easily,\n    • feel mentally exhausted,\n    • or lose confidence.\nMind Heal No. 04 is created to support emotional calmness during study and exam periods.\nIt is designed for students who:\n    • feel stressed before exams,\n    • struggle with focus,\n    • or feel emotionally pressured by results.\nThis gentle blend may help the mind feel calmer, steadier, and more confident.",
+    "shortDescription": "Does exam pressure make your mind blank or restless? Mind Heal No. 04 is made for students who want emotional calmness, confidence, and better focus during studies and exams.",
+    "emotionalTags": "education, student-stress, exam-pressure, anxiety, focus"
+  },
+  {
+    "id": 5,
+    "mindHealNo": "05",
+    "name": "Commitment phobia (Rishto se darr lagna)",
+    "description": "Some people deeply care about others but feel emotionally afraid when relationships become serious.\nThey may:\n    • avoid emotional attachment,\n    • fear commitment,\n    • overthink relationships,\n    • or suddenly pull away emotionally.\nInside, the mind may feel:\n    • “What if I get hurt?”\n    • “What if this relationship changes my life?”\n    • “Why do I feel scared of closeness?”\nMind Heal No. 05 is created to gently support emotional trust, inner calmness, and relationship confidence.\nThis blend is for people who:\n    • fear emotional bonding,\n    • struggle with trust,\n    • or feel emotionally confused in relationships.",
+    "shortDescription": "Do relationships make you feel uncomfortable or emotionally trapped? Mind Heal No. 05 is for people who fear emotional closeness and want to feel safer and calmer in relationships.",
+    "emotionalTags": "relationship, fear-of-commitment, trust-issues, love"
+  },
+  {
+    "id": 6,
+    "mindHealNo": "06",
+    "name": "Everyday Fears & Phobias (Anjan darr se azadi)",
+    "description": "Sometimes fear quietly stays inside the mind even when there is no real danger.\nA person may:\n    • feel nervous suddenly,\n    • avoid certain places,\n    • panic easily,\n    • or feel emotionally unsafe.\nEven daily situations may create emotional discomfort.\nThe mind may constantly stay alert and tired.\nMind Heal No. 06 is designed to gently support emotional courage, calmness, and inner security.\nIt is for people who:\n    • live with hidden fears,\n    • feel emotionally insecure,\n    • or struggle to feel mentally relaxed.",
+    "shortDescription": "Do small things make you feel scared or uncomfortable for no clear reason? Mind Heal No. 06 is made for people who want emotional strength and freedom from constant fear.",
+    "emotionalTags": "phobia, unknown-fear, panic, insecurity"
+  },
+  {
+    "id": 7,
+    "mindHealNo": "07",
+    "name": "Separation anxiety (Apno se door hone ka darr)",
+    "description": "Some people feel deeply attached to loved ones and become emotionally uncomfortable when separated from them.\nThis may happen with:\n    • children,\n    • parents,\n    • partners,\n    • or emotionally close relationships.\nThe mind may feel:\n    • fear of losing someone,\n    • emotional emptiness,\n    • restlessness,\n    • or insecurity.\nMind Heal No. 07 is created to support emotional balance, calmness, and inner stability during emotional separation.\nThis gentle blend is for people who:\n    • feel emotionally dependent,\n    • struggle with distance,\n    • or feel anxious when away from loved ones.",
+    "shortDescription": "Does being away from loved ones make you feel emotionally anxious or restless? Mind Heal No. 07 is made for people who want emotional comfort, stability, and inner security.",
+    "emotionalTags": "detachment, dependency, fear-of-loss, relationship, anxiety"
+  },
+  {
+    "id": 8,
+    "mindHealNo": "08",
+    "name": "Love & Relationship Anxiety (Pyar mein insecurities)",
+    "description": "Love can sometimes bring emotional overthinking, insecurity, and fear.\nA person may:\n    • constantly seek reassurance,\n    • feel jealous easily,\n    • overthink messages or actions,\n    • or become emotionally dependent.\nThe mind may stay busy with:\n    • “Do they really care?”\n    • “What if they leave?”\n    • “Why do I feel so emotionally uneasy?”\nMind Heal No. 08 is designed to support emotional calmness, trust, and balance in relationships.\nThis blend is for people who:\n    • feel emotionally insecure in love,\n    • struggle with possessiveness,\n    • or want a calmer emotional connection.",
+    "shortDescription": "Does love make you feel emotionally insecure, worried, or overattached? Mind Heal No. 08 is made for people who want emotional peace and balance in relationships.",
+    "emotionalTags": "love-anxiety, relationship, jealousy, insecurity, possession"
+  },
+  {
+    "id": 9,
+    "mindHealNo": "09",
+    "name": "Quit smoking (Smoking ki lat se chhutkara)",
+    "description": "Breaking a habit is not always easy. Many people truly want to stop smoking but emotionally feel pulled back toward it.\nStress, emotions, routine, and mental cravings can make quitting feel difficult.\nA person may:\n    • feel irritated without smoking,\n    • struggle with self-control,\n    • feel emotionally dependent,\n    • or keep restarting the same habit.\nMind Heal No. 09 is designed to gently support emotional strength, calmness, and willpower during habit change.\nThis blend is for people who:\n    • want to leave smoking,\n    • need emotional support,\n    • or want to feel mentally stronger during the process.\n“Every small step away from old habits is a step toward a calmer and healthier life.”",
+    "shortDescription": "Do you want to leave smoking behind but keep going back to it again? Mind Heal No. 09 is made for people who want emotional support and stronger inner control while changing habits.",
+    "emotionalTags": "addiction, quit-smoking, de-addiction, willpower, habits"
+  },
+  {
+    "id": 10,
+    "mindHealNo": "10",
+    "name": "Freedom from Bad Habits (Buri aadaton par vijay)",
+    "description": "Some habits slowly become part of daily life even when a person truly wants to stop.\nA person may:\n    • repeat the same unhealthy behavior, \n    • feel emotionally dependent, \n    • lose self-control, \n    • or feel frustrated after trying many times to quit. \nThe mind may say:\n    • “This is the last time.” \n    • “Why can’t I stop?” \n    • “I want to change, but it feels difficult.” \nMind Heal No. 10 is created to gently support emotional strength, self-control, and positive habit change.\nThis blend is for people who:\n    • want to leave unhealthy habits, \n    • feel emotionally stuck in routines, \n    • or want a calmer and stronger mindset during change. \n“Small emotional changes can slowly create powerful life changes.”",
+    "shortDescription": "Do you keep trying to leave a bad habit but go back to it again?\nMind Heal No. 10 is made for people who want stronger self-control, emotional balance, and freedom from unhealthy habits.",
+    "emotionalTags": "habits, self-control, willpower, behavior-change"
+  },
+  {
+    "id": 11,
+    "mindHealNo": "11",
+    "name": "Quit Drinking Habit (Sharab ki aadat ko bye-bye)",
+    "description": "Many people start drinking casually, but over time it can become emotionally difficult to control.\nSome people drink:\n    • to escape stress, \n    • to relax emotionally, \n    • to avoid overthinking, \n    • or simply out of habit. \nLater, they may feel:\n    • emotionally dependent, \n    • mentally tired, \n    • guilty, \n    • or frustrated with themselves. \nThe mind may constantly struggle between:\n    • “I should stop.” \n    • and \n    • “Just one more time.” \nMind Heal No. 11 is designed to gently support emotional balance, inner strength, and better self-control during the journey away from alcohol habits.\nThis blend is for people who:\n    • want emotional support while reducing drinking, \n    • wish to feel mentally stronger, \n    • or want a calmer and healthier emotional life. ",
+    "shortDescription": "Does drinking slowly feel more like a need than a choice?\nMind Heal No. 11 is made for people who want emotional support, stronger control, and a healthier lifestyle.",
+    "emotionalTags": "addiction, alcoholism, de-addiction, willpower, sobriety"
+  },
+  {
+    "id": 12,
+    "mindHealNo": "12",
+    "name": "Gaming Addiction Recovery (Screen aur games ka nasha door karein)",
+    "description": "Gaming and screens can sometimes become more than entertainment.\nA person may:\n    • spend too many hours online, \n    • lose focus on studies or work, \n    • feel emotionally disconnected, \n    • or become irritated when away from screens. \nOver time, the mind may feel:\n    • restless without gaming, \n    • emotionally dependent on screen time, \n    • or mentally distracted all day. \nParents may also notice:\n    • reduced concentration, \n    • less social interaction, \n    • emotional frustration, \n    • or disturbed routines. \nMind Heal No. 12 is created to gently support emotional balance, self-control, and healthier focus away from excessive gaming or screen use.\nThis blend is for people who:\n    • want better control over gaming habits, \n    • wish to improve focus, \n    • or want a calmer daily routine. ",
+    "shortDescription": "Do games and screens take too much of your time, focus, or peace of mind?\nMind Heal No. 12 is made for people who want emotional balance, better focus, and healthier screen habits.",
+    "emotionalTags": "gaming-addiction, screen-time, digital-detox, habits, youth"
+  },
+  {
+    "id": 13,
+    "mindHealNo": "13",
+    "name": "Performance anxiety / lack of self-confidence (Confidence ki kami aur stage fear)",
+    "description": "Many people are talented and capable, but fear and nervousness quietly hold them back.\nBefore speaking, performing, interviews, meetings, or public situations, the mind may feel:\n    • anxious, \n    • shaky, \n    • emotionally pressured, \n    • or full of self-doubt. \nA person may:\n    • fear making mistakes, \n    • avoid attention, \n    • struggle with stage fear, \n    • or lose confidence under pressure. \nEven simple situations may feel emotionally overwhelming.\nMind Heal No. 13 is designed to gently support emotional confidence, calm thinking, and inner courage.\nThis blend is for people who:\n    • struggle with performance anxiety, \n    • feel nervous in public situations, \n    • or want to believe in themselves more strongly. \n“Confidence grows when the mind feels calmer inside.”",
+    "shortDescription": "Do nervousness and self-doubt stop you from speaking, performing, or showing your true ability?\nMind Heal No. 13 is made for people who want stronger confidence and emotional calmness.",
+    "emotionalTags": "low-confidence, stage-fear, public-speaking, performance-anxiety"
+  },
+  {
+    "id": 14,
+    "mindHealNo": "14",
+    "name": "High sensitivity (Baaton ko dil par lena)",
+    "description": "Some people naturally feel emotions very deeply.\nEven small comments, behavior, or situations may:\n    • stay in the mind for a long time, \n    • create emotional pain, \n    • or make the heart feel heavy. \nA sensitive person may:\n    • overthink what others say, \n    • feel hurt easily, \n    • avoid emotional conflict, \n    • or silently carry emotional stress inside. \nThe mind may constantly replay:\n    • conversations, \n    • reactions, \n    • or emotional memories. \nMind Heal No. 14 is designed to gently support emotional stability, inner strength, and calmer emotional reactions.\nThis blend is for people who:\n    • take things deeply to heart, \n    • feel emotionally delicate, \n    • or want emotional calmness and balance. ",
+    "shortDescription": "Do small words or situations hurt you deeply?\nMind Heal No. 14 is made for people who feel emotionally sensitive and want stronger emotional balance.",
+    "emotionalTags": "hsp, high-sensitivity, emotional-hurt, over-emotional"
+  },
+  {
+    "id": 15,
+    "mindHealNo": "15",
+    "name": "Mood swings (Baar-baar badalta mijaaz)",
+    "description": "Sometimes emotions change very quickly and unpredictably.\nA person may:\n    • feel happy one moment, \n    • irritated the next, \n    • emotionally low later, \n    • or mentally exhausted without understanding why. \nThese emotional ups and downs can affect:\n    • relationships, \n    • work, \n    • studies, \n    • and peace of mind. \nThe mind may feel:\n    • emotionally unstable, \n    • mentally tired, \n    • or difficult to understand even for oneself. \nMind Heal No. 15 is created to gently support emotional balance, calmness, and inner steadiness.\nThis blend is for people who:\n    • experience frequent mood changes, \n    • feel emotionally overwhelmed, \n    • or want a calmer and more stable emotional life. \n“Emotional balance slowly brings more peace into everyday life.”",
+    "shortDescription": "Does your mood change again and again without clear reason?\nMind Heal No. 15 is made for people who want emotional stability, calmness, and a more balanced mind.",
+    "emotionalTags": "mood-swings, emotional-instability, anger, irritation"
+  },
+  {
+    "id": 16,
+    "mindHealNo": "16",
+    "name": "Fear of flying (Hawai safar ka darr)",
+    "description": "For some people, flying feels emotionally stressful even before the journey begins.\nThe mind may become filled with:\n    • fear, \n    • nervous thoughts, \n    • restlessness, \n    • or panic during flights. \nA person may:\n    • feel anxious before boarding, \n    • avoid air travel, \n    • become uncomfortable during takeoff, \n    • or constantly worry during the journey. \nEven when everything is safe, the mind may still feel emotionally uneasy.\nMind Heal No. 16 is designed to gently support emotional calmness, courage, and relaxation during air travel.\nThis blend is for people who:\n    • fear flying, \n    • feel nervous in airplanes, \n    • or want a calmer travel experience. \n“Sometimes emotional calmness can make the journey feel lighter.”",
+    "shortDescription": "Does the thought of flying make your heart race or your mind feel uncomfortable?\nMind Heal No. 16 is made for people who want emotional calmness and a more peaceful flying experience.",
+    "emotionalTags": "phobia, aerophobia, travel-fear, panic"
+  },
+  {
+    "id": 17,
+    "mindHealNo": "17",
+    "name": "Fear of travelling (Safar mein hone wali ghabrahat)",
+    "description": "Traveling is exciting for many people, but for some it can create emotional stress and nervousness.\nA person may:\n    • feel uneasy before leaving home, \n    • overthink the journey, \n    • worry constantly during travel, \n    • or feel emotionally unsafe in unfamiliar places. \nThe mind may stay busy with:\n    • “What if something goes wrong?” \n    • “Will I feel okay there?” \n    • “Why do I feel so nervous while travelling?” \nThis emotional pressure can make even short trips feel mentally exhausting.\nMind Heal No. 17 is created to gently support emotional comfort, calmness, and inner security during travel.\nThis blend is for people who:\n    • feel anxious while travelling, \n    • avoid journeys because of fear, \n    • or want to travel with more emotional ease. ",
+    "shortDescription": "Does travelling make you feel nervous, restless, or emotionally uncomfortable?\nMind Heal No. 17 is made for people who want a calmer and more peaceful travel experience.",
+    "emotionalTags": "travel-anxiety, motion-sickness-mental, fear, uneasiness"
+  },
+  {
+    "id": 18,
+    "mindHealNo": "18",
+    "name": "Fear of driving (Driving karne ka darr)",
+    "description": "Some people deeply want to drive confidently, but fear and nervousness make it difficult.\nA person may:\n    • feel tense while driving, \n    • fear accidents, \n    • avoid busy roads, \n    • or lose confidence behind the wheel. \nEven small driving situations may create:\n    • sweating, \n    • overthinking, \n    • emotional pressure, \n    • or panic-like feelings. \nThe mind may constantly say:\n    • “What if I make a mistake?” \n    • “What if something happens?” \n    • “Why do I feel so scared while driving?” \nMind Heal No. 18 is designed to gently support emotional calmness, confidence, and mental relaxation during driving.\nThis blend is for people who:\n    • fear driving, \n    • feel emotionally nervous on roads, \n    • or want to feel safer and calmer while driving. ",
+    "shortDescription": "Does driving make you feel scared, tense, or emotionally uncomfortable?\nMind Heal No. 18 is made for people who want emotional confidence and a calmer driving experience.",
+    "emotionalTags": "driving-phobia, fear, low-confidence, road-anxiety"
+  },
+  {
+    "id": 19,
+    "mindHealNo": "19",
+    "name": "Personality Development (Vyaktitv mein sudhaar)",
+    "description": "Sometimes people feel unhappy with certain emotional patterns in themselves.\nA person may:\n    • struggle with confidence, \n    • react emotionally too quickly, \n    • feel socially uncomfortable, \n    • or feel mentally stuck in old behaviors. \nInside, they may wish:\n    • to communicate better, \n    • feel emotionally stronger, \n    • become calmer, \n    • or grow into a more balanced version of themselves. \nMind Heal No. 19 is designed to gently support emotional awareness, self-confidence, and positive personal growth.\nThis blend is for people who:\n    • want emotional improvement, \n    • wish to feel more confident, \n    • or want healthier emotional balance in daily life. \n“Personal growth begins when the mind starts feeling calmer and stronger.”",
+    "shortDescription": "Do you feel held back by self-doubt, emotional reactions, or negative habits?\nMind Heal No. 19 is made for people who want emotional growth, confidence, and a more balanced personality.",
+    "emotionalTags": "personality-development, behavior, self-improvement, ego"
+  },
+  {
+    "id": 20,
+    "mindHealNo": "20",
+    "name": "Healing from Deep Sadness (Bhari udasi se bahar aayein)",
+    "description": "Sometimes sadness quietly stays inside for a long time.\nA person may:\n    • feel emotionally low, \n    • lose interest in things once enjoyed, \n    • feel mentally tired, \n    • or carry silent emotional pain. \nEven while smiling outside, the heart may still feel heavy inside.\nThe mind may struggle with:\n    • emotional emptiness, \n    • loneliness, \n    • lack of emotional energy, \n    • or a feeling of disconnection. \nMind Heal No. 20 is created to gently support emotional comfort, calmness, and inner healing.\nThis blend is for people who:\n    • feel emotionally weighed down, \n    • struggle with long-lasting sadness, \n    • or simply want to feel emotionally lighter again. \n“You do not always need to carry emotional heaviness alone.”",
+    "shortDescription": "Does your heart feel heavy even when you try to stay normal?\nMind Heal No. 20 is made for people who want emotional comfort, lightness, and inner peace during difficult emotional moments.",
+    "emotionalTags": "depression, deep-sadness, grief, loneliness, melancholy"
+  },
+  {
+    "id": 21,
+    "mindHealNo": "21",
+    "name": "Exam Fear & Test Anxiety (Exam ke waqt ki ghabrahat)",
+    "description": "Many students study well but still feel emotionally stressed before exams.\nAs the exam gets closer, the mind may become:\n    • nervous, \n    • restless, \n    • emotionally pressured, \n    • or full of fear. \nA student may:\n    • panic before entering the exam hall, \n    • feel pressure from expectations, \n    • lose confidence, \n    • or struggle to stay calm. \nEven simple questions may suddenly feel difficult because of emotional stress.\nMind Heal No. 21 is designed to gently support emotional calmness, confidence, and mental balance during exams.\nThis blend is for students who:\n    • fear examinations, \n    • feel emotionally pressured during studies, \n    • or want a calmer and more focused mind. \n“Sometimes a calm mind performs better than a stressed mind.”",
+    "shortDescription": "Does exam time make your heart race and your mind feel nervous?\nMind Heal No. 21 is made for students who want emotional calmness, confidence, and peace during exams.",
+    "emotionalTags": "student-stress, exam-panic, fear, acute-anxiety"
+  },
+  {
+    "id": 22,
+    "mindHealNo": "22",
+    "name": "Bereavement (Apno ke jane ka gham)",
+    "description": "Losing a loved one can leave deep emotional pain inside the heart and mind.\nA person may:\n    • feel emotionally empty, \n    • miss someone deeply, \n    • struggle to move forward, \n    • or silently carry sadness every day. \nEven normal daily life may feel emotionally difficult after loss.\nThe mind may replay:\n    • memories, \n    • emotional moments, \n    • or feelings of loneliness and pain. \nMind Heal No. 22 is designed to gently support emotional healing, comfort, and inner peace during grief and emotional loss.\nThis blend is for people who:\n    • are coping with emotional loss, \n    • feel deeply affected after losing someone, \n    • or want emotional comfort during difficult times. \n“Healing does not mean forgetting. It means learning to breathe peacefully again.”",
+    "shortDescription": "Does the pain of losing someone still feel heavy inside your heart?\nMind Heal No. 22 is made for people who want emotional comfort, peace, and support during grief.",
+    "emotionalTags": "grief, trauma, loss-of-loved-one, mourning, sadness"
+  },
+  {
+    "id": 23,
+    "mindHealNo": "23",
+    "name": "Fear of Being Alone (Akela rehne ka khauf)",
+    "description": "Some people feel emotionally anxious when separated from people they deeply depend on emotionally.\nThis may happen with:\n    • children, \n    • parents, \n    • partners, \n    • or emotionally close family members. \nA person may:\n    • fear being alone, \n    • feel restless when separated, \n    • become emotionally clingy, \n    • or constantly seek reassurance. \nThe mind may feel:\n    • unsafe, \n    • emotionally empty, \n    • or uncomfortable during separation. \nMind Heal No. 23 is created to gently support emotional stability, comfort, and inner security.\nThis blend is for people who:\n    • struggle with separation anxiety, \n    • feel emotionally dependent, \n    • or want to feel calmer and more emotionally secure. \n“You can feel emotionally safe even when someone is not physically near.”",
+    "shortDescription": "Do you feel emotionally uneasy or scared when left alone or away from loved ones?\nMind Heal No. 23 is made for people who want emotional comfort, security, and calmness.",
+    "emotionalTags": "loneliness, chronic-anxiety, attachment, abandonment"
+  },
+  {
+    "id": 24,
+    "mindHealNo": "24",
+    "name": "Sleep problems (Sukoon bhari neend)",
+    "description": "Sometimes the body feels tired, but the mind simply refuses to rest.\nA person may:\n    • struggle to fall asleep, \n    • wake up again and again, \n    • think too much at night, \n    • or feel mentally restless before sleep. \nStress, emotional pressure, and overthinking can quietly affect peaceful sleep.\nThe mind may continue:\n    • replaying thoughts, \n    • worrying about tomorrow, \n    • or staying emotionally active late at night. \nMind Heal No. 24 is designed to gently support emotional relaxation, calmness, and restful sleep.\nThis blend is for people who:\n    • have difficulty sleeping, \n    • feel emotionally restless at night, \n    • or want deeper emotional calmness before sleep. \n“A peaceful mind often brings a more peaceful night.”",
+    "shortDescription": "Does your mind stay awake even when your body feels tired?\nMind Heal No. 24 is made for people who want peaceful sleep, emotional relaxation, and calmer nights.",
+    "emotionalTags": "insomnia, sleep-disorder, restlessness, overthinking, night-panic"
+  },
+  {
+    "id": 25,
+    "mindHealNo": "25",
+    "name": "Fear of examination and forgetting answers (Paper ke waqt sab bhool jana)",
+    "description": "Many students prepare well but emotionally freeze during exams.\nAs soon as the paper starts, the mind may:\n    • go blank, \n    • forget studied answers, \n    • panic suddenly, \n    • or lose confidence. \nThis emotional pressure can make students feel:\n    • frustrated, \n    • nervous, \n    • mentally blocked, \n    • or afraid of failure. \nThe fear of forgetting itself may increase stress even more.\nMind Heal No. 25 is designed to gently support emotional calmness, focus, and confidence during exams.\nThis blend is for students who:\n    • panic during exams, \n    • struggle to recall answers under pressure, \n    • or want a calmer and more confident exam experience. \n“When the mind feels calmer, memory often feels clearer too.”",
+    "shortDescription": "Do you suddenly forget answers during exams even after studying well?\nMind Heal No. 25 is made for students who want emotional calmness, confidence, and better mental focus during exams.",
+    "emotionalTags": "memory-block, exam-stress, forgetfulness, performance-anxiety"
+  },
+  {
+    "id": 26,
+    "mindHealNo": "26",
+    "name": "From Fear & Doubt to Completing Tasks (Kaam pura na kar pane ka shak)",
+    "description": "Some people have talent and ability, but their mind becomes filled with doubt before or during important work.\nA person may:\n    • keep delaying tasks, \n    • fear making mistakes, \n    • lose confidence midway, \n    • or feel mentally weak before finishing work. \nEven simple responsibilities may feel emotionally heavy.\nThe mind may constantly say:\n    • “What if I fail?” \n    • “Maybe I can’t do this.” \n    • “What if I don’t complete it properly?” \nThis emotional pressure can affect:\n    • studies, \n    • work, \n    • confidence, \n    • and peace of mind. \nMix 26 is designed to gently support emotional confidence, mental steadiness, and inner motivation.\nThis blend is for people who:\n    • doubt themselves often, \n    • fear unfinished work, \n    • or want stronger confidence while handling responsibilities. \n“Confidence slowly grows when the mind stops fighting itself.”",
+    "shortDescription": "Do you start things with fear and doubt in your mind?\nDoes it feel like you may not finish what you started?\nMix 26 is made for people who want confidence, mental clarity, and emotional strength while completing tasks.",
+    "emotionalTags": "self-doubt, procrastination, fear-of-failure, low-confidence"
+  },
+  {
+    "id": 27,
+    "mindHealNo": "27",
+    "name": "Extreme anger or Intense rage (Gusse par control)",
+    "description": "Sometimes emotions become so intense that the mind reacts before thinking calmly.\nA person may:\n    • shout suddenly, \n    • become aggressive, \n    • feel emotionally overheated, \n    • or later regret their reactions. \nEven small problems may create:\n    • intense frustration, \n    • emotional pressure, \n    • or uncontrolled anger. \nAfter the anger passes, a person may feel:\n    • guilty, \n    • emotionally tired, \n    • or mentally disturbed. \nMix 27 is designed to gently support emotional calmness, patience, and balanced reactions.\nThis blend is for people who:\n    • struggle with intense anger, \n    • react emotionally too quickly, \n    • or want better emotional control. \n“A calmer mind often creates calmer reactions.”",
+    "shortDescription": "Does anger suddenly become too intense to control?\nDo small situations create emotional explosions inside you?\nMix 27 is made for people who want calmness, emotional balance, and better control over anger.",
+    "emotionalTags": "anger-management, rage, aggression, impulsive, hyper"
+  },
+  {
+    "id": 28,
+    "mindHealNo": "28",
+    "name": "Bright Student, Low Interest (Hosiyar magar padhai mein mann na lagna)",
+    "description": "Some students are naturally intelligent and capable, but emotionally they feel disconnected from studies.\nA student may:\n    • understand things quickly, \n    • have good ability, \n    • but still avoid studying, \n    • or lose interest very easily. \nThe mind may feel:\n    • mentally lazy, \n    • emotionally distracted, \n    • or unmotivated toward learning. \nParents and teachers may often say:\n    • “You are smart, but you don’t focus.” \n    • “You can do much better.” \n    • “Why don’t you take studies seriously?” \nMix 28 is designed to gently support emotional motivation, focus, and mental freshness toward studies.\nThis blend is for students who:\n    • are intelligent but uninterested, \n    • struggle with study motivation, \n    • or want a more positive study mindset. \n“Sometimes the mind needs emotional balance before it can truly focus.”",
+    "shortDescription": "Are you good at studies but still unable to feel interested in learning?\nDoes your mind quickly lose focus or motivation?\nMix 28 is made for students who want emotional freshness, focus, and interest in studies.",
+    "emotionalTags": "student-focus, lack-of-interest, boredom, parenting, motivation"
+  },
+  {
+    "id": 29,
+    "mindHealNo": "29",
+    "name": "Poor Attention & Forgetfulness (Bhoolne ki aadat aur laparwah dimaag)",
+    "description": "Sometimes the mind feels so distracted that small things are forgotten again and again.\nA person may:\n    • forget daily tasks, \n    • lose concentration, \n    • miss important details, \n    • or struggle to stay mentally present. \nThe mind may constantly feel:\n    • scattered, \n    • careless, \n    • mentally tired, \n    • or emotionally disconnected from the moment. \nThis can affect:\n    • studies, \n    • work, \n    • daily routines, \n    • and confidence. \nPeople around them may say:\n    • “You never pay attention.” \n    • “You keep forgetting everything.” \n    • “Why are you always distracted?” \nMix 29 is designed to gently support mental focus, emotional calmness, and better attention.\nThis blend is for people who:\n    • forget things frequently, \n    • struggle with concentration, \n    • or want a calmer and more focused mind. \n“A focused mind often feels lighter and more peaceful.”",
+    "shortDescription": "Do you often forget things or lose attention very easily?\nDoes your mind feel distracted, careless, or mentally absent?\nMix 29 is made for people who want better focus, attention, and mental clarity.",
+    "emotionalTags": "absent-minded, forgetfulness, carelessness, distraction"
+  },
+  {
+    "id": 30,
+    "mindHealNo": "30",
+    "name": "Fear and concern for others (Dusron ki chinta mein ghulna)",
+    "description": "Some people care so deeply for others that they constantly carry emotional worry inside.\nA person may:\n    • fear something bad happening to loved ones, \n    • overthink family safety, \n    • worry excessively about children or parents, \n    • or stay emotionally restless all day. \nEven when everything is fine, the mind may still imagine:\n    • problems, \n    • accidents, \n    • illness, \n    • or negative situations. \nThis emotional over-concern can slowly create:\n    • mental exhaustion, \n    • fear, \n    • emotional tension, \n    • and lack of peace. \nMix 30 is designed to gently support emotional balance, calmness, and inner reassurance.\nThis blend is for people who:\n    • constantly worry about loved ones, \n    • feel emotionally overwhelmed by concern, \n    • or want a calmer and more peaceful mind. \n“Caring deeply is beautiful, but your mind also deserves peace.”",
+    "shortDescription": "Do you worry too much about the safety and wellbeing of others?\nDoes your mind stay emotionally restless because of constant concern?\nMix 30 is made for people who want emotional calmness and inner peace.",
+    "emotionalTags": "over-caring, sympathy-overload, family-anxiety, worry"
+  },
+  {
+    "id": 31,
+    "mindHealNo": "31",
+    "name": "Quit Thumb-sucking habit (Angutha choosne ki aadat se azadi)",
+    "description": "Thumb-sucking is common in small children, but sometimes the habit continues longer than expected.\nMany children use thumb-sucking:\n    • for comfort, \n    • emotional security, \n    • relaxation, \n    • or during stress and loneliness. \nOver time, parents may become worried because the habit:\n    • becomes difficult to stop, \n    • happens repeatedly, \n    • or continues automatically without awareness. \nSome children may:\n    • suck their thumb while sleeping, \n    • do it during stress, \n    • or use it to feel emotionally calm. \nMix 31 is designed to gently support emotional comfort, inner security, and positive habit change.\nThis blend is for children who:\n    • struggle to leave thumb-sucking habits, \n    • feel emotionally dependent on the habit, \n    • or need calmer emotional support. \n“Gentle emotional support can slowly help small habits fade naturally.”",
+    "shortDescription": "Does thumb-sucking continue even after growing older?\nIs it becoming difficult to stop the habit completely?\nMix 31 is made for children and parents who want emotional comfort and freedom from repeated thumb-sucking habits.",
+    "emotionalTags": "kids-habits, parenting, behavior-correction, thumb-sucking"
+  },
+  {
+    "id": 32,
+    "mindHealNo": "32",
+    "name": "Uninterest in everything (Har cheez se mann bhar jana)",
+    "description": "Sometimes the mind slowly loses excitement toward life, work, studies, or daily activities.\nA person may:\n    • lose interest in hobbies, \n    • feel emotionally tired, \n    • avoid social interaction, \n    • or stop enjoying things once loved. \nThe mind may feel:\n    • emotionally empty, \n    • mentally disconnected, \n    • or simply uninterested in everything. \nEven small daily tasks may start feeling emotionally heavy.\nPeople around them may notice:\n    • low enthusiasm, \n    • emotional withdrawal, \n    • or lack of motivation. \nMix 32 is designed to gently support emotional freshness, positivity, and renewed interest in daily life.\nThis blend is for people who:\n    • feel emotionally disconnected, \n    • have lost excitement in life, \n    • or want emotional energy again. \n“Sometimes the mind needs calmness before joy can return.”",
+    "shortDescription": "Does nothing feel exciting or meaningful anymore?\nDo you feel emotionally disconnected from things you once enjoyed?\nMix 32 is made for people who want emotional freshness, interest, and positivity again.",
+    "emotionalTags": "apathy, detachment, lack-of-motivation, emptiness"
+  },
+  {
+    "id": 33,
+    "mindHealNo": "33",
+    "name": "Freedom from old habits (Purani galtiyon se chhutkara)",
+    "description": "Some habits and emotional patterns stay with a person for a very long time.\nEven after deciding to change, a person may:\n    • repeat the same mistakes, \n    • fall back into old routines, \n    • struggle with self-control, \n    • or feel emotionally trapped by past habits. \nThe mind may constantly feel:\n    • frustrated, \n    • disappointed, \n    • or emotionally tired from repeating the same cycle. \nA person may deeply wish:\n    • to improve, \n    • move forward, \n    • and create healthier emotional habits. \nMix 33 is designed to gently support emotional balance, self-awareness, and positive personal change.\nThis blend is for people who:\n    • want freedom from old habits, \n    • struggle with repeated unhealthy patterns, \n    • or want a fresh emotional start. \n“Real change begins when the mind slowly learns new emotional patterns.”",
+    "shortDescription": "Do old habits or repeated mistakes keep pulling you back?\nDo you want to move forward but feel emotionally stuck in the same patterns?\nMix 33 is made for people who want emotional strength and freedom from unhealthy old habits.",
+    "emotionalTags": "break-patterns, past-regrets, self-correction, habits"
+  },
+  {
+    "id": 34,
+    "mindHealNo": "34",
+    "name": "Jealousy or Envy (Irshya aur jalan se mukti)",
+    "description": "Jealousy and envy can slowly create emotional heaviness inside the mind.\nA person may:\n    • compare themselves constantly, \n    • feel unhappy seeing others succeed, \n    • become emotionally irritated, \n    • or silently carry feelings of insecurity. \nEven when they do not want these emotions, the mind may still feel:\n    • hurt, \n    • emotionally restless, \n    • or dissatisfied. \nThese feelings can affect:\n    • relationships, \n    • confidence, \n    • emotional peace, \n    • and happiness. \nMix 34 is designed to gently support emotional balance, inner peace, and healthier emotional thinking.\nThis blend is for people who:\n    • struggle with jealousy, \n    • compare themselves too much, \n    • or want calmer and more positive emotions. \n“A peaceful mind compares less and lives more freely.”",
+    "shortDescription": "Do comparisons and jealousy quietly disturb your peace of mind?\nDoes someone else’s success make your heart feel uncomfortable?\nMix 34 is made for people who want emotional peace, balance, and healthier feelings inside.",
+    "emotionalTags": "jealousy, envy, insecurity, negative-thoughts"
+  },
+  {
+    "id": 35,
+    "mindHealNo": "35",
+    "name": "Losing control over oneself (Khud par control khona)",
+    "description": "Sometimes emotional pressure becomes so intense that a person feels unable to control reactions, thoughts, or behavior.\nA person may:\n    • react suddenly, \n    • feel emotionally overwhelmed, \n    • fear emotional outbursts, \n    • or struggle to stay mentally calm. \nThe mind may feel:\n    • overloaded, \n    • emotionally tense, \n    • or close to breaking under pressure. \nThis emotional state can affect:\n    • relationships, \n    • peace of mind, \n    • confidence, \n    • and daily emotional balance. \nA person may silently worry:\n    • “What if I lose control?” \n    • “Why do my emotions feel so intense?” \n    • “I just want to feel calm again.” \nMix 35 is designed to gently support emotional steadiness, calm thinking, and inner control.\nThis blend is for people who:\n    • feel emotionally overwhelmed, \n    • struggle with emotional control, \n    • or want a calmer and more balanced state of mind. \n“Inner calmness often begins with feeling emotionally safe again.”",
+    "shortDescription": "Do emotions sometimes become too strong to control?\nDo you fear reacting suddenly or losing control over yourself?\nMix 35 is made for people who want emotional stability, calmness, and stronger self-control.",
+    "emotionalTags": "impulse-control, emotional-outburst, willpower-loss"
+  },
+  {
+    "id": 36,
+    "mindHealNo": "36",
+    "name": "Mental shock or Psychological trauma (Gehra mansik sadma)",
+    "description": "Sometimes life brings sudden emotional experiences that leave a deep impact on the mind and heart.\nA person may:\n    • feel emotionally disturbed after an incident, \n    • become mentally restless, \n    • feel emotionally unsafe, \n    • or struggle to move forward peacefully. \nPainful situations such as:\n    • accidents, \n    • emotional betrayal, \n    • family conflict, \n    • sudden bad news, \n    • or frightening experiences \ncan leave emotional scars inside the mind.\nEven after time passes, the mind may still feel:\n    • shocked, \n    • emotionally sensitive, \n    • fearful, \n    • or mentally unsettled. \nMix 36 is designed to gently support emotional healing, inner comfort, and mental calmness after psychological shock.\nThis blend is for people who:\n    • are emotionally affected by painful experiences, \n    • struggle to feel emotionally stable again, \n    • or want emotional peace after mental trauma. \n“Emotional healing takes time, gentleness, and inner calmness.”",
+    "shortDescription": "Has a painful experience deeply disturbed your peace of mind?\nDo emotional memories still make your heart feel heavy or unsafe?\nMix 36 is made for people who want emotional healing, comfort, and inner calmness after mental shock.",
+    "emotionalTags": "trauma, pstd, sudden-shock, grief, emotional-crisis"
+  },
+  {
+    "id": 37,
+    "mindHealNo": "37",
+    "name": "Past Emotional Trauma & Psychological Shock (Purani dukhdayak yaadein)",
+    "description": "Some emotional wounds stay hidden inside the mind for years.\nA person may:\n    • keep remembering painful moments, \n    • feel emotionally hurt by old memories, \n    • struggle to forget emotional pain, \n    • or become mentally disturbed by the past. \nEven when life moves forward, the mind may still replay:\n    • painful relationships, \n    • emotional loss, \n    • childhood hurt, \n    • or difficult life experiences. \nThese memories can slowly affect:\n    • emotional peace, \n    • confidence, \n    • sleep, \n    • and daily happiness. \nMix 37 is designed to gently support emotional release, mental comfort, and inner healing from painful memories.\nThis blend is for people who:\n    • feel emotionally connected to painful past experiences, \n    • struggle to move on emotionally, \n    • or want emotional peace from old memories. \n“Sometimes healing begins when the mind slowly stops living in old pain.”",
+    "shortDescription": "Do painful old memories still quietly affect your emotions?\nDoes your mind replay past hurt again and again?\nMix 37 is made for people who want emotional healing, peace, and freedom from painful emotional memories.",
+    "emotionalTags": "past-trauma, painful-memories, emotional-healing"
+  },
+  {
+    "id": 38,
+    "mindHealNo": "38",
+    "name": "Mental Strength & Confidence (Mansik kamzori aur darpok mann)",
+    "description": "Some people feel mentally weak even in normal situations.\nA person may:\n    • fear challenges easily, \n    • avoid difficult situations, \n    • feel emotionally insecure, \n    • or struggle to believe in themselves. \nThe mind may constantly feel:\n    • doubtful, \n    • fearful, \n    • emotionally fragile, \n    • or unable to handle pressure confidently. \nThis emotional weakness can affect:\n    • confidence, \n    • decision-making, \n    • social life, \n    • and personal growth. \nA person may silently wish:\n    • to feel stronger, \n    • emotionally braver, \n    • and mentally more stable. \nMix 38 is designed to gently support emotional confidence, courage, and inner mental strength.\nThis blend is for people who:\n    • feel mentally weak, \n    • struggle with fear and self-doubt, \n    • or want stronger emotional confidence. \n“True strength often begins with a calmer and more confident mind.”",
+    "shortDescription": "Do fear, self-doubt, or emotional weakness stop you from feeling strong inside?\nDoes your mind easily lose confidence during pressure?\nMix 38 is made for people who want emotional courage, confidence, and mental strength.",
+    "emotionalTags": "weak-willpower, fearful, timid, indecisive"
+  },
+  {
+    "id": 39,
+    "mindHealNo": "39",
+    "name": " Senior Memory Support (Budhape mein bhoolne ki bimari)",
+    "description": "As people grow older, the mind may sometimes become slower in remembering small details.\nA person may:\n    • forget names or conversations, \n    • misplace things, \n    • repeat the same questions, \n    • or struggle to remember daily tasks. \nThis may create:\n    • emotional frustration, \n    • confusion, \n    • lack of confidence, \n    • or mental tiredness. \nFamily members may also notice:\n    • reduced attention, \n    • forgetfulness, \n    • or emotional irritation caused by memory weakness. \nMix 39 is designed to gently support emotional calmness, mental comfort, and better focus during age-related memory weakness.\nThis blend is for people who:\n    • experience forgetfulness in old age, \n    • feel mentally tired or distracted, \n    • or want emotional and mental support for daily life. \n“A calm and supported mind often feels more peaceful and steady.”",
+    "shortDescription": "Is age-related forgetfulness making daily life difficult or frustrating?\nDoes the mind struggle to remember small things clearly?\nMix 39 is made for people who want emotional calmness, mental support, and better daily focus in old age.",
+    "emotionalTags": "old-age, dementia-support, forgetfulness, senior-care"
+  },
+  {
+    "id": 40,
+    "mindHealNo": "40",
+    "name": "Repeating the same mistakes in studies (Ek hi galti baar-baar dohrana)",
+    "description": "Some students work hard but still repeat the same mistakes again and again.\nA student may:\n    • forget corrections, \n    • repeat careless errors, \n    • struggle to learn from past mistakes, \n    • or lose focus during studies. \nEven after understanding a topic, the mind may:\n    • become distracted, \n    • miss important details, \n    • or repeat old patterns during exams and homework. \nThis can affect:\n    • confidence, \n    • marks, \n    • concentration, \n    • and motivation. \nParents and teachers may often say:\n    • “You already learned this.” \n    • “Why do you keep making the same mistake?” \n    • “You need more attention and focus.” \nMix 40 is designed to gently support mental focus, learning awareness, and emotional steadiness during studies.\nThis blend is for students who:\n    • repeat mistakes frequently, \n    • struggle with attention during learning, \n    • or want better concentration and understanding. \n“A focused and calmer mind learns more clearly from experience.”",
+    "shortDescription": "Do you keep repeating the same mistakes in studies even after understanding them?\nDoes your mind forget lessons learned from past errors?\nMix 40 is made for students who want better focus, learning awareness, and mental clarity.",
+    "emotionalTags": "slow-learning, student-focus, lack-of-awareness, mistakes"
+  },
+  {
+    "id": 41,
+    "mindHealNo": "41",
+    "name": "Confidence to Step Outside (Ghar se nikalne ki ghabrahat)",
+    "description": "Some people feel emotionally uneasy before leaving home, even for normal daily activities.\nA person may:\n    • feel nervous before going outside, \n    • avoid crowded places, \n    • become emotionally restless during travel, \n    • or feel safer staying at home. \nThe mind may constantly worry:\n    • “What if something goes wrong?” \n    • “Will I feel okay outside?” \n    • “Why do I feel scared before leaving home?” \nThis emotional discomfort can slowly affect:\n    • confidence, \n    • social life, \n    • work, \n    • and daily freedom. \nMix 41 is designed to gently support emotional calmness, confidence, and inner comfort while stepping outside.\nThis blend is for people who:\n    • feel nervous before going out, \n    • avoid outside activities due to fear, \n    • or want a calmer and more secure feeling outside home. \n“Sometimes emotional confidence begins with one peaceful step outside.”",
+    "shortDescription": "Does stepping outside the house make you feel nervous or emotionally uncomfortable?\nDo you feel fear, restlessness, or hesitation before going out?\nMix 41 is made for people who want emotional calmness and confidence while stepping outside.",
+    "emotionalTags": "agoraphobia, social-fear, home-body, panic-attacks"
+  },
+  {
+    "id": 42,
+    "mindHealNo": "42",
+    "name": "Joint Family Relationship Support (Sanyukt parivaar ke jhagde)",
+    "description": "Living in a joint family can sometimes create emotional pressure and misunderstandings.\nA person may experience:\n    • frequent arguments, \n    • emotional tension, \n    • misunderstandings, \n    • or stress caused by family conflicts. \nEven small issues may slowly grow into:\n    • emotional frustration, \n    • anger, \n    • emotional distance, \n    • or mental tiredness. \nThe mind may constantly feel:\n    • emotionally disturbed, \n    • pressured by family expectations, \n    • or unable to relax peacefully at home. \nMix 42 is designed to gently support emotional balance, patience, and calmer family interactions.\nThis blend is for people who:\n    • feel emotionally stressed in family environments, \n    • struggle with constant household tension, \n    • or want more peace and harmony at home. \n“A peaceful mind can slowly help create a more peaceful home.”",
+    "shortDescription": "Do family misunderstandings and daily conflicts create emotional stress at home?\nDoes the atmosphere around you feel mentally heavy and emotionally exhausting?\nMix 42 is made for people who want peace, emotional balance, and calmer family relationships.",
+    "emotionalTags": "family-dispute, joint-family-stress, relationship, domestic-peace"
+  },
+  {
+    "id": 43,
+    "mindHealNo": "43",
+    "name": "Emotional Recovery After Business Loss (Business mein ghate ka dard)",
+    "description": "Business loss can deeply affect not only finances, but also emotions and confidence.\nA person may:\n    • feel mentally exhausted, \n    • lose confidence in decisions, \n    • overthink financial problems, \n    • or struggle emotionally after setbacks. \nThe mind may constantly stay busy with:\n    • stress, \n    • fear of failure, \n    • emotional disappointment, \n    • or pressure about the future. \nThis emotional burden can affect:\n    • sleep, \n    • relationships, \n    • focus, \n    • and emotional wellbeing. \nMix 43 is designed to gently support emotional recovery, inner stability, and mental calmness during difficult financial or business periods.\nThis blend is for people who:\n    • are emotionally affected by business loss, \n    • feel mentally stressed after financial setbacks, \n    • or want emotional strength to move forward again. \n“Every setback becomes easier to face with a calmer and stronger mind.”",
+    "shortDescription": "Has business loss left your mind emotionally tired and heavy?\nDo stress, disappointment, and financial pressure disturb your peace of mind?\nMix 43 is made for people who want emotional recovery, strength, and inner balance after difficult business situations.",
+    "emotionalTags": "financial-stress, business-loss, failure-trauma, career-stress"
+  },
+  {
+    "id": 44,
+    "mindHealNo": "44",
+    "name": "Mental Confusion & Uncertainty (Mann ka bhram aur uljhan)",
+    "description": "Sometimes the mind becomes filled with confusion, emotional uncertainty, and mental overthinking.\nA person may:\n    • struggle to make decisions, \n    • feel mentally unclear, \n    • overthink simple situations, \n    • or feel emotionally confused most of the time. \nThe mind may constantly shift between:\n    • doubt, \n    • fear, \n    • confusion, \n    • and emotional uncertainty. \nThis mental confusion can affect:\n    • confidence, \n    • focus, \n    • peace of mind, \n    • and emotional stability. \nA person may silently feel:\n    • “Why can’t my mind feel clear?” \n    • “Why do I feel so mentally confused?” \n    • “I just want mental peace.” \nMix 44 is designed to gently support emotional balance, mental clarity, and calmer thinking.\nThis blend is for people who:\n    • struggle with confusion and overthinking, \n    • feel mentally restless, \n    • or want a more peaceful and focused mind. \n“A clearer mind often begins with emotional calmness.”",
+    "shortDescription": "Does your mind feel confused, unclear, or emotionally trapped in overthinking?\nDo thoughts and emotions make decision-making difficult?\nMix 44 is made for people who want mental clarity, emotional balance, and inner calmness.",
+    "emotionalTags": "confusion, indecisiveness, mental-illusion, lack-of-clarity"
+  },
+  {
+    "id": 45,
+    "mindHealNo": "45",
+    "name": "Blank Mind & Mental Freeze (Dimaag ka sunn ho jana)",
+    "description": "Sometimes emotional pressure becomes so strong that the mind suddenly feels empty or frozen.\nA person may:\n    • forget what to say, \n    • lose focus completely, \n    • feel mentally blocked, \n    • or struggle to think during important situations. \nThis may happen during:\n    • exams, \n    • interviews, \n    • public speaking, \n    • stressful conversations, \n    • or emotional pressure. \nThe mind may suddenly feel:\n    • blank, \n    • disconnected, \n    • confused, \n    • or unable to respond clearly. \nAfterward, a person may feel:\n    • frustrated, \n    • embarrassed, \n    • or emotionally upset. \nMix 45 is designed to gently support mental clarity, emotional steadiness, and calm focus during pressure situations.\nThis blend is for people who:\n    • feel mentally blank under stress, \n    • struggle with pressure situations, \n    • or want calmer and clearer thinking. \n“A calm mind often responds better than a pressured mind.”",
+    "shortDescription": "Does your mind suddenly go blank during stress, pressure, or important moments?\nDo you struggle to think clearly when you need focus the most?\nMix 45 is made for people who want mental clarity, confidence, and emotional steadiness.",
+    "emotionalTags": "mental-blankness, brain-fog, acute-panic, nervous-breakdown"
+  },
+  {
+    "id": 46,
+    "mindHealNo": "46",
+    "name": "Excessive attachment with jealousy (Hadh se zyada lagav aur jalan)",
+    "description": "Sometimes emotional attachment becomes so intense that it creates fear, insecurity, and jealousy inside the mind.\nA person may:\n    • become emotionally overattached, \n    • feel jealous easily, \n    • overthink relationships, \n    • or constantly seek reassurance from loved ones. \nThe mind may stay busy with thoughts like:\n    • “What if they leave me?” \n    • “Why are they giving attention to someone else?” \n    • “Do they really care about me?” \nEven small situations may create:\n    • emotional hurt, \n    • insecurity, \n    • fear, \n    • or emotional restlessness. \nThis emotional pressure can affect:\n    • relationships, \n    • peace of mind, \n    • confidence, \n    • and emotional stability. \nMix 46 is designed to gently support emotional balance, trust, and calmer emotional connections.\nThis blend is for people who:\n    • struggle with emotional jealousy, \n    • feel overly attached, \n    • or want more peace and emotional security in relationships. \n“Healthy love feels calmer when the mind feels emotionally secure.”",
+    "shortDescription": "Do love and attachment make you feel emotionally insecure or jealous?\nDo small things create fear of losing someone close to you?\nMix 46 is made for people who want emotional balance, trust, and inner peace in relationships.",
+    "emotionalTags": "toxic-possession, over-attachment, relationship-anxiety"
+  },
+  {
+    "id": 47,
+    "mindHealNo": "47",
+    "name": "Stay Focused on One Task (Ek kaam par dhyan na tikna)",
+    "description": "Some people start work with good intention but their attention keeps shifting very quickly.\nA person may:\n    • leave tasks incomplete, \n    • get distracted easily, \n    • lose focus midway, \n    • or struggle to sit with one task peacefully. \nThe mind may constantly move between:\n    • thoughts, \n    • ideas, \n    • distractions, \n    • or unfinished work. \nThis lack of focus can affect:\n    • studies, \n    • office work, \n    • productivity, \n    • and self-confidence. \nPeople around them may say:\n    • “You can’t focus on one thing.” \n    • “You get distracted too quickly.” \n    • “Why don’t you finish what you started?” \nMix 47 is designed to gently support mental focus, emotional calmness, and better concentration.\nThis blend is for people who:\n    • struggle to stay focused, \n    • feel mentally distracted, \n    • or want steadier attention during work or studies. \n“A calmer mind often stays focused for longer.”",
+    "shortDescription": "Does your mind quickly jump from one thing to another?\nDo you struggle to stay focused on one task for long?\nMix 47 is made for people who want better focus, mental steadiness, and calm concentration.",
+    "emotionalTags": "distraction, restless-mind, productivity-loss, focus"
+  },
+  {
+    "id": 48,
+    "mindHealNo": "48",
+    "name": "Unexplained anxiety and Sudden nervousness (Achanak hone wali ghabrahat)",
+    "description": "Sometimes anxiety appears suddenly even when everything seems normal.\nA person may:\n    • suddenly feel nervous, \n    • experience emotional restlessness, \n    • feel uneasy without clear reason, \n    • or become mentally uncomfortable unexpectedly. \nThe mind may suddenly fill with:\n    • fear, \n    • panic-like feelings, \n    • emotional tension, \n    • or uncomfortable thoughts. \nEven simple situations may feel emotionally overwhelming.\nA person may silently wonder:\n    • “Why am I suddenly feeling this way?” \n    • “Why does nervousness come out of nowhere?” \n    • “I just want to feel calm again.” \nMix 48 is designed to gently support emotional calmness, inner comfort, and mental steadiness during sudden anxiety and nervousness.\nThis blend is for people who:\n    • experience unexplained anxiety, \n    • feel sudden emotional nervousness, \n    • or want a calmer and more peaceful mind. \n“Emotional calmness often begins with feeling safe inside.”",
+    "shortDescription": "Do nervousness and anxiety suddenly appear without any clear reason?\nDoes your heart or mind suddenly feel uneasy or restless?\nMix 48 is made for people who want emotional calmness and inner stability.",
+    "emotionalTags": "sudden-panic, generalized-anxiety, restlessness, nervousness"
+  },
+  {
+    "id": 49,
+    "mindHealNo": "49",
+    "name": "Lack of Motivation (Jeene ya kaam karne ki iccha na hona)",
+    "description": "Sometimes the mind becomes emotionally tired to the point where even simple things feel difficult.\nA person may:\n    • lose interest in work, \n    • avoid responsibilities, \n    • feel emotionally disconnected, \n    • or struggle to find motivation for daily life. \nThe mind may feel:\n    • empty, \n    • emotionally low, \n    • mentally exhausted, \n    • or without excitement. \nEven things once enjoyed may no longer feel meaningful.\nThis emotional state can affect:\n    • relationships, \n    • studies, \n    • work, \n    • and emotional wellbeing. \nMix 49 is designed to gently support emotional positivity, mental freshness, and renewed motivation.\nThis blend is for people who:\n    • feel emotionally disconnected, \n    • struggle with lack of desire, \n    • or want emotional energy and inner positivity again. \n“Sometimes the mind simply needs emotional lightness to feel alive again.”",
+    "shortDescription": "Does life feel emotionally heavy, empty, or without motivation?\nDo you struggle to feel interest, excitement, or emotional energy for daily life?\nMix 49 is made for people who want emotional freshness, motivation, and inner positivity.",
+    "emotionalTags": "suicidal-tendency-support, hopelessness, zero-energy, depression"
+  },
+  {
+    "id": 50,
+    "mindHealNo": "50",
+    "name": "Concentration problems (Adults) (Badon mein ekagrata ki kami)",
+    "description": "Adult life often brings stress, responsibilities, and mental overload that can affect concentration.\nA person may:\n    • lose focus during work, \n    • forget important details, \n    • struggle to complete tasks, \n    • or feel mentally scattered all day. \nThe mind may constantly stay busy with:\n    • overthinking, \n    • stress, \n    • emotional pressure, \n    • or too many thoughts at once. \nThis lack of concentration can affect:\n    • productivity, \n    • confidence, \n    • work performance, \n    • and peace of mind. \nA person may silently feel:\n    • “Why can’t I focus properly anymore?” \n    • “My mind feels tired all the time.” \n    • “I just want mental clarity.” \nMix 50 is designed to gently support mental focus, emotional balance, and clearer thinking in adults.\nThis blend is for people who:\n    • struggle with concentration problems, \n    • feel mentally distracted, \n    • or want calmer and steadier focus during daily life. \n“A focused mind often feels calmer, lighter, and more confident.”",
+    "shortDescription": "Do you struggle to stay mentally focused during work or daily responsibilities?\nDoes your mind feel distracted, restless, or unable to concentrate properly?\nMix 50 is made for adults who want better focus, mental clarity, and emotional calmness.",
+    "emotionalTags": "adult-adhd, work-focus, productivity, forgetfulness"
+  },
+  {
+    "id": 51,
+    "mindHealNo": "51",
+    "name": "Performance anxiety (Work/Stage) (Office ya stage par darakna)",
+    "description": "Many people are talented and capable, but pressure situations make their mind feel nervous and emotionally unstable.\nA person may:\n    • fear public speaking, \n    • feel anxious before presentations, \n    • struggle during meetings, \n    • or panic before stage performances. \nThe body and mind may react with:\n    • sweating, \n    • shaking, \n    • fast heartbeat, \n    • mental blankness, \n    • or fear of making mistakes. \nEven when fully prepared, emotional pressure may reduce confidence.\nThe mind may constantly think:\n    • “What if I fail?” \n    • “What if people judge me?” \n    • “Why do I become nervous so quickly?” \nMix 51 is designed to gently support emotional confidence, calmness, and mental steadiness during work or stage pressure.\nThis blend is for people who:\n    • struggle with performance anxiety, \n    • fear public speaking, \n    • or want calmer confidence during important situations. \n“A calm mind often performs better than a fearful one.”",
+    "shortDescription": "Do nervousness and fear take over before speaking, presenting, or performing?\nDoes your confidence suddenly disappear under pressure?\nMix 51 is made for people who want calmness, confidence, and emotional control during important moments.",
+    "emotionalTags": "corporate-stress, stage-fear, meeting-anxiety, career"
+  },
+  {
+    "id": 52,
+    "mindHealNo": "52",
+    "name": "Fatigue / Constant Tiredness (Hamesha thakan mehsoos karna)",
+    "description": "Sometimes tiredness is not only physical — it also comes from emotional pressure and mental exhaustion.\nA person may:\n    • wake up feeling tired, \n    • lose motivation quickly, \n    • feel emotionally drained, \n    • or struggle to complete daily tasks. \nEven small responsibilities may feel:\n    • mentally heavy, \n    • emotionally exhausting, \n    • or difficult to handle. \nThe mind may constantly feel:\n    • low energy, \n    • emotional burnout, \n    • lack of enthusiasm, \n    • or inner exhaustion. \nThis emotional tiredness can slowly affect:\n    • focus, \n    • mood, \n    • productivity, \n    • and peace of mind. \nMix 52 is designed to gently support emotional balance, mental freshness, and a lighter emotional state.\nThis blend is for people who:\n    • feel constantly tired, \n    • struggle with emotional exhaustion, \n    • or want to feel mentally refreshed again. \n“Sometimes emotional calmness helps the mind feel lighter and stronger.”",
+    "shortDescription": "Do you feel tired even after rest?\nDoes your mind and body feel emotionally drained most of the time?\nMix 52 is made for people who want emotional freshness, inner energy, and mental balance.",
+    "emotionalTags": "chronic-fatigue, low-energy, burnout, mental-exhaustion"
+  },
+  {
+    "id": 53,
+    "mindHealNo": "53",
+    "name": "Repeating the same mistakes (Self-Correction) (Galtiyon se seekh na lena)",
+    "description": "Some people genuinely want to improve, but still repeat the same emotional or behavioral mistakes.\nA person may:\n    • ignore lessons from past experiences, \n    • repeat unhealthy habits, \n    • make similar decisions again, \n    • or struggle to break old patterns. \nEven after regret, the same cycle may continue.\nThe mind may feel:\n    • careless, \n    • emotionally distracted, \n    • mentally stuck, \n    • or unable to learn from experience. \nThis can affect:\n    • confidence, \n    • relationships, \n    • studies, \n    • and personal growth. \nMix 53 is designed to gently support self-awareness, emotional steadiness, and healthier decision-making.\nThis blend is for people who:\n    • repeat mistakes frequently, \n    • struggle with self-correction, \n    • or want emotional clarity and growth. \n“Growth begins when the mind slowly learns from its own experiences.”",
+    "shortDescription": "Do you keep repeating the same mistakes even after understanding them?\nDoes your mind fall into the same unhealthy patterns again and again?\nMix 53 is made for people who want better awareness, emotional balance, and positive self-growth.",
+    "emotionalTags": "behavioral-loop, lack-of-mindfulness, habits"
+  },
+  {
+    "id": 54,
+    "mindHealNo": "54",
+    "name": "Pregnancy support (Garbhavastha mein mansik sukoon)",
+    "description": "Pregnancy is a beautiful journey, but it can also bring emotional changes and mental pressure.\nA person may:\n    • feel emotionally sensitive, \n    • become anxious about the future, \n    • experience mood changes, \n    • or feel mentally overwhelmed. \nThe mind may stay busy with:\n    • worries about delivery, \n    • fear of change, \n    • emotional ups and downs, \n    • or concern for the baby. \nEven small situations may feel emotionally intense during this period.\nMix 54 is designed to gently support emotional calmness, comfort, and inner peace during pregnancy.\nThis blend is for people who:\n    • want emotional balance during pregnancy, \n    • feel mentally stressed or sensitive, \n    • or want a calmer emotional experience during this important phase. \n“A peaceful mind can make the journey feel softer and more comforting.”",
+    "shortDescription": "Does pregnancy bring emotional stress, fear, or mental restlessness?\nDo you want more calmness, emotional comfort, and peace during this special journey?\nMix 54 is made to gently support emotional wellbeing during pregnancy.",
+    "emotionalTags": "pregnancy-care, maternity-stress, mood-swings, womens-health"
+  },
+  {
+    "id": 55,
+    "mindHealNo": "55",
+    "name": "Divorce (For Adults/Couples) (Talaq ke waqt ka mansik dard)",
+    "description": "Divorce and separation can deeply affect emotions, confidence, and peace of mind.\nA person may:\n    • feel emotionally broken, \n    • struggle with loneliness, \n    • overthink painful memories, \n    • or feel mentally exhausted after relationship stress. \nThe mind may constantly carry:\n    • sadness, \n    • anger, \n    • emotional confusion, \n    • guilt, \n    • or fear about the future. \nEven daily life may feel emotionally difficult after separation.\nMix 55 is designed to gently support emotional healing, calmness, and inner emotional strength during difficult relationship transitions.\nThis blend is for people who:\n    • are emotionally affected by divorce or separation, \n    • struggle with emotional pain after relationships, \n    • or want emotional comfort and peace while moving forward. \n“Healing does not happen in one day, but calmness can slowly help the heart feel lighter again.”",
+    "shortDescription": "Is separation or divorce leaving your heart emotionally heavy and mentally exhausted?\nDo painful memories, stress, or loneliness disturb your peace of mind?\nMix 55 is made for people who want emotional healing, comfort, and inner strength during difficult relationship changes.",
+    "emotionalTags": "divorce-trauma, heartbreak, separation, legal-stress"
+  },
+  {
+    "id": 56,
+    "mindHealNo": "56",
+    "name": "Divorce of the parents (Teen focus) (Mummy-Papa ke alag hone ka dukh)",
+    "description": "For teenagers, parents separating can feel emotionally painful and confusing.\nA teen may:\n    • feel emotionally broken, \n    • blame themselves, \n    • feel lonely at home, \n    • or struggle to understand changing family relationships. \nThe mind may constantly carry:\n    • sadness, \n    • anger, \n    • confusion, \n    • fear, \n    • or emotional insecurity. \nEven normal daily life may suddenly feel emotionally uncomfortable.\nA teenager may silently wonder:\n    • “Why is this happening?” \n    • “Will things ever feel normal again?” \n    • “Why do I feel so emotionally lost?” \nMix 56 is designed to gently support emotional comfort, stability, and inner calmness during difficult family changes.\nThis blend is for teenagers who:\n    • are emotionally affected by their parents’ separation, \n    • feel emotionally insecure or stressed, \n    • or want emotional support during painful family situations. \n“Young hearts also need emotional peace during difficult changes.”",
+    "shortDescription": "Has your parents’ separation made your heart feel heavy, confused, or emotionally lonely?\nDo family changes quietly affect your peace of mind every day?\nMix 56 is made for teenagers who want emotional comfort, calmness, and inner support during difficult family situations.",
+    "emotionalTags": "child-trauma, broken-family, teen-anxiety, parenting"
+  },
+  {
+    "id": 57,
+    "mindHealNo": "57",
+    "name": "Hope & Emotional Strength (Bilkul himmat haar jana)",
+    "description": "Sometimes emotional pressure becomes so deep that a person slowly starts losing hope.\nA person may:\n    • feel emotionally defeated, \n    • stop believing things will improve, \n    • lose confidence in life, \n    • or mentally give up inside. \nThe mind may constantly feel:\n    • tired, \n    • discouraged, \n    • emotionally empty, \n    • or unable to feel positivity. \nEven small problems may start feeling impossible to handle.\nA person may silently think:\n    • “Nothing will change.” \n    • “I don’t have strength anymore.” \n    • “I feel emotionally exhausted.” \nMix 57 is designed to gently support emotional strength, inner encouragement, and a more hopeful mindset.\nThis blend is for people who:\n    • feel emotionally defeated, \n    • struggle with hopelessness, \n    • or want emotional positivity and strength again. \n“Even a small feeling of hope can slowly brighten a heavy mind.”",
+    "shortDescription": "Do you feel emotionally tired, hopeless, or unable to see positive change ahead?\nDoes life sometimes feel too heavy to handle?\nMix 57 is made for people who want emotional strength, positivity, and inner hope again.",
+    "emotionalTags": "despair, pessimism, giving-up, deep-sadness"
+  },
+  {
+    "id": 58,
+    "mindHealNo": "58",
+    "name": "Teen Emotional Support (Kishoron ki mansik mushkilein)",
+    "description": "Teenage years bring many emotional, mental, and personal changes.\nA teenager may:\n    • feel emotionally misunderstood, \n    • struggle with pressure from studies or family, \n    • experience mood swings, \n    • or feel mentally confused about life and identity. \nThe mind may become filled with:\n    • stress, \n    • emotional sensitivity, \n    • insecurity, \n    • or frustration. \nEven small situations may feel emotionally very intense.\nParents may notice:\n    • emotional withdrawal, \n    • sudden anger, \n    • sadness, \n    • or changes in behavior. \nMix 58 is designed to gently support emotional balance, calmness, and inner stability during teenage emotional struggles.\nThis blend is for teenagers who:\n    • feel emotionally overwhelmed, \n    • struggle with stress or mood changes, \n    • or want emotional support during difficult teenage phases. \n“Teenage emotions become easier to handle when the mind feels calmer and supported.”",
+    "shortDescription": "Is teenage life feeling emotionally confusing, stressful, or overwhelming?\nDo mood changes, pressure, or emotional struggles disturb inner peace?\nMix 58 is made for teenagers who want emotional balance, calmness, and support during difficult phases.",
+    "emotionalTags": "puberty-stress, teen-rebellion, peer-pressure, youth-anxiety"
+  },
+  {
+    "id": 59,
+    "mindHealNo": "59",
+    "name": "General stress (Daily life) (Rozana ki bhag-daur ka tanav)",
+    "description": "Modern life often brings continuous emotional pressure and mental exhaustion.\nA person may:\n    • feel stressed throughout the day, \n    • struggle to relax, \n    • become mentally tired, \n    • or feel emotionally overloaded by responsibilities. \nThe mind may constantly stay busy with:\n    • work, \n    • family pressure, \n    • financial worries, \n    • deadlines, \n    • or daily responsibilities. \nOver time, this stress can affect:\n    • sleep, \n    • focus, \n    • mood, \n    • and emotional wellbeing. \nA person may silently wish:\n    • “I just want peace of mind.” \n    • “My mind never feels relaxed.” \n    • “Everything feels mentally heavy.” \nMix 59 is designed to gently support emotional calmness, relaxation, and inner balance during daily stress.\nThis blend is for people who:\n    • feel mentally overloaded, \n    • struggle with daily stress, \n    • or want emotional peace in busy life. \n“A calmer mind can make even busy days feel lighter.”",
+    "shortDescription": "Does daily life leave your mind feeling tired, stressed, and emotionally overloaded?\nDo responsibilities and pressure make it hard to feel calm inside?\nMix 59 is made for people who want emotional relaxation, balance, and peace in daily life.",
+    "emotionalTags": "daily-stress, work-life-balance, anxiety, relaxation"
+  },
+  {
+    "id": 60,
+    "mindHealNo": "60",
+    "name": "Brave and Confident at School (School Mein Himmat Aur Atmavishwas)",
+    "description": "Bullying and teasing at school can deeply affect a child’s emotional wellbeing and confidence.\nA child or teenager may:\n    • feel scared to go to school, \n    • become emotionally quiet, \n    • lose confidence, \n    • or feel hurt by the behavior of others. \nThe mind may carry:\n    • fear, \n    • sadness, \n    • emotional stress, \n    • or loneliness. \nSome children may:\n    • avoid social interaction, \n    • hide their feelings, \n    • become emotionally sensitive, \n    • or struggle silently inside. \nParents and teachers may notice:\n    • sadness, \n    • fear, \n    • emotional withdrawal, \n    • or sudden changes in behavior. \nMix 60 is designed to gently support emotional confidence, calmness, and inner emotional strength during difficult school experiences.\nThis blend is for children and teenagers who:\n    • feel emotionally affected by bullying, \n    • struggle with fear or low confidence at school, \n    • or want emotional comfort and courage. \n“No child should feel emotionally alone during difficult school experiences.”",
+    "shortDescription": "Is teasing, bullying, or fear at school affecting emotional confidence and happiness?\nDoes school sometimes feel emotionally unsafe or stressful?\nMix 60 is made for children and teenagers who want emotional comfort, confidence, and inner strength.",
+    "emotionalTags": "school-bullying, child-fear, trauma, low-confidence"
+  },
+  {
+    "id": 61,
+    "mindHealNo": "61",
+    "name": "After Delivery Stress Relief (Delivery ke baad ki bechaini)",
+    "description": "The time after delivery brings many emotional and physical changes.\nA mother may:\n    • feel emotionally sensitive, \n    • become mentally restless, \n    • experience sudden mood changes, \n    • or feel emotionally exhausted while caring for the baby. \nLack of sleep, hormonal changes, and daily responsibilities can slowly create:\n    • emotional pressure, \n    • anxiety, \n    • tiredness, \n    • or inner sadness. \nSometimes a mother may silently feel:\n    • overwhelmed, \n    • emotionally lonely, \n    • or unable to relax peacefully. \nMix 61 is designed to gently support emotional calmness, mental relaxation, and inner comfort after delivery.\nThis blend is for mothers who:\n    • feel emotionally stressed after childbirth, \n    • struggle with emotional ups and downs, \n    • or want more peace and emotional balance during motherhood. \n“A calm and emotionally supported mother often feels stronger from within.”",
+    "shortDescription": "Has your mind felt emotionally overwhelmed, restless, or sensitive after delivery?\nDo mood changes, stress, or emotional tiredness make daily life difficult?\nMix 61 is made for mothers who want emotional calmness, comfort, and inner balance after childbirth.",
+    "emotionalTags": "postpartum-depression, baby-blues, new-mother, womens-health"
+  },
+  {
+    "id": 62,
+    "mindHealNo": "62",
+    "name": "Baby Calm Support (Rote hue bacho ke liye sukoon)",
+    "description": "Some babies become emotionally restless and cry frequently without obvious reason.\nA baby may:\n    • cry continuously, \n    • feel difficult to soothe, \n    • become restless during sleep, \n    • or stay emotionally unsettled for long periods. \nThis can make parents feel:\n    • emotionally worried, \n    • mentally tired, \n    • or helpless while trying to comfort the child. \nSometimes babies may become more sensitive due to:\n    • discomfort, \n    • emotional restlessness, \n    • unfamiliar surroundings, \n    • or disturbed sleep routines. \nMix 62 is designed to gently support emotional calmness, comfort, and relaxation in babies.\nThis blend is for babies who:\n    • cry excessively, \n    • struggle to feel calm, \n    • or need emotional soothing support. \n“Gentle emotional comfort can help little hearts feel safer and calmer.”",
+    "shortDescription": "Does your baby cry often, feel restless, or become difficult to calm?\nDo you wish your child could feel more peaceful and emotionally comfortable?\nMix 62 is made for babies who need gentle emotional calmness and comfort.",
+    "emotionalTags": "infant-colic-cry, baby-sleep, parenting-support"
+  },
+  {
+    "id": 63,
+    "mindHealNo": "63",
+    "name": "Healing After Heartbreak / Love Loss Support (Dil tootne ka dard)",
+    "description": "Heartbreak can deeply affect emotions, confidence, and peace of mind.\nA person may:\n    • replay painful memories, \n    • feel emotionally broken, \n    • struggle with loneliness, \n    • or silently carry emotional pain after separation. \nThe mind may stay filled with:\n    • sadness, \n    • emotional emptiness, \n    • regret, \n    • overthinking, \n    • or fear of moving forward. \nEven normal daily life may feel emotionally difficult after losing someone deeply loved.\nA person may silently think:\n    • “Why does it still hurt so much?” \n    • “Will I ever feel normal again?” \n    • “I just want peace inside.” \nMix 63 is designed to gently support emotional healing, calmness, and inner emotional recovery after heartbreak.\nThis blend is for people who:\n    • struggle with emotional pain after love loss, \n    • feel mentally disturbed after heartbreak, \n    • or want emotional comfort while healing. \n“Broken hearts heal slowly when the mind begins to feel calmer again.”",
+    "shortDescription": "Has heartbreak left your heart emotionally heavy and your mind restless?\nDo painful memories and emotional loss make it hard to feel peaceful again?\nMix 63 is made for people who want emotional healing, comfort, and inner strength after love loss.",
+    "emotionalTags": "heartbreak, breakup-trauma, grief, love-loss, rejection"
+  },
+  {
+    "id": 64,
+    "mindHealNo": "64",
+    "name": "Monday Office Anxiety (Office jane ki ghabrahat se azadi)",
+    "description": "Many people feel emotional stress connected to office life and work pressure.\nA person may:\n    • feel nervous before office, \n    • lose motivation on workdays, \n    • feel mentally exhausted before starting work, \n    • or emotionally dislike daily office routines. \nMonday mornings may especially create:\n    • anxiety, \n    • emotional heaviness, \n    • irritation, \n    • or lack of mental energy. \nThe mind may constantly feel:\n    • pressured, \n    • emotionally drained, \n    • or trapped in stressful routines. \nThis emotional stress can affect:\n    • mood, \n    • productivity, \n    • focus, \n    • and peace of mind. \nMix 64 is designed to gently support emotional calmness, positivity, and mental freshness related to work life.\nThis blend is for people who:\n    • feel stressed about office life, \n    • struggle with work-related anxiety, \n    • or want a calmer and more balanced work mindset. \n“A lighter mind can make busy workdays feel easier to handle.”",
+    "shortDescription": "Does the thought of office, work pressure, or Monday mornings create stress and nervousness?\nDo you feel mentally tired even before the workday begins?\nMix 64 is made for people who want emotional calmness, motivation, and a lighter work mindset.",
+    "emotionalTags": "monday-blues, work-aversion, job-stress, procrastination"
+  },
+  {
+    "id": 65,
+    "mindHealNo": "65",
+    "name": "Finding Hope Again (Extreme despair and no hope)",
+    "description": "Sometimes emotional pain and mental exhaustion become so deep that a person slowly loses hope inside.\nA person may:\n    • feel emotionally defeated, \n    • stop expecting positive change, \n    • lose motivation completely, \n    • or feel mentally disconnected from life. \nThe mind may constantly carry:\n    • sadness, \n    • emotional emptiness, \n    • hopelessness, \n    • or deep mental tiredness. \nEven small daily tasks may feel emotionally difficult.\nA person may silently think:\n    • “Nothing will change.” \n    • “I feel completely exhausted inside.” \n    • “I don’t know how to feel hopeful anymore.” \nMix 65 is designed to gently support emotional comfort, inner strength, and a more hopeful emotional state.\nThis blend is for people who:\n    • feel emotionally hopeless, \n    • struggle with deep discouragement, \n    • or want emotional support during very difficult emotional phases. \n“Even in heavy emotional darkness, the mind still deserves gentleness, peace, and hope.”",
+    "shortDescription": "Does life feel emotionally empty, heavy, or impossible to improve?\nHave you started feeling like nothing will ever get better?\nMix 65 is made for people who want emotional strength, hope, and inner light during difficult times.",
+    "emotionalTags": "extreme-despair, black-darkness, no-hope, crisis-support"
+  },
+  {
+    "id": 66,
+    "mindHealNo": "201",
+    "name": "Fear of fireworks (Dogs) (Patakho ke shor se darr)",
+    "description": "Many dogs are highly sensitive to loud sounds like fireworks, crackers, thunder, or sudden noises.\nA dog may:\n    • hide under furniture, \n    • shake with fear, \n    • bark continuously, \n    • run around nervously, \n    • or become emotionally panicked. \nEven after the noise stops, the dog may remain:\n    • restless, \n    • emotionally disturbed, \n    • or unable to relax peacefully. \nThese situations can create emotional stress not only for pets, but also for pet owners trying to comfort them.\nMix 201 is designed to gently support emotional calmness, comfort, and a safer feeling during loud noise situations.\nThis blend is for dogs who:\n    • fear fireworks or crackers, \n    • become anxious during loud sounds, \n    • or need emotional relaxation during stressful noise environments. \n“A calm and emotionally secure pet feels safer during stressful moments.”",
+    "shortDescription": "Does your dog become scared, restless, or panic during fireworks and loud noises?\nDoes the sound of crackers make your pet hide, shake, or feel unsafe?\nMix 201 is made for dogs who need emotional calmness and comfort during loud sound situations.",
+    "emotionalTags": "dog-phobia, noise-anxiety, fireworks-fear, pet-care"
+  },
+  {
+    "id": 67,
+    "mindHealNo": "202",
+    "name": "Excessively barking dogs (Bina wajah bhaunkne ki aadat)",
+    "description": "Some dogs bark naturally, but excessive barking may happen because of emotional restlessness, fear, excitement, or anxiety.\nA dog may:\n    • bark continuously at small sounds, \n    • react emotionally to strangers, \n    • bark when left alone, \n    • or stay overly alert all the time. \nThis behavior may create:\n    • stress for the pet, \n    • disturbed sleep, \n    • or difficulty managing the dog calmly. \nSometimes barking becomes stronger when the dog feels:\n    • emotionally insecure, \n    • restless, \n    • lonely, \n    • or overly excited. \nMix 202 is designed to gently support emotional calmness, relaxation, and more balanced behavior in dogs.\nThis blend is for dogs who:\n    • bark excessively, \n    • react too strongly to surroundings, \n    • or need calmer emotional support. \n“Emotionally calmer pets often feel quieter and more relaxed.”",
+    "shortDescription": "Does your dog bark too much without clear reason?\nDoes constant barking create stress at home or during daily routines?\nMix 202 is made for dogs who need emotional calmness and balanced behavior.",
+    "emotionalTags": "dog-barking, aggression, hyper-dog, pet-behavior"
+  },
+  {
+    "id": 68,
+    "mindHealNo": "203",
+    "name": "Uncleanliness of dogs (Ghar ganda karne ki aadat)",
+    "description": "Some dogs repeatedly create messes indoors even after training and routine care.\nA dog may:\n    • urinate indoors, \n    • spoil household areas, \n    • ignore routine habits, \n    • or behave restlessly inside the home. \nSometimes this behavior may happen due to:\n    • emotional stress, \n    • insecurity, \n    • excitement, \n    • fear, \n    • or difficulty adjusting to routines. \nPet owners may feel:\n    • frustrated, \n    • emotionally tired, \n    • or worried about the dog’s behavior. \nMix 203 is designed to gently support emotional balance, comfort, and calmer adjustment in dogs.\nThis blend is for dogs who:\n    • struggle with clean habits, \n    • behave restlessly indoors, \n    • or need emotional support for better routine behavior. \n“Gentle emotional balance can slowly support calmer habits in pets.”",
+    "shortDescription": "Does your dog repeatedly spoil the house or struggle with clean habits?\nDoes this behavior create frustration and stress at home?\nMix 203 is made for dogs who need emotional balance and calmer behavioral support.",
+    "emotionalTags": "dog-training, potty-training-mental, stubborn-pet"
+  },
+  {
+    "id": 69,
+    "mindHealNo": "204",
+    "name": "Separation anxiety in dogs (Malik se door hone ka darr)",
+    "description": "Many dogs become deeply attached to their owners and feel emotionally uncomfortable when separated.\nA dog may:\n    • bark continuously after the owner leaves, \n    • damage things at home, \n    • cry or whine, \n    • or become emotionally restless when alone. \nThe dog may feel:\n    • insecure, \n    • abandoned, \n    • fearful, \n    • or emotionally stressed during separation. \nEven short periods alone may create emotional discomfort.\nMix 204 is designed to gently support emotional calmness, comfort, and a feeling of security in dogs during separation.\nThis blend is for dogs who:\n    • struggle when left alone, \n    • become emotionally anxious during separation, \n    • or need calmer emotional support away from owners. \n“A calm pet feels emotionally safer even when alone for some time.”",
+    "shortDescription": "Does your dog become anxious or restless when left alone?\nDoes separation from the owner create fear, barking, or emotional distress?\nMix 204 is made for dogs who need emotional comfort and inner security during separation.",
+    "emotionalTags": "dog-separation-anxiety, pet-attachment, lonely-dog"
+  },
+  {
+    "id": 70,
+    "mindHealNo": "205",
+    "name": "Travel Calm for Dogs (Safar mein darta hua kutta)",
+    "description": "Travel can feel emotionally stressful for many dogs.\nA dog may:\n    • shake during travel, \n    • bark continuously, \n    • feel restless in vehicles, \n    • or become emotionally uncomfortable during journeys. \nSome dogs may also:\n    • refuse to sit calmly, \n    • feel anxious in unfamiliar places, \n    • or become stressed during long travel. \nThis emotional discomfort can make travelling difficult for both pets and owners.\nMix 205 is designed to gently support emotional calmness, comfort, and relaxation during travel situations.\nThis blend is for dogs who:\n    • fear travelling, \n    • feel anxious in vehicles, \n    • or need emotional support during journeys. \n“A calmer pet often experiences travel with more comfort and ease.”",
+    "shortDescription": "Does your dog become nervous, restless, or scared during travel?\nDo car rides or journeys create emotional discomfort for your pet?\nMix 205 is made for dogs who need calmness and emotional comfort while travelling.",
+    "emotionalTags": "dog-travel, motion-sickness-pets, car-fear-dogs"
+  },
+  {
+    "id": 71,
+    "mindHealNo": "206",
+    "name": "Stress in dogs (Kutton ka mansik tanav)",
+    "description": "Dogs can also experience emotional stress due to changes in environment, routine, loneliness, fear, or emotional discomfort.\nA dog may:\n    • appear restless, \n    • become emotionally withdrawn, \n    • bark more than usual, \n    • avoid interaction, \n    • or behave differently than normal. \nStress in dogs may happen because of:\n    • loud environments, \n    • moving homes, \n    • separation, \n    • unfamiliar people, \n    • or changes in daily routine. \nSome dogs may:\n    • stop relaxing properly, \n    • seem emotionally uneasy, \n    • or become more sensitive than usual. \nMix 206 is designed to gently support emotional calmness, comfort, and inner balance in stressed dogs.\nThis blend is for dogs who:\n    • feel emotionally restless, \n    • struggle with stress, \n    • or need emotional relaxation and support. \n“A calm and emotionally balanced pet often feels safer and happier.”",
+    "shortDescription": "Does your dog seem restless, emotionally disturbed, or uncomfortable most of the time?\nHas your pet become unusually quiet, irritated, or anxious lately?\nMix 206 is made for dogs who need emotional calmness, comfort, and relaxation during stressful situations.",
+    "emotionalTags": "dog-stress, lethal-pet, pet-wellbeing"
+  },
+  {
+    "id": 72,
+    "mindHealNo": "207",
+    "name": "Dog Anxiety (General) (Darpok aur ghabraye hue kutte)",
+    "description": "Some dogs naturally feel emotionally nervous or fearful in everyday situations.\nA dog may:\n    • get frightened easily, \n    • react strongly to sounds, \n    • stay emotionally alert, \n    • or become restless around strangers or unfamiliar places. \nThe dog may:\n    • hide often, \n    • shake with fear, \n    • bark nervously, \n    • or struggle to relax peacefully. \nEven normal situations may feel emotionally stressful for sensitive pets.\nMix 207 is designed to gently support emotional calmness, confidence, and inner security in anxious dogs.\nThis blend is for dogs who:\n    • feel nervous or fearful, \n    • become anxious easily, \n    • or need emotional comfort during daily situations. \n“Emotionally secure pets often feel calmer and more relaxed in their surroundings.”",
+    "shortDescription": "Does your dog get scared, nervous, or anxious very easily?\nDo small situations make your pet emotionally uncomfortable or restless?\nMix 207 is made for dogs who need emotional confidence, calmness, and inner comfort.",
+    "emotionalTags": "timid-dog, dog-fear, rescue-dog-trauma"
+  },
+  {
+    "id": 73,
+    "mindHealNo": "208",
+    "name": "Aggressive cat behavior (Billi ka gusse wala swabhaav)",
+    "description": "Cats can sometimes become emotionally irritated or aggressive due to stress, fear, discomfort, or emotional sensitivity.\nA cat may:\n    • scratch suddenly, \n    • bite unexpectedly, \n    • react angrily, \n    • or avoid calm interaction. \nAggressive behavior may increase during:\n    • unfamiliar situations, \n    • emotional stress, \n    • loud environments, \n    • or changes in routine. \nSome cats may appear:\n    • emotionally restless, \n    • easily irritated, \n    • or uncomfortable around people or other pets. \nMix 208 is designed to gently support emotional calmness, comfort, and balanced behavior in cats.\nThis blend is for cats who:\n    • show aggressive behavior, \n    • become emotionally irritated quickly, \n    • or need calmer emotional support. \n“A calmer emotional state can help pets feel more comfortable and balanced.”",
+    "shortDescription": "Does your cat suddenly become angry, aggressive, or difficult to handle?\nDo small situations trigger scratching, biting, or irritated behavior?\nMix 208 is made for cats who need emotional calmness and balanced behavior.",
+    "emotionalTags": "cat-aggression, cat-biting, feline-anger"
+  },
+  {
+    "id": 74,
+    "mindHealNo": "209",
+    "name": "Stress in cats (Billiyon ki bechaini)",
+    "description": "Cats can become emotionally stressed due to changes in surroundings, loneliness, fear, or emotional discomfort.\nA cat may:\n    • hide more than usual, \n    • avoid interaction, \n    • become emotionally restless, \n    • or behave differently than normal. \nStress in cats may happen because of:\n    • moving homes, \n    • loud sounds, \n    • changes in routine, \n    • unfamiliar people, \n    • or emotional insecurity. \nSome cats may:\n    • stop relaxing peacefully, \n    • appear emotionally disturbed, \n    • or become unusually sensitive. \nMix 209 is designed to gently support emotional calmness, comfort, and emotional balance in cats.\nThis blend is for cats who:\n    • feel emotionally stressed, \n    • become restless easily, \n    • or need emotional relaxation and support. \n“A peaceful and emotionally calm pet often feels safer and happier.”",
+    "shortDescription": "Does your cat seem emotionally restless, disturbed, or uncomfortable?\nHas your pet become unusually quiet, nervous, or emotionally sensitive?\nMix 209 is made for cats who need emotional calmness and inner comfort.",
+    "emotionalTags": "cat-stress, hiding-cat, feline-anxiety"
+  },
+  {
+    "id": 75,
+    "mindHealNo": "210",
+    "name": "Uncleanliness in cats (Billiyon ki gandagi failane ki aadat)",
+    "description": "Some cats may repeatedly create messes indoors even after training and care.\nA cat may:\n    • avoid the litter box, \n    • spoil household areas, \n    • behave restlessly indoors, \n    • or struggle with routine habits. \nSometimes this behavior may happen because of:\n    • emotional stress, \n    • insecurity, \n    • changes in surroundings, \n    • or emotional discomfort. \nPet owners may feel:\n    • frustrated, \n    • emotionally tired, \n    • or worried about the cat’s behavior. \nMix 210 is designed to gently support emotional comfort, calmness, and better routine adjustment in cats.\nThis blend is for cats who:\n    • struggle with clean habits, \n    • behave restlessly indoors, \n    • or need emotional support for calmer behavior. \n“Emotionally relaxed pets often adjust better to daily routines.”",
+    "shortDescription": "Does your cat repeatedly spoil the house or avoid proper litter habits?\nIs this behavior creating stress and discomfort at home?\nMix 210 is made for cats who need emotional balance and calmer routine behavior.",
+    "emotionalTags": "cat-litter-issues, stubborn-cat, cat-training"
+  }
+]

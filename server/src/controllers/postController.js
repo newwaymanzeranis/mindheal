@@ -71,9 +71,12 @@ export const getBySlug = async (req, res) => {
 export const create = async (req, res) => {
   const {
     title,
+    titleHi,
     slug,
     excerpt,
+    excerptHi,
     content,
+    contentHi,
     image,
     author,
     published,
@@ -86,9 +89,12 @@ export const create = async (req, res) => {
   const post = await prisma.post.create({
     data: {
       title,
+      titleHi: titleHi ?? null,
       slug: slug || slugify(title),
       excerpt,
+      excerptHi: excerptHi ?? null,
       content,
+      contentHi: contentHi ?? null,
       image,
       author,
       published: published ?? false,
@@ -112,9 +118,12 @@ export const update = async (req, res) => {
   const id = Number(req.params.id);
   const {
     title,
+    titleHi,
     slug,
     excerpt,
+    excerptHi,
     content,
+    contentHi,
     image,
     author,
     published,
@@ -124,9 +133,12 @@ export const update = async (req, res) => {
 
   const data = {
     ...(title && { title }),
+    ...(titleHi !== undefined && { titleHi }),
     ...(slug && { slug }),
     ...(excerpt !== undefined && { excerpt }),
+    ...(excerptHi !== undefined && { excerptHi }),
     ...(content && { content }),
+    ...(contentHi !== undefined && { contentHi }),
     ...(image !== undefined && { image }),
     ...(author !== undefined && { author }),
     ...(categoryId !== undefined && {

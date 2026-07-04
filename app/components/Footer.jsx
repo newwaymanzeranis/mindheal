@@ -1,6 +1,9 @@
 import { Link } from "react-router";
 
+import { useLang } from "~/context/LanguageContext";
+
 export default function Footer() {
+  const { t } = useLang();
   return (
     <footer className="footer dark-background">
       <div className="footer-top">
@@ -14,50 +17,50 @@ export default function Footer() {
                 <p>Lucknow Kursi Road</p>
                 <p>U.P., INDIA 226022</p>
                 <p>
-                  <strong>Phone:</strong> +7457988355
+                  <strong>{t("footer.phone")}</strong> +7457988355
                 </p>
                 <p>
-                  <strong>Email:</strong> newway.manzer@gmail.com
+                  <strong>{t("footer.email")}</strong> newway.manzer@gmail.com
                 </p>
               </div>
             </div>
             <div className="col-lg-2 col-md-3 footer-links">
-              <h4>Useful Links</h4>
+              <h4>{t("footer.usefulLinks")}</h4>
               <ul>
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/">{t("nav.home")}</Link>
                 </li>
                 <li>
-                  <Link to="/about">About us</Link>
+                  <Link to="/about">{t("footer.aboutUs")}</Link>
                 </li>
                 <li>
-                  <Link to="/services">Services</Link>
+                  <Link to="/services">{t("nav.services")}</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/contact">{t("nav.contact")}</Link>
                 </li>
                 <li>
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blog">{t("nav.blog")}</Link>
                 </li>
               </ul>
             </div>
             <div className="col-lg-2 col-md-3 footer-links">
-              <h4>Our Services</h4>
+              <h4>{t("footer.ourServices")}</h4>
               <ul>
                 <li>
-                  <Link to="/services">Free Consult</Link>
+                  <Link to="/services">{t("footer.freeConsult")}</Link>
                 </li>
                 <li>
-                  <Link to="/services">Free Discussion</Link>
+                  <Link to="/services">{t("footer.freeDiscussion")}</Link>
                 </li>
                 <li>
-                  <Link to="/services">Free Mixing Help</Link>
+                  <Link to="/services">{t("footer.freeMixingHelp")}</Link>
                 </li>
                 <li>
-                  <Link to="/services">Free Emotional Test</Link>
+                  <Link to="/services">{t("footer.freeEmotionalTest")}</Link>
                 </li>
                 <li>
-                  <Link to="/services">Follow-Up Check</Link>
+                  <Link to="/services">{t("footer.followUpCheck")}</Link>
                 </li>
               </ul>
             </div>
@@ -70,8 +73,8 @@ export default function Footer() {
         <div className="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
           <div className="d-flex flex-column align-items-center align-items-lg-start">
             <div>
-              © Copyright <strong><span>Mind Heal</span></strong>. All Rights
-              Reserved
+              © Copyright <strong><span>Mind Heal</span></strong>.{" "}
+              {t("footer.rights")}
             </div>
           </div>
           <div className="social-links order-first order-lg-last mb-3 mb-lg-0">

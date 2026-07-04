@@ -5,9 +5,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useLocation,
+  useRouteLoaderData,
 } from "react-router";
-import type { LinksFunction } from "react-router";
+import type { LinksFunction, LoaderFunctionArgs } from "react-router";
 
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
@@ -15,11 +17,15 @@ import CartToast from "~/components/CartToast";
 import NavigationLoader from "~/components/NavigationLoader";
 import { AuthProvider } from "~/context/AuthContext";
 import { CartProvider } from "~/context/CartContext";
+import { LanguageProvider } from "~/context/LanguageContext";
+import { DEFAULT_LANG } from "~/i18n";
+import { getLangFromRequest } from "~/lib/lang.server";
 import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { initAOS, refreshAOS } from "~/utils/siteInit";
 
 import cartCss from "~/styles/cart.css?url";
 import headerNavCss from "~/styles/header-nav.css?url";
+import langSwitchCss from "~/styles/lang-switch.css?url";
 
 /* import "./tailwind.css"; */
 
@@ -46,11 +52,19 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: "/assets/css/main.css" },
   { rel: "stylesheet", href: cartCss },
   { rel: "stylesheet", href: headerNavCss },
+  { rel: "stylesheet", href: langSwitchCss },
 ];
 
+export async function loader({ request }: LoaderFunctionArgs) {
+  return { lang: getLangFromRequest(request) };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useRouteLoaderData("root") as { lang?: string } | undefined;
+  const lang = data?.lang ?? DEFAULT_LANG;
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,6 +81,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const { lang } = useLoaderData<typeof loader>();
   const { pathname } = useLocation();
   const isAdminRoute = pathname.startsWith("/admin");
   const isHome = pathname === "/";
@@ -91,23 +106,25 @@ export default function App() {
   }
 
   return (
-    <AuthProvider>
-      <CartProvider>
-        <NavigationLoader />
-        <CartToast />
-        <div className={`site-layout${isHome ? " index-page" : ""}`}>
-          <Header />
-          <Outlet />
-          <Footer />
-          <a
-            href="#"
-            id="scroll-top"
-            className="scroll-top d-flex align-items-center justify-content-center"
-          >
-            <i className="bi bi-arrow-up-short" />
-          </a>
-        </div>
-      </CartProvider>
-    </AuthProvider>
+    <LanguageProvider initialLang={lang}>
+      <AuthProvider>
+        <CartProvider>
+          <NavigationLoader />
+          <CartToast />
+          <div className={`site-layout${isHome ? " index-page" : ""}`}>
+            <Header />
+            <Outlet />
+            <Footer />
+            <a
+              href="#"
+              id="scroll-top"
+              className="scroll-top d-flex align-items-center justify-content-center"
+            >
+              <i className="bi bi-arrow-up-short" />
+            </a>
+          </div>
+        </CartProvider>
+      </AuthProvider>
+    </LanguageProvider>
   );
 }

@@ -19,13 +19,16 @@ export const getById = async (req, res) => {
 };
 
 export const create = async (req, res) => {
-  const { title, subtitle, image, published, sortOrder } = req.body;
+  const { title, titleHi, subtitle, subtitleHi, image, published, sortOrder } =
+    req.body;
   if (!title || !image) return fail(res, "Title and image are required");
 
   const slide = await prisma.homeSlide.create({
     data: {
       title,
+      titleHi: titleHi ?? null,
       subtitle,
+      subtitleHi: subtitleHi ?? null,
       image,
       published: published ?? true,
       sortOrder: sortOrder ?? 0,
@@ -35,12 +38,15 @@ export const create = async (req, res) => {
 };
 
 export const update = async (req, res) => {
-  const { title, subtitle, image, published, sortOrder } = req.body;
+  const { title, titleHi, subtitle, subtitleHi, image, published, sortOrder } =
+    req.body;
   const slide = await prisma.homeSlide.update({
     where: { id: Number(req.params.id) },
     data: {
       ...(title && { title }),
+      ...(titleHi !== undefined && { titleHi }),
       ...(subtitle !== undefined && { subtitle }),
+      ...(subtitleHi !== undefined && { subtitleHi }),
       ...(image && { image }),
       ...(published !== undefined && { published }),
       ...(sortOrder !== undefined && { sortOrder: Number(sortOrder) }),

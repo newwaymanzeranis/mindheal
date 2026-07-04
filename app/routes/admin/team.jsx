@@ -7,11 +7,15 @@ const empty = {
   name: "",
   slug: "",
   degree: "",
+  degreeHi: "",
   experience: "",
   image: "",
   bio: "",
+  bioHi: "",
   expertise: "",
+  expertiseHi: "",
   portfolio: "",
+  portfolioHi: "",
   facebookUrl: "",
   twitterUrl: "",
   linkedinUrl: "",
@@ -53,11 +57,15 @@ export default function AdminTeam() {
       name: m.name,
       slug: m.slug,
       degree: m.degree || "",
+      degreeHi: m.degreeHi || "",
       experience: m.experience || "",
       image: m.image || "",
       bio: m.bio || "",
+      bioHi: m.bioHi || "",
       expertise: m.expertise || "",
+      expertiseHi: m.expertiseHi || "",
       portfolio: m.portfolio || "",
+      portfolioHi: m.portfolioHi || "",
       facebookUrl: m.facebookUrl || "",
       twitterUrl: m.twitterUrl || "",
       linkedinUrl: m.linkedinUrl || "",
@@ -131,6 +139,12 @@ export default function AdminTeam() {
                 onChange={update("degree")}
                 placeholder="e.g. BHMS. M.D."
               />
+              <input
+                className="form-control mt-2"
+                value={form.degreeHi}
+                onChange={update("degreeHi")}
+                placeholder="डिग्री (हिंदी)"
+              />
             </div>
             <div className="col-md-4">
               <label className="form-label">Experience</label>
@@ -182,6 +196,17 @@ export default function AdminTeam() {
           </div>
 
           <div className="mb-3">
+            <label className="form-label">Short Bio (Hindi)</label>
+            <textarea
+              className="form-control"
+              rows={2}
+              value={form.bioHi}
+              onChange={update("bioHi")}
+              placeholder="संक्षिप्त परिचय (हिंदी)"
+            />
+          </div>
+
+          <div className="mb-3">
             <label className="form-label">Expertise Description</label>
             <textarea
               className="form-control"
@@ -193,6 +218,17 @@ export default function AdminTeam() {
           </div>
 
           <div className="mb-3">
+            <label className="form-label">Expertise Description (Hindi)</label>
+            <textarea
+              className="form-control"
+              rows={4}
+              value={form.expertiseHi}
+              onChange={update("expertiseHi")}
+              placeholder="विशेषज्ञता का विवरण (हिंदी)"
+            />
+          </div>
+
+          <div className="mb-3">
             <label className="form-label">Portfolio (one highlight per line)</label>
             <textarea
               className="form-control"
@@ -200,6 +236,17 @@ export default function AdminTeam() {
               value={form.portfolio}
               onChange={update("portfolio")}
               placeholder="Led clinical practice for 25+ years&#10;Treated thousands of patients..."
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Portfolio (Hindi — one highlight per line)</label>
+            <textarea
+              className="form-control"
+              rows={4}
+              value={form.portfolioHi}
+              onChange={update("portfolioHi")}
+              placeholder="प्रति पंक्ति एक मुख्य बिंदु (हिंदी)"
             />
           </div>
 

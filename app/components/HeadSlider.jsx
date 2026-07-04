@@ -1,3 +1,4 @@
+import { useLang } from "~/context/LanguageContext";
 import { imageSrc } from "~/utils/format";
 
 const FALLBACK_SLIDES = [
@@ -21,6 +22,7 @@ const FALLBACK_SLIDES = [
 ];
 
 export default function HeadSlider({ slides = [] }) {
+  const { tc } = useLang();
   const items = slides.length > 0 ? slides : FALLBACK_SLIDES;
 
   return (
@@ -36,10 +38,10 @@ export default function HeadSlider({ slides = [] }) {
             className={`carousel-item ${index === 0 ? "active" : ""}`}
             key={slide.id ?? index}
           >
-            <img src={imageSrc(slide.image)} alt={slide.title} />
+            <img src={imageSrc(slide.image)} alt={tc(slide, "title")} />
             <div className="carousel-container">
-              <h2>{slide.title}</h2>
-              <p>{slide.subtitle}</p>
+              <h2>{tc(slide, "title")}</h2>
+              <p>{tc(slide, "subtitle")}</p>
             </div>
           </div>
         ))}

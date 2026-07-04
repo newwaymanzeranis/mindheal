@@ -1,7 +1,17 @@
+import { useLang } from "~/context/LanguageContext";
 import { parseEmotionalTags } from "~/utils/emotionalTags";
 
-export default function ProductEmotionalTags({ emotionalTags, className = "" }) {
-  const tags = parseEmotionalTags(emotionalTags);
+export default function ProductEmotionalTags({
+  emotionalTags,
+  emotionalTagsHi,
+  className = "",
+}) {
+  const { lang } = useLang();
+  const source =
+    lang === "hi" && emotionalTagsHi && String(emotionalTagsHi).trim() !== ""
+      ? emotionalTagsHi
+      : emotionalTags;
+  const tags = parseEmotionalTags(source);
   if (!tags.length) return null;
 
   return (

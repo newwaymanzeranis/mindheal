@@ -66,10 +66,13 @@ export const getBySlug = async (req, res) => {
 export const create = async (req, res) => {
   const {
     name,
+    nameHi,
     slug,
     mindHealNo,
     description,
+    descriptionHi,
     shortDescription,
+    shortDescriptionHi,
     mrp,
     price,
     image,
@@ -77,6 +80,7 @@ export const create = async (req, res) => {
     published,
     sortOrder,
     emotionalTags,
+    emotionalTagsHi,
   } = req.body;
 
   if (!name) return fail(res, "Name is required");
@@ -90,10 +94,13 @@ export const create = async (req, res) => {
   const product = await prisma.product.create({
     data: {
       name,
+      nameHi: nameHi ?? null,
       mindHealNo: String(mindHealNo),
       slug: slug || slugify(name),
       description,
+      descriptionHi: descriptionHi ?? null,
       shortDescription: shortDescription ?? null,
+      shortDescriptionHi: shortDescriptionHi ?? null,
       mrp: mrp != null ? mrp : 400,
       price: price != null ? price : 250,
       image,
@@ -103,6 +110,10 @@ export const create = async (req, res) => {
       emotionalTags:
         emotionalTags !== undefined
           ? normalizeEmotionalTags(emotionalTags)
+          : null,
+      emotionalTagsHi:
+        emotionalTagsHi !== undefined
+          ? normalizeEmotionalTags(emotionalTagsHi)
           : null,
     },
   });
@@ -114,10 +125,13 @@ export const update = async (req, res) => {
   const id = Number(req.params.id);
   const {
     name,
+    nameHi,
     slug,
     mindHealNo,
     description,
+    descriptionHi,
     shortDescription,
+    shortDescriptionHi,
     mrp,
     price,
     image,
@@ -125,6 +139,7 @@ export const update = async (req, res) => {
     published,
     sortOrder,
     emotionalTags,
+    emotionalTagsHi,
   } = req.body;
 
   if (mindHealNo) {
@@ -139,10 +154,13 @@ export const update = async (req, res) => {
 
   const data = {
     ...(name && { name }),
+    ...(nameHi !== undefined && { nameHi }),
     ...(slug && { slug }),
     ...(mindHealNo && { mindHealNo: String(mindHealNo) }),
     ...(description !== undefined && { description }),
+    ...(descriptionHi !== undefined && { descriptionHi }),
     ...(shortDescription !== undefined && { shortDescription }),
+    ...(shortDescriptionHi !== undefined && { shortDescriptionHi }),
     ...(mrp !== undefined && { mrp }),
     ...(price !== undefined && { price }),
     ...(image !== undefined && { image }),
@@ -151,6 +169,9 @@ export const update = async (req, res) => {
     ...(sortOrder !== undefined && { sortOrder: Number(sortOrder) }),
     ...(emotionalTags !== undefined && {
       emotionalTags: normalizeEmotionalTags(emotionalTags),
+    }),
+    ...(emotionalTagsHi !== undefined && {
+      emotionalTagsHi: normalizeEmotionalTags(emotionalTagsHi),
     }),
   };
 

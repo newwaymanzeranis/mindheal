@@ -4,9 +4,11 @@ import { Link } from "react-router";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
 
 export default function BuyMhMixGrid({ products = [] }) {
+  const { t, tc } = useLang();
   const { addToCart, items, hydrated } = useCart();
   const [addedId, setAddedId] = useState(null);
 
@@ -18,9 +20,7 @@ export default function BuyMhMixGrid({ products = [] }) {
 
   if (!products.length) {
     return (
-      <p className="text-center text-muted py-5">
-        No mixes match your search. Try different tags or clear filters.
-      </p>
+      <p className="text-center text-muted py-5">{t("home.bfm.noMatch")}</p>
     );
   }
 
@@ -37,17 +37,18 @@ export default function BuyMhMixGrid({ products = [] }) {
               <span className="mix-product-badge">
                 {productMindHealLabel(product.mindHealNo, product.sortOrder)}
               </span>
-              <img src={imageSrc(product.image)} className="img-fluid" alt={product.name} />
+              <img src={imageSrc(product.image)} className="img-fluid" alt={tc(product, "name")} />
             </div>
             <div className="mix-product-body">
-              <h3 className="mix-product-title">{product.name}</h3>
-              {product.shortDescription && (
+              <h3 className="mix-product-title">{tc(product, "name")}</h3>
+              {tc(product, "shortDescription") && (
                 <p className="mix-product-short-desc text-muted small mb-2">
-                  {product.shortDescription}
+                  {tc(product, "shortDescription")}
                 </p>
               )}
               <ProductEmotionalTags
                 emotionalTags={product.emotionalTags}
+                emotionalTagsHi={product.emotionalTagsHi}
                 className="mb-2"
               />
               <ProductPrice product={product} size="lg" />
@@ -64,7 +65,9 @@ export default function BuyMhMixGrid({ products = [] }) {
                       addedId === product.id ? "bi-check-lg" : "bi-cart-plus"
                     }`}
                   />
-                  {addedId === product.id ? "Added" : "Add to Cart"}
+                  {addedId === product.id
+                    ? t("common.added")
+                    : t("common.addToCart")}
                   {hydrated && inCartQty > 0 && (
                     <span className="mix-btn-cart-badge" aria-hidden>
                       {inCartQty > 99 ? "99+" : inCartQty}
@@ -75,7 +78,7 @@ export default function BuyMhMixGrid({ products = [] }) {
                   to={`/products/${product.slug}`}
                   className="btn btn-outline-success mix-btn-detail"
                 >
-                  Details
+                  {t("common.details")}
                 </Link>
               </div>
             </div>

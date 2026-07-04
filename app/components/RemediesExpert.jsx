@@ -1,15 +1,14 @@
-const HIGHLIGHTS = [
-  { emoji: "🌿", text: "Experience the healing power of nature" },
-  { emoji: "🌸", text: "Gentle, natural & effective emotional balance" },
-  { emoji: "🌱", text: "Personalized Bach Flower blends for you" },
-  { emoji: "💖", text: "Harmonize mind, body & soul" },
-  { emoji: "🌍", text: "Pure, authentic & 100% natural" },
-  { emoji: "✨", text: "Find inner peace & emotional stability" },
-  { emoji: "🍃", text: "Restore balance & reduce stress" },
-  { emoji: "🌟", text: "Guiding you to a healthier, happier life" },
-];
+import { useLang } from "~/context/LanguageContext";
+
+const HIGHLIGHT_EMOJIS = ["🌿", "🌸", "🌱", "💖", "🌍", "✨", "🍃", "🌟"];
 
 export default function RemediesExpert() {
+  const { t } = useLang();
+  const highlightTexts = t("home.remedies.highlights");
+  const highlights = (Array.isArray(highlightTexts) ? highlightTexts : []).map(
+    (text, index) => ({ emoji: HIGHLIGHT_EMOJIS[index] ?? "✨", text })
+  );
+
   return (
     <section id="about-3" className="about-3 section re-section">
       <div className="container">
@@ -32,7 +31,7 @@ export default function RemediesExpert() {
               </a>
               <div className="re-media-badge">
                 <i className="bi bi-patch-check-fill" />
-                <span>Certified Bach Flower Practitioner</span>
+                <span>{t("home.remedies.certified")}</span>
               </div>
             </div>
           </div>
@@ -42,20 +41,16 @@ export default function RemediesExpert() {
             data-aos="fade-up"
             data-aos-delay={100}
           >
-            <span className="re-eyebrow">Meet Your Expert</span>
+            <span className="re-eyebrow">{t("home.remedies.eyebrow")}</span>
             <h2 className="re-title">
-              Your Trusted <strong>Bach Flower Remedies</strong> Expert
+              {t("home.remedies.titlePre")}
+              <strong>{t("home.remedies.titleStrong")}</strong>
+              {t("home.remedies.titlePost")}
             </h2>
-            <p className="re-lead">
-              With 5+ years of experience, we craft natural, personalized healing
-              solutions for emotional well-being. Using only genuine, chemical-free
-              Bach Flower essences, our custom blends gently restore balance,
-              clarity, and inner peace — whether you face stress, anxiety, fear, or
-              emotional imbalance.
-            </p>
+            <p className="re-lead">{t("home.remedies.lead")}</p>
 
             <ul className="re-checklist">
-              {HIGHLIGHTS.map((item) => (
+              {highlights.map((item) => (
                 <li className="re-check-item" key={item.text}>
                   <span className="re-check-emoji">{item.emoji}</span>
                   <span>{item.text}</span>

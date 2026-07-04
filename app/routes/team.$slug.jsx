@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import RichHtml, { isHtmlContent, stripHtml } from "~/components/RichHtml";
 import { TeamProfileSocialLinks } from "~/components/TeamSocialLinks";
 import TeamConsultationCta, { appointmentModalLinks } from "~/components/TeamConsultationCta";
+import { useLang } from "~/context/LanguageContext";
 import { fetchTeamMemberBySlug } from "~/lib/fetchApi.server";
 import { imageSrc } from "~/utils/format";
 
@@ -53,11 +54,16 @@ export function meta({ data }) {
 }
 
 export default function TeamMemberProfile() {
+  const { t, tc } = useLang();
   const { member } = useLoaderData();
-  const portfolioItems = parsePortfolioItems(member.portfolio);
-  const bioIsHtml = isHtmlContent(member.bio);
-  const expertiseIsHtml = isHtmlContent(member.expertise);
-  const portfolioIsHtml = isHtmlContent(member.portfolio);
+  const degree = tc(member, "degree");
+  const bio = tc(member, "bio");
+  const expertise = tc(member, "expertise");
+  const portfolio = tc(member, "portfolio");
+  const portfolioItems = parsePortfolioItems(portfolio);
+  const bioIsHtml = isHtmlContent(bio);
+  const expertiseIsHtml = isHtmlContent(expertise);
+  const portfolioIsHtml = isHtmlContent(portfolio);
 
   return (
     <main className="main">
@@ -65,7 +71,7 @@ export default function TeamMemberProfile() {
         <div className="team-profile-hero-glow" aria-hidden />
         <div className="container">
           <Link to="/about#team" className="team-profile-back">
-            <i className="bi bi-arrow-left" /> Back to Team
+            <i className="bi bi-arrow-left" /> {t("team.backToTeam")}
           </Link>
 
           <div className="team-profile-hero-top">
@@ -78,47 +84,50 @@ export default function TeamMemberProfile() {
                   className="team-profile-photo"
                 />
               </div>
-              <span className="team-profile-verified" title="Mind Heal Verified Expert">
+              <span
+                className="team-profile-verified"
+                title={t("team.verifiedExpert")}
+              >
                 <i className="bi bi-patch-check-fill" />
               </span>
             </div>
 
             <div className="team-profile-info">
               <p className="team-profile-label">
-                <i className="bi bi-flower1" /> Mind Heal Expert Panel
+                <i className="bi bi-flower1" /> {t("team.expertPanel")}
               </p>
               <h1>{member.name}</h1>
               <div className="team-profile-badges">
-                {member.degree && (
+                {degree && (
                   <span className="team-profile-badge">
                     <i className="bi bi-mortarboard" />
-                    {member.degree}
+                    {degree}
                   </span>
                 )}
                 {member.experience && (
                   <span className="team-profile-badge">
                     <i className="bi bi-clock-history" />
-                    {member.experience} Experience
+                    {member.experience} {t("team.experienceSuffix")}
                   </span>
                 )}
                 <span className="team-profile-badge">
                   <i className="bi bi-heart-pulse" />
-                  Mind Heal Expert / Consulting Physician
+                  {t("team.expertRole")}
                 </span>
               </div>
               <TeamProfileSocialLinks member={member} />
             </div>
           </div>
 
-          {member.bio && (
+          {bio && (
             <div className="team-profile-hero-bio">
               {bioIsHtml ? (
                 <RichHtml
-                  html={member.bio}
+                  html={bio}
                   className="team-profile-rich team-profile-rich--hero"
                 />
               ) : (
-                <p className="team-profile-bio-text">{member.bio}</p>
+                <p className="team-profile-bio-text">{bio}</p>
               )}
             </div>
           )}
@@ -127,21 +136,21 @@ export default function TeamMemberProfile() {
 
       <section className="team-profile-body">
         <div className="container">
-          {member.expertise && (
+          {expertise && (
             <div className="team-profile-section" data-aos="fade-up">
               {!expertiseIsHtml && (
                 <h2 className="team-profile-section-title">
                   <i className="bi bi-stars" />
-                  Areas of Expertise
+                  {t("team.areasOfExpertise")}
                 </h2>
               )}
               {expertiseIsHtml ? (
                 <RichHtml
-                  html={member.expertise}
+                  html={expertise}
                   className="team-profile-rich team-profile-rich--body"
                 />
               ) : (
-                <div className="team-profile-expertise">{member.expertise}</div>
+                <div className="team-profile-expertise">{expertise}</div>
               )}
             </div>
           )}
@@ -149,7 +158,7 @@ export default function TeamMemberProfile() {
           {portfolioIsHtml && (
             <div className="team-profile-section" data-aos="fade-up" data-aos-delay={100}>
               <RichHtml
-                html={member.portfolio}
+                html={portfolio}
                 className="team-profile-rich team-profile-rich--body"
               />
             </div>
@@ -159,7 +168,7 @@ export default function TeamMemberProfile() {
             <div className="team-profile-section" data-aos="fade-up" data-aos-delay={100}>
               <h2 className="team-profile-section-title">
                 <i className="bi bi-briefcase" />
-                Professional Portfolio
+                {t("team.professionalPortfolio")}
               </h2>
               <div className="team-profile-portfolio-grid">
                 {portfolioItems.map((item, index) => (

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
 
+import { useLang } from "~/context/LanguageContext";
 import {
   collectAllTags,
   filterProducts,
@@ -9,6 +10,7 @@ import {
 import { imageSrc, productMindHealLabel } from "~/utils/format";
 
 export default function MixSearchFilter({ products = [], onFilteredChange }) {
+  const { tc } = useLang();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -188,7 +190,7 @@ export default function MixSearchFilter({ products = [], onFilteredChange }) {
                           <span className="mix-search-result-no">
                             {productMindHealLabel(product.mindHealNo, product.sortOrder)}
                           </span>
-                          <span className="mix-search-result-name">{product.name}</span>
+                          <span className="mix-search-result-name">{tc(product, "name")}</span>
                         </div>
                         <i className="bi bi-chevron-right mix-search-result-arrow" aria-hidden />
                       </Link>

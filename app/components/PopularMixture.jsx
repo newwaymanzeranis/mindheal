@@ -5,6 +5,7 @@ import "swiper/css/bundle";
 
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import { useCart } from "~/context/CartContext";
+import { useLang } from "~/context/LanguageContext";
 import {
   bottleImageSrc,
   cleanProductName,
@@ -14,6 +15,7 @@ import {
 import { getProductPricing } from "~/utils/pricing";
 
 export default function PopularMixture({ products = [] }) {
+  const { t, tc } = useLang();
   const swiperContainerRef = useRef(null);
   const swiperRef = useRef(null);
   const { addToCart } = useCart();
@@ -69,12 +71,9 @@ export default function PopularMixture({ products = [] }) {
   return (
     <section id="services-2" className="services-2 section pm-section">
       <div className="container pm-head">
-        <span className="pm-eyebrow">Popular Mixture</span>
-        <h2 className="pm-title">Mostly Prescribed &amp; Most Loved Blends</h2>
-        <p className="pm-subtitle">
-          Tried, trusted, and recommended Bach Flower remedies for everyday
-          emotional balance
-        </p>
+        <span className="pm-eyebrow">{t("home.popular.eyebrow")}</span>
+        <h2 className="pm-title">{t("home.popular.title")}</h2>
+        <p className="pm-subtitle">{t("home.popular.subtitle")}</p>
       </div>
 
       <div className="container">
@@ -103,16 +102,16 @@ export default function PopularMixture({ products = [] }) {
                   <article className="pm-card">
                     <div className="pm-card-media">
                       <span className="pm-card-pill">
-                        <i className="bi bi-star-fill" /> Popular
+                        <i className="bi bi-star-fill" /> {t("home.popular.pill")}
                       </span>
                       {discountPercent > 0 && (
                         <span className="pm-card-discount">
-                          {discountPercent}% OFF
+                          {discountPercent}% {t("common.off")}
                         </span>
                       )}
                       <img
                         src={bottleImageSrc(product)}
-                        alt={product.name}
+                        alt={tc(product, "name")}
                         className="pm-card-img"
                         draggable={false}
                         loading="lazy"
@@ -126,10 +125,11 @@ export default function PopularMixture({ products = [] }) {
                         )}
                       </span>
                       <h3 className="pm-card-name">
-                        {cleanProductName(product.name)}
+                        {cleanProductName(tc(product, "name"))}
                       </h3>
                       <ProductEmotionalTags
                         emotionalTags={product.emotionalTags}
+                        emotionalTagsHi={product.emotionalTagsHi}
                         className="mb-2 gap-0"
                       />
                       <div className="pm-card-price">
@@ -155,14 +155,16 @@ export default function PopularMixture({ products = [] }) {
                                 : "bi-cart-plus"
                             }`}
                           />
-                          {addedId === product.id ? "Added" : "Add to Cart"}
+                          {addedId === product.id
+                            ? t("common.added")
+                            : t("common.addToCart")}
                         </button>
                         <Link
                           to={`/products/${product.slug}`}
                           className="pm-card-view"
                         >
                           <i className="bi bi-eye" />
-                          View
+                          {t("common.view")}
                         </Link>
                       </div>
                     </div>
