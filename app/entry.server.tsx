@@ -7,6 +7,8 @@ import { ServerRouter } from "react-router";
 import { renderToPipeableStream } from "react-dom/server";
 
 import { proxyToExpressApi } from "~/lib/expressProxy.server";
+import { buildRobotsResponse } from "~/lib/robots.server";
+import { buildSitemapResponse } from "~/lib/sitemap.server";
 
 const ABORT_DELAY = 5_000;
 
@@ -21,6 +23,14 @@ export default function handleRequest(
   const { pathname } = new URL(request.url);
   if (pathname.startsWith("/api")) {
     return proxyToExpressApi(request);
+  }
+
+  // Vercel does not reliably match React Router routes with dots (sitemap.xml, robots.txt).
+  if (pathname === "/sitemap.xml" || pathname === "/sitemap.xml/") {
+    return buildSitemapResponse(request);
+  }
+  if (pathname === "/robots.txt" || pathname === "/robots.txt/") {
+    return buildRobotsResponse(request);
   }
 
   return isbot(request.headers.get("user-agent") || "")

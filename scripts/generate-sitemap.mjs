@@ -226,6 +226,7 @@ async function main() {
 main().catch((error) => {
   console.warn("[sitemap] Could not generate full sitemap at build:", error.message);
   mkdirSync("public", { recursive: true });
+  writeFileSync("public/sitemap.xml", buildSitemapXml(staticPageEntries()), "utf8");
   writeRobots();
-  console.warn("[sitemap] Wrote public/robots.txt only — /sitemap.xml will be served dynamically at runtime.");
+  console.warn("[sitemap] Wrote fallback public/sitemap.xml with static pages only.");
 });
