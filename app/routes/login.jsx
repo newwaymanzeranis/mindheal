@@ -4,6 +4,7 @@ import { Link, useNavigate, useSearchParams } from "react-router";
 import { useAuth } from "~/context/AuthContext";
 import { useLang } from "~/context/LanguageContext";
 import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
+import { buildPageMeta } from "~/utils/seo";
 import authCss from "~/styles/auth.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: authCss }];
@@ -11,13 +12,12 @@ export const links = () => [{ rel: "stylesheet", href: authCss }];
 const HERO_STAT_ICONS = ["bi-shield-check", "bi-truck", "bi-bag-check"];
 
 export function meta() {
-  return [
-    { title: "Login | Mind Heal" },
-    {
-      name: "description",
-      content: "Sign in to your Mind Heal account to checkout with Cash on Delivery.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Login",
+    description: "Sign in to your Mind Heal account to checkout Bach Flower remedies with Cash on Delivery.",
+    path: "/login",
+    noindex: true,
+  });
 }
 
 export default function LoginPage() {

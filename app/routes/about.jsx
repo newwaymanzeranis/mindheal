@@ -6,6 +6,7 @@ import { useLang } from "~/context/LanguageContext";
 import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { fetchTeamMembers } from "~/lib/fetchApi.server";
 import { imageSrc } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 
 import aboutCss from "~/styles/about.css?url";
 
@@ -33,6 +34,16 @@ function formatPosition(member, degree) {
 export async function loader({ request }) {
   const team = await fetchTeamMembers({ request });
   return { team: team ?? [] };
+}
+
+export function meta() {
+  return buildPageMeta({
+    title: "About Mind Heal — Bach Flower Remedy Experts",
+    description:
+      "Learn about Mind Heal — your trusted Bach Flower healing partner with 5+ years of experience. Pre-mixed natural remedies for anxiety, stress, OCD, relationships, exams and emotional wellness.",
+    path: "/about",
+    image: "/assets/img/img_sq_1.jpeg",
+  });
 }
 
 export default function About() {

@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import { useLang } from "~/context/LanguageContext";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 import healingStoriesCss from "~/styles/healing-stories.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: healingStoriesCss }];
@@ -17,14 +18,13 @@ export async function loader({ request }) {
 }
 
 export function meta() {
-  return [
-    { title: "Healing Stories | Mind Heal" },
-    {
-      name: "description",
-      content:
-        "Read real healing stories from Mind Heal clients — emotional wellness journeys with Bach Flower Remedies, shared with care and compassion.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Healing Stories — Real Bach Flower Journeys",
+    description:
+      "Read real healing stories from Mind Heal clients who found calm, balance and emotional wellness with Bach Flower Remedies. Shared with care and compassion.",
+    path: "/healing_stories",
+    image: "/assets/img/blog/blog1.png",
+  });
 }
 
 function StoryMeta({ story }) {

@@ -6,6 +6,8 @@ import TeamConsultationCta, { appointmentModalLinks } from "~/components/TeamCon
 import { useLang } from "~/context/LanguageContext";
 import { fetchTeamMemberBySlug } from "~/lib/fetchApi.server";
 import { imageSrc } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
+import { getLangFromRequest } from "~/lib/lang.server";
 
 import teamProfileCss from "~/styles/team-profile.css?url";
 
@@ -38,19 +40,31 @@ export async function loader({ params, request }) {
   if (!member) {
     throw new Response("Team member not found", { status: 404 });
   }
-  return { member };
+  return { member, lang: getLangFromRequest(request) };
 }
 
 export function meta({ data }) {
   const member = data?.member;
-  if (!member) return [{ title: "Team Member | Mind Heal" }];
-  return [
-    { title: `${member.name} | Mind Heal Team` },
-    {
-      name: "description",
-      content: stripHtml(member.bio) || `${member.name} - ${member.degree} at Mind Heal`,
-    },
-  ];
+  if (!member) {
+    return buildPageMeta({
+      title: "Team Member Not Found",
+      description: "The requested team member profile could not be found.",
+      path: "/about",
+      noindex: true,
+    });
+  }
+
+  const bio = stripHtml(data?.lang === "hi" ? member.bioHi || member.bio : member.bio);
+
+  return buildPageMeta({
+    title: `${member.name} — Mind Heal Team`,
+    description:
+      bio ||
+      `${member.name}, ${member.degree || "Bach Flower expert"} at Mind Heal. Book a free consultation for personalized emotional wellness support.`,
+    path: `/team/${member.slug}`,
+    image: member.image,
+    type: "profile",
+  });
 }
 
 export default function TeamMemberProfile() {

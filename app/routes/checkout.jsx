@@ -7,10 +7,20 @@ import { useAuth } from "~/context/AuthContext";
 import { useCart } from "~/context/CartContext";
 import { ordersApi } from "~/lib/api";
 import { formatPrice, productMindHealLabel } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 
 import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
+
+export function meta() {
+  return buildPageMeta({
+    title: "Checkout",
+    description: "Complete your Mind Heal Bach Flower remedy order with Cash on Delivery.",
+    path: "/checkout",
+    noindex: true,
+  });
+}
 
 function CheckoutForm() {
   const { user } = useAuth();

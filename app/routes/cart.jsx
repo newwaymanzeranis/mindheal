@@ -11,6 +11,7 @@ import {
   productMindHealLabel,
 } from "~/utils/format";
 import { buildAuthRedirectUrl } from "~/utils/navigation";
+import { buildPageMeta } from "~/utils/seo";
 
 import cartCss from "~/styles/cart.css?url";
 
@@ -19,13 +20,12 @@ export const links = () => [{ rel: "stylesheet", href: cartCss }];
 const HERO_STAT_ICONS = ["bi-bag-heart", "bi-percent", "bi-truck"];
 
 export function meta() {
-  return [
-    { title: "Your Cart | Mind Heal" },
-    {
-      name: "description",
-      content: "Review your Mind Heal Bach Flower mixtures before checkout with Cash on Delivery.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Your Cart",
+    description: "Review your Mind Heal Bach Flower mixtures before checkout with Cash on Delivery.",
+    path: "/cart",
+    noindex: true,
+  });
 }
 
 export async function loader({ request }) {

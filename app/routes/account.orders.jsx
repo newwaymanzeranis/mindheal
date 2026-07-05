@@ -6,11 +6,21 @@ import RequireAuth from "~/components/RequireAuth";
 import { useAuth } from "~/context/AuthContext";
 import { ordersApi } from "~/lib/api";
 import { formatPrice } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 import { STATUS_LABELS, orderStatusBadgeClass } from "~/utils/orderStatus";
 
 import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
+
+export function meta() {
+  return buildPageMeta({
+    title: "My Orders",
+    description: "View your Mind Heal Bach Flower remedy orders.",
+    path: "/account/orders",
+    noindex: true,
+  });
+}
 
 function OrdersList() {
   const { user } = useAuth();

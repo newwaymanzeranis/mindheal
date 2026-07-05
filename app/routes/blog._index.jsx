@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router";
 import { useLang } from "~/context/LanguageContext";
 import { fetchPosts } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 import blogCss from "~/styles/blog.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: blogCss }];
@@ -17,14 +18,13 @@ export async function loader({ request }) {
 }
 
 export function meta() {
-  return [
-    { title: "Blogs | Mind Heal" },
-    {
-      name: "description",
-      content:
-        "Learn and thrive with Mind Heal blogs — Bach Flower Remedies wisdom, emotional wellness tips, and expert guidance from our experience.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Mind Heal Blog — Bach Flower Remedies Wisdom",
+    description:
+      "Read Mind Heal blogs on Bach Flower Remedies — how to choose the right remedy, emotional wellness tips, remedy guides and expert healing insights.",
+    path: "/blog",
+    image: "/assets/img/blog/blog1.png",
+  });
 }
 
 export default function Blog() {

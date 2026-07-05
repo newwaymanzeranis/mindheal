@@ -5,11 +5,21 @@ import PageTitle from "~/components/PageTitle";
 import RequireAuth from "~/components/RequireAuth";
 import { ordersApi } from "~/lib/api";
 import { formatPrice, productMindHealLabel } from "~/utils/format";
+import { buildPageMeta } from "~/utils/seo";
 import { STATUS_LABELS, orderStatusBadgeClass } from "~/utils/orderStatus";
 
 import cartCss from "~/styles/cart.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: cartCss }];
+
+export function meta() {
+  return buildPageMeta({
+    title: "Order Details",
+    description: "View your Mind Heal order details.",
+    path: "/orders",
+    noindex: true,
+  });
+}
 
 const STATUS_DETAIL_LABELS = {
   ...STATUS_LABELS,

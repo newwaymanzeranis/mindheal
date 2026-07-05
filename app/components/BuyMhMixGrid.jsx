@@ -6,9 +6,10 @@ import ProductPrice from "~/components/ProductPrice";
 import { useCart } from "~/context/CartContext";
 import { useLang } from "~/context/LanguageContext";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
+import { parseProductTags } from "~/utils/seo";
 
 export default function BuyMhMixGrid({ products = [] }) {
-  const { t, tc } = useLang();
+  const { t, tc, lang } = useLang();
   const { addToCart, items, hydrated } = useCart();
   const [addedId, setAddedId] = useState(null);
 
@@ -29,6 +30,11 @@ export default function BuyMhMixGrid({ products = [] }) {
       {products.map((product) => {
         const inCartQty =
           items.find((item) => item.id === product.id)?.quantity ?? 0;
+        const name = tc(product, "name");
+        const tags = parseProductTags(product, lang);
+        const imageAlt = tags.length
+          ? `${name} — Bach Flower Remedy for ${tags.join(", ")}`
+          : `${name} — Mind Heal Bach Flower Remedy`;
 
         return (
         <div className="col-lg-4 col-md-6" key={product.id}>
@@ -37,7 +43,7 @@ export default function BuyMhMixGrid({ products = [] }) {
               <span className="mix-product-badge">
                 {productMindHealLabel(product.mindHealNo, product.sortOrder)}
               </span>
-              <img src={imageSrc(product.image)} className="img-fluid" alt={tc(product, "name")} />
+              <img src={imageSrc(product.image)} className="img-fluid" alt={imageAlt} />
             </div>
             <div className="mix-product-body">
               <h3 className="mix-product-title">{tc(product, "name")}</h3>

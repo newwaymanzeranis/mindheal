@@ -4,6 +4,7 @@ import { Link, useNavigate, useSearchParams } from "react-router";
 import { useAuth } from "~/context/AuthContext";
 import { useLang } from "~/context/LanguageContext";
 import { buildAuthRedirectUrl, normalizeRedirect } from "~/utils/navigation";
+import { buildPageMeta } from "~/utils/seo";
 import authCss from "~/styles/auth.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: authCss }];
@@ -11,14 +12,13 @@ export const links = () => [{ rel: "stylesheet", href: authCss }];
 const HERO_STAT_ICONS = ["bi-person-plus", "bi-truck", "bi-bag-check"];
 
 export function meta() {
-  return [
-    { title: "Create Account | Mind Heal" },
-    {
-      name: "description",
-      content:
-        "Create your Mind Heal account to order Bach Flower mixtures with Cash on Delivery.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Create Account",
+    description:
+      "Create your Mind Heal account to order Bach Flower remedy blends with Cash on Delivery across India.",
+    path: "/register",
+    noindex: true,
+  });
 }
 
 export default function RegisterPage() {

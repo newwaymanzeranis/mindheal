@@ -15,6 +15,8 @@ import {
   productMindHealLabel,
 } from "~/utils/format";
 import { getProductPricing } from "~/utils/pricing";
+import { getLangFromRequest } from "~/lib/lang.server";
+import { buildPageMeta, parseProductTags, productPageMeta, getSiteUrl } from "~/utils/seo";
 
 import productDetailCss from "~/styles/product-detail.css?url";
 import productSliderCss from "~/styles/product-slider.css?url";
@@ -55,30 +57,34 @@ export async function loader({ params, request }) {
     20
   );
 
-  return { product, relatedProducts };
+  return { product, relatedProducts, lang: getLangFromRequest(request), siteUrl: getSiteUrl(request) };
 }
 
 export function meta({ data }) {
   const product = data?.product;
-  if (!product) return [{ title: "Product | Mind Heal" }];
-  return [
-    { title: `${product.name} | Mind Heal` },
-    {
-      name: "description",
-      content:
-        product.shortDescription ||
-        product.description ||
-        `Shop ${product.name} — Bach Flower remedy by Mind Heal`,
-    },
-  ];
+  if (!product) {
+    return buildPageMeta({
+      title: "Product Not Found",
+      description: "The requested Bach Flower remedy could not be found.",
+      path: "/buy_mh_mix",
+      noindex: true,
+      siteUrl: data?.siteUrl,
+    });
+  }
+  return productPageMeta(product, data?.lang || "en", data?.siteUrl);
 }
 
 export default function ProductDetail() {
-  const { t, tc } = useLang();
+  const { t, tc, lang } = useLang();
   const { product, relatedProducts } = useLoaderData();
   const name = tc(product, "name");
   const shortDescription = tc(product, "shortDescription");
   const description = tc(product, "description");
+  const tags = parseProductTags(product, lang);
+  const tagLabel = tags.length ? tags.join(", ") : "";
+  const imageAlt = tagLabel
+    ? `${name} — Mind Heal Bach Flower Remedy for ${tagLabel}`
+    : `${name} — Mind Heal Bach Flower Remedy`;
   const showHealingNote =
     description &&
     description.trim() !== (shortDescription || "").trim();
@@ -106,13 +112,13 @@ export default function ProductDetail() {
               <div className="pd-showcase-frame">
                 <img
                   src={imageSrc(product.image)}
-                  alt={name}
+                  alt={imageAlt}
                   className="pd-showcase-scene"
                 />
               </div>
               <img
                 src={bottleImageSrc(product)}
-                alt={`${name} ${t("productDetail.bottleAlt")}`}
+                alt={imageAlt}
                 className="pd-showcase-bottle"
               />
             </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 import { authApi } from "~/lib/api";
+import { buildPageMeta } from "~/utils/seo";
 import authCss from "~/styles/auth.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: authCss }];
@@ -22,13 +23,12 @@ const STEP_HINTS = {
 };
 
 export function meta() {
-  return [
-    { title: "Forgot Password | Mind Heal" },
-    {
-      name: "description",
-      content: "Reset your Mind Heal account password securely via email OTP.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Forgot Password",
+    description: "Reset your Mind Heal account password securely via email OTP.",
+    path: "/forgot-password",
+    noindex: true,
+  });
 }
 
 function StepIndicator({ step }) {

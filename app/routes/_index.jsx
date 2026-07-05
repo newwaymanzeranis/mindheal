@@ -17,6 +17,12 @@ import {
   fetchTestimonials,
 } from "~/lib/fetchApi.server";
 import { initHomePage } from "~/utils/siteInit";
+import {
+  buildPageMeta,
+  getSiteUrl,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "~/utils/seo";
 import productSliderCss from "~/styles/product-slider.css?url";
 import whyChooseUsCss from "~/styles/why-choose-us.css?url";
 import remediesExpertCss from "~/styles/remedies-expert.css?url";
@@ -64,6 +70,20 @@ export async function loader({ request }) {
     popularProducts: pickRandomProducts(sortedProducts, 8),
     testimonials,
   };
+}
+
+export function meta() {
+  const siteUrl = getSiteUrl();
+
+  return buildPageMeta({
+    title: "Mind Heal — Bach Flower Remedies for Emotional Wellness",
+    description:
+      "Mind Heal offers 75+ pre-mixed Bach Flower remedy blends for anxiety, stress, OCD, exam pressure, sleep issues and emotional balance. 100% natural, expert-crafted, Cash on Delivery across India.",
+    path: "/",
+    image: "/assets/img/logo.png",
+    siteUrl,
+    jsonLd: [organizationJsonLd(siteUrl), websiteJsonLd(siteUrl)],
+  });
 }
 
 export default function Index() {

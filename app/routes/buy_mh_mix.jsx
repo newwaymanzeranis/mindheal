@@ -5,6 +5,8 @@ import BuyMhMixGrid from "~/components/BuyMhMixGrid";
 import MixSearchFilter from "~/components/MixSearchFilter";
 import { useLang } from "~/context/LanguageContext";
 import { fetchAllProducts } from "~/lib/fetchApi.server";
+import { getLangFromRequest } from "~/lib/lang.server";
+import { productCatalogMeta, getSiteUrl } from "~/utils/seo";
 
 import buyMhMixCss from "~/styles/buy-mh-mix.css?url";
 import cartCss from "~/styles/cart.css?url";
@@ -20,7 +22,11 @@ export async function loader({ request }) {
   const products = (await fetchAllProducts("published=true", { request })).sort(
     (a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)
   );
-  return { products };
+  return { products, lang: getLangFromRequest(request), siteUrl: getSiteUrl(request) };
+}
+
+export function meta({ data }) {
+  return productCatalogMeta(data?.products ?? [], data?.lang || "en", data?.siteUrl);
 }
 
 export default function BuyMhMix() {

@@ -1,4 +1,5 @@
 import { useLang } from "~/context/LanguageContext";
+import { buildPageMeta } from "~/utils/seo";
 import contactCss from "~/styles/contact.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: contactCss }];
@@ -9,14 +10,13 @@ const MAP_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1487758210487!2d80.95561882410848!3d26.907787495698997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957bf17d5cee9%3A0xe3d4fb0de752fd8d!2sTedhi%20Pulia%2C%20Adil%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh%20226022!5e1!3m2!1sen!2sin!4v1744911510772!5m2!1sen!2sin";
 
 export function meta() {
-  return [
-    { title: "Contact Us | Mind Heal" },
-    {
-      name: "description",
-      content:
-        "Contact Mind Heal for Bach Flower remedy guidance. Your healing starts with a message — we're here to listen and support you.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Contact Mind Heal — Free Bach Flower Consultation",
+    description:
+      "Contact Mind Heal for Bach Flower remedy guidance, free consultation and emotional wellness support. Call +91 74579 88355 or email mindhealbbfr@gmail.com. Lucknow & Mau, India.",
+    path: "/contact",
+    image: "/assets/img/img_sq_1.jpeg",
+  });
 }
 
 export default function Contact() {

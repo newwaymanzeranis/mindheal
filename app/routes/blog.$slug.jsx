@@ -4,6 +4,8 @@ import PageTitle from "~/components/PageTitle";
 import { useLang } from "~/context/LanguageContext";
 import { fetchPostBySlug } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
+import { blogPostMeta, buildPageMeta } from "~/utils/seo";
+import { getLangFromRequest } from "~/lib/lang.server";
 
 import blogCss from "~/styles/blog.css?url";
 
@@ -14,16 +16,20 @@ export async function loader({ params, request }) {
   if (!post) {
     throw new Response("Post not found", { status: 404 });
   }
-  return { post };
+  return { post, lang: getLangFromRequest(request) };
 }
 
 export function meta({ data }) {
   const post = data?.post;
-  if (!post) return [{ title: "Blog | Mind Heal" }];
-  return [
-    { title: `${post.title} | Mind Heal Blog` },
-    { name: "description", content: post.excerpt || post.title },
-  ];
+  if (!post) {
+    return buildPageMeta({
+      title: "Blog Post Not Found",
+      description: "The requested blog post could not be found.",
+      path: "/blog",
+      noindex: true,
+    });
+  }
+  return blogPostMeta(post, data?.lang || "en");
 }
 
 export default function BlogPost() {

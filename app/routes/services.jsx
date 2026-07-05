@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 
 import { useLang } from "~/context/LanguageContext";
+import { buildPageMeta } from "~/utils/seo";
 import servicesCss from "~/styles/services.css?url";
 
 export const links = () => [{ rel: "stylesheet", href: servicesCss }];
@@ -17,14 +18,13 @@ const GROUP_ICONS = [
 ];
 
 export function meta() {
-  return [
-    { title: "Services | Mind Heal" },
-    {
-      name: "description",
-      content:
-        "Explore Mind Heal services — free consults, personal support, remedy delivery, child care, and emotional wellness with Bach Flower Remedies.",
-    },
-  ];
+  return buildPageMeta({
+    title: "Mind Heal Services — Bach Flower Emotional Wellness",
+    description:
+      "Explore Mind Heal services — free consult, free discussion, free mixing help, emotional test, remedy delivery, child care, group healing and personalized Bach Flower support.",
+    path: "/services",
+    image: "/assets/img/services/consultent.jpg",
+  });
 }
 
 export default function Services() {
