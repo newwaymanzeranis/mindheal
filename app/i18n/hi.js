@@ -369,7 +369,7 @@ const hi = {
     infoText:
       "चाहे आपके पास कोई प्रश्न हो, सही उपचार चुनने में मदद चाहिए हो, या बस अपनी कहानी साझा करनी हो — कभी भी बेझिझक हमसे संपर्क करें। आपकी भावनात्मक सेहत मायने रखती है, और हम बस एक संदेश दूर हैं।",
     locationLabel: "स्थान",
-    locationValue: "आदिल नगर टेढ़ी पुलिया लखनऊ",
+    locationValue: "टेढ़ी पुलिया लखनऊ",
     emailLabel: "ईमेल",
     callLabel: "कॉल करें",
     formName: "आपका नाम",
@@ -477,6 +477,18 @@ const hi = {
     phone: "फ़ोन:",
     email: "ईमेल:",
     rights: "सर्वाधिकार सुरक्षित",
+    productionTitle: "मुख्य उत्पादन इकाई",
+    productionLab: "माइंड हील लैब",
+    productionAddress1: "करीमुद्दीनपुर, पोस्ट घोसी",
+    productionAddress2: "मऊ, उत्तर प्रदेश – भारत",
+    productionRole: "उत्पादन और डिस्पैच केंद्र",
+    branchTitle: "आगामी शाखा (जल्द आ रही है)",
+    branchName: "माइंड हील – लखनऊ शाखा",
+    branchAddress1: "टेढ़ी पुलिया कुर्सी रोड",
+    branchAddress2: "लखनऊ, उत्तर प्रदेश – 226022",
+    branchAddress3: "भारत",
+    branchManager: "शाखा प्रबंधक",
+    branchManagerName: "श्री खुर्शीद",
   },
 };
 

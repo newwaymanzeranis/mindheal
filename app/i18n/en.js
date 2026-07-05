@@ -369,7 +369,7 @@ const en = {
     infoText:
       "Whether you have a question, need help choosing the right remedy, or just want to share your story — feel free to reach out to us anytime. Your emotional wellness matters, and we're just a message away.",
     locationLabel: "Location",
-    locationValue: "Aadil Nagar Tehri Pulia Lucknow",
+    locationValue: "Tedhi Pulia Lucknow",
     emailLabel: "Email",
     callLabel: "Call",
     formName: "Your Name",
@@ -477,6 +477,18 @@ const en = {
     phone: "Phone:",
     email: "Email:",
     rights: "All Rights Reserved",
+    productionTitle: "Main Production Unit",
+    productionLab: "Mind Heal Lab",
+    productionAddress1: "Karimuddinpur, Post Ghosi",
+    productionAddress2: "Mau, Uttar Pradesh – India",
+    productionRole: "Production & Dispatch Centre",
+    branchTitle: "Upcoming Branch (Coming Soon)",
+    branchName: "Mind Heal – Lucknow Branch",
+    branchAddress1: "Tedhi Pulia Kursi Road",
+    branchAddress2: "Lucknow, Uttar Pradesh – 226022",
+    branchAddress3: "India",
+    branchManager: "Branch Manager",
+    branchManagerName: "Mr. Khurshid",
   },
 };
 

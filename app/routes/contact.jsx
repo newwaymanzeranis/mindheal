@@ -88,7 +88,7 @@ export default function Contact() {
                 <div>
                   <h4>{t("contact.emailLabel")}</h4>
                   <p>
-                    <a href="mailto:mindheal@gmail.com">mindheal@gmail.com</a>
+                    <a href="mailto:mindheal@gmail.com">mindhealbbfr@gmail.com</a>
                   </p>
                 </div>
               </div>
