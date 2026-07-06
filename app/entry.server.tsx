@@ -1,9 +1,8 @@
 import type { AppLoadContext, EntryContext } from "react-router";
 import { handleRequest as vercelHandleRequest } from "@vercel/react-router/entry.server";
 
+import { handleStaticAssetRequest } from "~/lib/staticAssets.server";
 import { proxyToExpressApi } from "~/lib/expressProxy.server";
-import { buildRobotsResponse } from "~/lib/robots.server";
-import { buildSitemapResponse } from "~/lib/sitemap.server";
 
 export default async function handleRequest(
   request: Request,
@@ -18,13 +17,8 @@ export default async function handleRequest(
     return proxyToExpressApi(request);
   }
 
-  if (pathname === "/sitemap.xml" || pathname === "/sitemap.xml/") {
-    return buildSitemapResponse(request);
-  }
-
-  if (pathname === "/robots.txt" || pathname === "/robots.txt/") {
-    return buildRobotsResponse(request);
-  }
+  const staticResponse = await handleStaticAssetRequest(request);
+  if (staticResponse) return staticResponse;
 
   return vercelHandleRequest(
     request,

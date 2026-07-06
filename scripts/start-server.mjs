@@ -1,7 +1,9 @@
 import { createServer } from "node:http";
+import { createRequestHandler } from "react-router";
 
-import handler from "../build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js";
+import * as build from "../build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js";
 
+const handler = createRequestHandler(build, process.env.NODE_ENV);
 const port = Number(process.env.PORT) || 3000;
 
 createServer(async (req, res) => {

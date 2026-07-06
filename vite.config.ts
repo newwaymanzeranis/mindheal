@@ -7,7 +7,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const appDirectory = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig(({ isSsrBuild }) => ({
+export default defineConfig({
   plugins: [reactRouter(), tsconfigPaths()],
   resolve: {
     alias: {
@@ -16,7 +16,6 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   build: {
     rollupOptions: {
-      ...(isSsrBuild ? { input: "./server/app.js" } : {}),
       external: ["nodemailer"],
     },
   },
@@ -34,4 +33,4 @@ export default defineConfig(({ isSsrBuild }) => ({
       },
     },
   },
-}));
+});
