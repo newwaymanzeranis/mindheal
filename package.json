@@ -8,7 +8,7 @@
     "dev": "react-router dev",
     "db:generate": "prisma generate",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "react-router-serve ./build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "isbot": "^4.1.0",
+    "isbot": "^5.1.44",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^8.0.10",
     "qrcode": "^1.5.4",
@@ -36,6 +36,7 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
+    "@vercel/react-router": "^1.3.1",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.38.0",
     "eslint-import-resolver-typescript": "^3.6.1",
