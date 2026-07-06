@@ -1,17 +1,19 @@
-import type { AppLoadContext, EntryContext } from "react-router";
-import { handleRequest as vercelHandleRequest } from "@vercel/react-router/entry.server";
+import { createRequestHandler } from "react-router";
 
 import { proxyToExpressApi } from "~/lib/expressProxy.server";
 import { buildRobotsResponse } from "~/lib/robots.server";
 import { buildSitemapResponse } from "~/lib/sitemap.server";
 
-export default async function handleRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  routerContext: EntryContext,
-  loadContext: AppLoadContext
-) {
+// @ts-expect-error virtual module provided by React Router at build time
+import * as build from "virtual:react-router/server-build";
+
+const reactRouterHandler = createRequestHandler(build, process.env.NODE_ENV);
+
+/**
+ * Vercel invokes this before React Router route matching.
+ * Needed because URLs with dots (sitemap.xml, robots.txt) do not match reliably.
+ */
+export default async function handler(request) {
   const { pathname } = new URL(request.url);
 
   if (pathname.startsWith("/api")) {
@@ -26,11 +28,5 @@ export default async function handleRequest(
     return buildRobotsResponse(request);
   }
 
-  return vercelHandleRequest(
-    request,
-    responseStatusCode,
-    responseHeaders,
-    routerContext,
-    loadContext
-  );
+  return reactRouterHandler(request);
 }
