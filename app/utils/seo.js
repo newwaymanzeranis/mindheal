@@ -4,7 +4,7 @@ import { bottleImageSrc, cleanProductName, imageSrc } from "~/utils/format";
 
 export const SITE_NAME = "Mind Heal";
 export const DEFAULT_SITE_URL = "https://mind-heal.in";
-export const DEFAULT_OG_IMAGE = "/assets/img/logo.png";
+export const DEFAULT_OG_IMAGE = "/android-chrome-512x512.png";
 
 export function getSiteUrl(request) {
   const fromEnv =
@@ -149,7 +149,14 @@ export function buildPageMeta({
 
   for (const ogImage of ogImages.slice(0, 4)) {
     tags.push({ property: "og:image", content: ogImage });
+    tags.push({ property: "og:image:secure_url", content: ogImage });
     tags.push({ name: "twitter:image", content: ogImage });
+  }
+
+  if (ogImages[0]?.includes("android-chrome-512x512")) {
+    tags.push({ property: "og:image:width", content: "512" });
+    tags.push({ property: "og:image:height", content: "512" });
+    tags.push({ property: "og:image:type", content: "image/png" });
   }
 
   if (imageAlt) {
