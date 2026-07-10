@@ -10,6 +10,6 @@ export default function HeaderCart() {
       {hydrated && cartCount > 0 && (
         <span className="header-cart-count">{cartCount > 99 ? "99+" : cartCount}</span>
       )}
-    </Link>
+    </Link> 
   );
 }
