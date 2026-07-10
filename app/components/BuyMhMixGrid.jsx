@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
+import ProductVideoPlayButton from "~/components/ProductVideoPlayButton";
 import { useCart } from "~/context/CartContext";
 import { useLang } from "~/context/LanguageContext";
 import { imageSrc, productMindHealLabel } from "~/utils/format";
 import { parseProductTags } from "~/utils/seo";
+import { initGLightbox } from "~/utils/siteInit";
 
 export default function BuyMhMixGrid({ products = [] }) {
   const { t, tc, lang } = useLang();
   const { addToCart, items, hydrated } = useCart();
   const [addedId, setAddedId] = useState(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.GLightbox) return undefined;
+    const frame = requestAnimationFrame(() => initGLightbox());
+    return () => cancelAnimationFrame(frame);
+  }, [products]);
 
   const handleAdd = (product) => {
     addToCart(product);
@@ -44,6 +52,10 @@ export default function BuyMhMixGrid({ products = [] }) {
                 {productMindHealLabel(product.mindHealNo, product.sortOrder)}
               </span>
               <img src={imageSrc(product.image)} className="img-fluid" alt={imageAlt} />
+              <ProductVideoPlayButton
+                product={product}
+                className="mix-product-play"
+              />
             </div>
             <div className="mix-product-body">
               <h3 className="mix-product-title">{tc(product, "name")}</h3>

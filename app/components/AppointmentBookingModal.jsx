@@ -82,7 +82,7 @@ export default function AppointmentBookingModal({ member, open, onClose, user })
             <i className="bi bi-x-lg" />
           </button>
           <img src="/assets/img/logo.png" alt="Mind Heal" className="appointment-modal-logo" />
-          <h2 id="appointment-modal-title">Book Free Consultation</h2>
+          <h2 id="appointment-modal-title">Book Consultation</h2>
           <p>Fill the form below — our team will contact you shortly</p>
         </div>
 

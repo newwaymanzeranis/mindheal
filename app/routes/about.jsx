@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useLocation } from "react-router";
+
+import { scrollToTeamSection } from "~/components/DoctorConsultFab";
 
 import { TeamCardSocialLinks } from "~/components/TeamSocialLinks";
 import { useLang } from "~/context/LanguageContext";
@@ -49,6 +51,7 @@ export function meta() {
 export default function About() {
   const { t, tc } = useLang();
   const { team } = useLoaderData();
+  const location = useLocation();
   const scriptsReady = useSiteScripts();
 
   const heroStats = t("about.hero.stats");
@@ -70,6 +73,16 @@ export default function About() {
       lightbox.destroy();
     };
   }, [scriptsReady]);
+
+  useEffect(() => {
+    if (location.hash !== "#team") return undefined;
+
+    const frame = requestAnimationFrame(() => {
+      scrollToTeamSection();
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [location.hash, location.pathname, team.length]);
 
   return (
     <main className="main about-page">

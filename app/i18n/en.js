@@ -34,6 +34,12 @@ const en = {
     saving: "Saving...",
   },
 
+  floating: {
+    doctorConsult: "Doctor Consult",
+    meetExperts: "Meet Our Experts",
+    doctorConsultAria: "Consult with Mind Heal doctors and team experts",
+  },
+
   shop: {
     bottleTitle: "Shop Our Bach Flower Remedies",
     bottleSubtitle:

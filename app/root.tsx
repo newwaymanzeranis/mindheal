@@ -14,6 +14,7 @@ import type { LinksFunction, LoaderFunctionArgs } from "react-router";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import CartToast from "~/components/CartToast";
+import DoctorConsultFab from "~/components/DoctorConsultFab";
 import NavigationLoader from "~/components/NavigationLoader";
 import { AuthProvider } from "~/context/AuthContext";
 import { CartProvider } from "~/context/CartContext";
@@ -24,6 +25,7 @@ import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { initAOS, refreshAOS } from "~/utils/siteInit";
 
 import cartCss from "~/styles/cart.css?url";
+import floatingActionsCss from "~/styles/floating-actions.css?url";
 import headerNavCss from "~/styles/header-nav.css?url";
 import langSwitchCss from "~/styles/lang-switch.css?url";
 
@@ -54,6 +56,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: "/assets/vendor/bootstrap/css/bootstrap.min.css" },
   { rel: "stylesheet", href: "/assets/css/main.css" },
   { rel: "stylesheet", href: cartCss },
+  { rel: "stylesheet", href: floatingActionsCss },
   { rel: "stylesheet", href: headerNavCss },
   { rel: "stylesheet", href: langSwitchCss },
 ];
@@ -121,6 +124,7 @@ export default function App() {
             <Header />
             <Outlet />
             <Footer />
+            <DoctorConsultFab />
             <a
               href="#"
               id="scroll-top"

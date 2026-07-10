@@ -36,12 +36,12 @@ export default function TeamConsultationCta({ member }) {
       <div className="team-profile-cta" data-aos="fade-up">
         <h3>Ready to Start Your Healing Journey?</h3>
         <p>
-          Book a free consultation with {member.name.split(" ").pop()} and discover the right Bach
+          Book a consultation with {member.name.split(" ").pop()} and discover the right Bach
           Flower Remedies for your emotional wellness.
         </p>
         <button type="button" className="btn-consult" onClick={handleBook}>
           <i className="bi bi-calendar-check" />
-          Book Free Consultation
+          Book Consultation
         </button>
       </div>
 

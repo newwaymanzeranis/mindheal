@@ -521,6 +521,14 @@
   object-fit: cover;
 }
 
+.mix-product-img .mix-product-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
 .services .content .service-item .bf-mixture-img {
   position: relative;
   background: #f8faf9;

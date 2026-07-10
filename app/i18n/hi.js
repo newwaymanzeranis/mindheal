@@ -34,6 +34,12 @@ const hi = {
     saving: "सेव हो रहा है...",
   },
 
+  floating: {
+    doctorConsult: "डॉक्टर परामर्श",
+    meetExperts: "हमारे विशेषज्ञों से मिलें",
+    doctorConsultAria: "माइंड हील डॉक्टरों और टीम विशेषज्ञों से परामर्श करें",
+  },
+
   shop: {
     bottleTitle: "हमारे बाख फ्लावर उपचार खरीदें",
     bottleSubtitle:
