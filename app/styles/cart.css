@@ -534,6 +534,56 @@
   display: block;
 }
 
+.bf-mixture-img .bf-mixture-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.pulsating-play-btn--sm {
+  width: 52px;
+  height: 52px;
+}
+
+.pulsating-play-btn--sm:before {
+  width: 68px;
+  height: 68px;
+  border-width: 3px;
+}
+
+.pulsating-play-btn--sm:after {
+  border-top-width: 6px;
+  border-bottom-width: 6px;
+  border-left-width: 9px;
+}
+
+.pulsating-play-btn--sm:hover:before {
+  border-top-width: 6px;
+  border-bottom-width: 6px;
+  border-left-width: 9px;
+}
+
+.pulsating-play-btn--sm:hover:after {
+  border-left-width: 9px;
+}
+
+.pulsating-play-btn--sm .play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.pulsating-play-btn--sm .play i {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-left: 2px;
+}
+
 .mix-product-badge {
   position: absolute;
   top: 12px;

@@ -77,6 +77,7 @@ export const create = async (req, res) => {
     price,
     image,
     productBottleImage,
+    youtubeUrl,
     published,
     sortOrder,
     emotionalTags,
@@ -105,6 +106,7 @@ export const create = async (req, res) => {
       price: price != null ? price : 250,
       image,
       productBottleImage: productBottleImage ?? null,
+      youtubeUrl: youtubeUrl?.trim() || null,
       published: published ?? true,
       sortOrder: sortOrder ?? 0,
       emotionalTags:
@@ -136,6 +138,7 @@ export const update = async (req, res) => {
     price,
     image,
     productBottleImage,
+    youtubeUrl,
     published,
     sortOrder,
     emotionalTags,
@@ -165,6 +168,7 @@ export const update = async (req, res) => {
     ...(price !== undefined && { price }),
     ...(image !== undefined && { image }),
     ...(productBottleImage !== undefined && { productBottleImage }),
+    ...(youtubeUrl !== undefined && { youtubeUrl: youtubeUrl?.trim() || null }),
     ...(published !== undefined && { published }),
     ...(sortOrder !== undefined && { sortOrder: Number(sortOrder) }),
     ...(emotionalTags !== undefined && {

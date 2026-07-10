@@ -5,8 +5,10 @@ import "swiper/css/bundle";
 
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
 import ProductPrice from "~/components/ProductPrice";
+import ProductVideoPlayButton from "~/components/ProductVideoPlayButton";
 import { useCart } from "~/context/CartContext";
 import { useLang } from "~/context/LanguageContext";
+import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { fetchAllProducts, fetchProductBySlug } from "~/lib/fetchApi.server";
 import {
   bottleImageSrc,
@@ -16,6 +18,7 @@ import {
 } from "~/utils/format";
 import { getProductPricing } from "~/utils/pricing";
 import { getLangFromRequest } from "~/lib/lang.server";
+import { initGLightbox } from "~/utils/siteInit";
 import { buildPageMeta, parseProductTags, productPageMeta, getSiteUrl } from "~/utils/seo";
 
 import productDetailCss from "~/styles/product-detail.css?url";
@@ -77,6 +80,7 @@ export function meta({ data }) {
 export default function ProductDetail() {
   const { t, tc, lang } = useLang();
   const { product, relatedProducts } = useLoaderData();
+  const scriptsReady = useSiteScripts();
   const name = tc(product, "name");
   const shortDescription = tc(product, "shortDescription");
   const description = tc(product, "description");
@@ -89,6 +93,15 @@ export default function ProductDetail() {
     description &&
     description.trim() !== (shortDescription || "").trim();
   const trustItems = t("productDetail.trust");
+
+  useEffect(() => {
+    if (!scriptsReady || typeof window === "undefined" || !window.GLightbox) {
+      return undefined;
+    }
+
+    const frame = requestAnimationFrame(() => initGLightbox());
+    return () => cancelAnimationFrame(frame);
+  }, [scriptsReady]);
 
   return (
     <main className="main product-detail-page">
@@ -114,6 +127,10 @@ export default function ProductDetail() {
                   src={imageSrc(product.image)}
                   alt={imageAlt}
                   className="pd-showcase-scene"
+                />
+                <ProductVideoPlayButton
+                  product={product}
+                  className="pd-showcase-play"
                 />
               </div>
               <img

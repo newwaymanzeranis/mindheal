@@ -17,6 +17,7 @@ const empty = {
   price: "250",
   image: "",
   productBottleImage: "",
+  youtubeUrl: "",
   published: true,
   sortOrder: 0,
   emotionalTags: "",
@@ -49,6 +50,7 @@ export default function ProductForm({ productId }) {
           price: product.price != null ? String(product.price) : "250",
           image: product.image || "",
           productBottleImage: product.productBottleImage || "",
+          youtubeUrl: product.youtubeUrl || "",
           published: product.published ?? true,
           sortOrder: product.sortOrder ?? 0,
           emotionalTags: product.emotionalTags || "",
@@ -83,6 +85,7 @@ export default function ProductForm({ productId }) {
       price: form.price ? Number(form.price) : 250,
       image: form.image,
       productBottleImage: form.productBottleImage.trim() || null,
+      youtubeUrl: form.youtubeUrl.trim() || null,
       published: form.published,
       sortOrder: Number(form.sortOrder),
       emotionalTags: form.emotionalTags.trim() || null,
@@ -274,6 +277,19 @@ export default function ProductForm({ productId }) {
               <small className="text-muted">
                 Bottle photo shown in the homepage product slider. If empty, the default bottle
                 (/assets/img/products/product01.png) is shown.
+              </small>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">YouTube Video URL</label>
+              <input
+                className="form-control"
+                placeholder="https://www.youtube.com/watch?v=9PFB2v_fEaA"
+                value={form.youtubeUrl}
+                onChange={(e) => update("youtubeUrl", e.target.value)}
+              />
+              <small className="text-muted">
+                Product video shown on the homepage play button. Leave empty to use the default
+                introduction video.
               </small>
             </div>
             <div className="form-check mb-3">

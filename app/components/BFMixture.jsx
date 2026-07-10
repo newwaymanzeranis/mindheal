@@ -1,13 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import MixSearchFilter from "~/components/MixSearchFilter";
 import ProductBottleSlider from "~/components/ProductBottleSlider";
 import ProductEmotionalTags from "~/components/ProductEmotionalTags";
+import ProductVideoPlayButton from "~/components/ProductVideoPlayButton";
 import { useCart } from "~/context/CartContext";
 import { useLang } from "~/context/LanguageContext";
 import { formatPrice, imageSrc, productMixLabel } from "~/utils/format";
 import { getProductPricing } from "~/utils/pricing";
+import { initGLightbox } from "~/utils/siteInit";
 
 const DISPLAY_LIMIT = 16;
 
@@ -20,6 +22,12 @@ export default function BFMixture({ products = [] }) {
   const handleFilteredChange = useCallback((next) => {
     setFilteredProducts(next);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.GLightbox) return undefined;
+    const frame = requestAnimationFrame(() => initGLightbox());
+    return () => cancelAnimationFrame(frame);
+  }, [filteredProducts]);
 
   const handleAdd = (product) => {
     addToCart(product);
@@ -69,6 +77,10 @@ export default function BFMixture({ products = [] }) {
                       <img
                         src={imageSrc(product.image)}
                         alt={tc(product, "name")}
+                      />
+                      <ProductVideoPlayButton
+                        product={product}
+                        className="bf-mixture-play"
                       />
                     </div>
                   </div>
