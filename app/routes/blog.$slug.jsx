@@ -53,26 +53,20 @@ export default function BlogPost() {
             />
           </div>
 
-          <h1 className="bl-hero-title">{t("blog.heroTitle")}</h1>
+          <h1 className="bl-hero-title">{title}</h1>
 
-          <p className="bl-hero-lead">{t("blog.heroLead")}</p>
+          {excerpt && <p className="bl-hero-lead">{excerpt}</p>}
 
-          <div className="bl-hero-stats">
-            {(Array.isArray(t("blog.stats")) ? t("blog.stats") : []).map(
-              (label, index) => (
-                <span className="bl-stat" key={label}>
-                  <i
-                    className={`bi ${
-                      ["bi-journal-richtext", "bi-flower2", "bi-lightbulb"][
-                        index
-                      ] ?? "bi-lightbulb"
-                    }`}
-                  />
-                  {label}
-                </span>
-              )
-            )}
-          </div>
+          <nav className="bl-breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/blog">{t("blog.current")}</Link>
+              </li>
+            </ol>
+          </nav>
         </div>
       </section>
 
