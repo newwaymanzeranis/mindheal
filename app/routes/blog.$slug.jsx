@@ -1,6 +1,5 @@
 import { Link, useLoaderData } from "react-router";
 
-import PageTitle from "~/components/PageTitle";
 import { useLang } from "~/context/LanguageContext";
 import { fetchPostBySlug } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
@@ -42,13 +41,40 @@ export default function BlogPost() {
   const content = tc(post, "content");
 
   return (
-    <main className="main">
-      <PageTitle
-        title={title}
-        description={excerpt || title}
-        current={t("blog.current")}
-        backgroundImage="/assets/img/page-title-bg.jpg"
-      />
+    <main className="main blog-page blog-single-page">
+      <section className="bl-hero">
+        <div className="bl-hero-glow" aria-hidden />
+        <div className="bl-hero-glow bl-hero-glow--left" aria-hidden />
+        <div className="container">
+          <div className="bl-hero-logo" aria-hidden>
+            <img
+              src="/assets/img/mind-heal-logo-vertical-white.png"
+              alt=""
+            />
+          </div>
+
+          <h1 className="bl-hero-title">{t("blog.heroTitle")}</h1>
+
+          <p className="bl-hero-lead">{t("blog.heroLead")}</p>
+
+          <div className="bl-hero-stats">
+            {(Array.isArray(t("blog.stats")) ? t("blog.stats") : []).map(
+              (label, index) => (
+                <span className="bl-stat" key={label}>
+                  <i
+                    className={`bi ${
+                      ["bi-journal-richtext", "bi-flower2", "bi-lightbulb"][
+                        index
+                      ] ?? "bi-lightbulb"
+                    }`}
+                  />
+                  {label}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+      </section>
 
       <section className="blog-single section">
         <div className="container">
