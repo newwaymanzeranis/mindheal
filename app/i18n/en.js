@@ -230,6 +230,9 @@ const en = {
     sectionTitle: "MIND HEAL is your Healing Partner — Blogs",
     sectionSubtitle: "Learn & Thrive with the Wisdom of Our Experience!",
     empty: "No blog posts yet. Add posts from admin.",
+    prevPage: "Previous",
+    nextPage: "Next",
+    pageOf: "Page {page} of {pages}",
     ctaHeading:
       "No pressure. Just gentle healing. Your feelings are valid. We're here to support you. Let's talk, not just treat.",
     ctaTagline: "Begin with calm. Heal with care. Grow with love.",

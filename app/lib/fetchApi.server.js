@@ -72,6 +72,22 @@ export async function fetchPosts(params = "published=true&limit=50", options = {
   return data?.posts ?? [];
 }
 
+export async function fetchPostsPaginated(
+  params = "published=true&limit=50",
+  options = {}
+) {
+  const data = await fetchApi(`/posts?${params}`, options);
+  return {
+    posts: data?.posts ?? [],
+    pagination: data?.pagination ?? {
+      total: 0,
+      page: 1,
+      limit: 50,
+      pages: 0,
+    },
+  };
+}
+
 export async function fetchPostBySlug(slug, options = {}) {
   return fetchApi(`/posts/slug/${slug}`, options);
 }

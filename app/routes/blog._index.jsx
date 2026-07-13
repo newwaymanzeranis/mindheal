@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 
 import { useLang } from "~/context/LanguageContext";
-import { fetchPosts } from "~/lib/fetchApi.server";
+import { fetchPostsPaginated } from "~/lib/fetchApi.server";
 import { formatPostDate, imageSrc } from "~/utils/format";
 import { buildPageMeta } from "~/utils/seo";
 import blogCss from "~/styles/blog.css?url";
@@ -9,12 +9,41 @@ import blogCss from "~/styles/blog.css?url";
 export const links = () => [{ rel: "stylesheet", href: blogCss }];
 
 const HERO_STAT_ICONS = ["bi-journal-richtext", "bi-flower2", "bi-lightbulb"];
+const POSTS_PER_PAGE = 20;
 
 export async function loader({ request }) {
-  const posts = await fetchPosts("published=true&limit=50&categorySlug=bach-flower", {
-    request,
-  });
-  return { posts };
+  const url = new URL(request.url);
+  const requestedPage = Math.max(1, Number(url.searchParams.get("page")) || 1);
+
+  const { posts, pagination } = await fetchPostsPaginated(
+    `published=true&limit=${POSTS_PER_PAGE}&page=${requestedPage}&categorySlug=bach-flower`,
+    { request }
+  );
+
+  const totalPages = Math.max(1, pagination.pages || 1);
+  const page = Math.min(requestedPage, totalPages);
+
+  // If user requested a page past the end, refetch the last valid page
+  if (page !== requestedPage && pagination.pages > 0) {
+    const result = await fetchPostsPaginated(
+      `published=true&limit=${POSTS_PER_PAGE}&page=${page}&categorySlug=bach-flower`,
+      { request }
+    );
+    return {
+      posts: result.posts,
+      pagination: { ...result.pagination, page },
+    };
+  }
+
+  return {
+    posts,
+    pagination: {
+      ...pagination,
+      page,
+      pages: totalPages,
+      limit: POSTS_PER_PAGE,
+    },
+  };
 }
 
 export function meta() {
@@ -27,10 +56,16 @@ export function meta() {
   });
 }
 
+function blogPageHref(page) {
+  return page <= 1 ? "/blog" : `/blog?page=${page}`;
+}
+
 export default function Blog() {
   const { t, tc } = useLang();
-  const { posts } = useLoaderData();
+  const { posts, pagination } = useLoaderData();
   const heroStats = t("blog.stats");
+  const { page, pages } = pagination;
+  const showPagination = pages > 1;
 
   return (
     <main className="main blog-page">
@@ -122,6 +157,48 @@ export default function Blog() {
               );
             })}
           </div>
+
+          {showPagination && (
+            <nav className="bl-pagination" aria-label="Blog pagination">
+              {page > 1 ? (
+                <Link
+                  to={blogPageHref(page - 1)}
+                  className="bl-pagination-btn"
+                  preventScrollReset={false}
+                >
+                  <i className="bi bi-chevron-left" />
+                  {t("blog.prevPage")}
+                </Link>
+              ) : (
+                <span className="bl-pagination-btn is-disabled" aria-disabled="true">
+                  <i className="bi bi-chevron-left" />
+                  {t("blog.prevPage")}
+                </span>
+              )}
+
+              <span className="bl-pagination-info">
+                {t("blog.pageOf")
+                  .replace("{page}", String(page))
+                  .replace("{pages}", String(pages))}
+              </span>
+
+              {page < pages ? (
+                <Link
+                  to={blogPageHref(page + 1)}
+                  className="bl-pagination-btn"
+                  preventScrollReset={false}
+                >
+                  {t("blog.nextPage")}
+                  <i className="bi bi-chevron-right" />
+                </Link>
+              ) : (
+                <span className="bl-pagination-btn is-disabled" aria-disabled="true">
+                  {t("blog.nextPage")}
+                  <i className="bi bi-chevron-right" />
+                </span>
+              )}
+            </nav>
+          )}
         </div>
       </section>
 
