@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 
 import { categoriesApi, postsApi } from "~/lib/api";
 import { slugify } from "~/utils/slugify";
+import { adminPath } from "~/config/site";
 
 const empty = {
   title: "",
@@ -78,7 +79,7 @@ export default function PostForm({ postId }) {
       } else {
         await postsApi.create(body);
       }
-      navigate("/admin/posts");
+      navigate(adminPath("posts"));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -210,7 +211,7 @@ export default function PostForm({ postId }) {
           <button type="submit" className="btn btn-success" disabled={saving}>
             {saving ? "Saving..." : isEdit ? "Update Post" : "Create Post"}
           </button>
-          <Link to="/admin/posts" className="btn btn-outline-secondary ms-2">
+          <Link to={adminPath("posts")} className="btn btn-outline-secondary ms-2">
             Cancel
           </Link>
         </div>

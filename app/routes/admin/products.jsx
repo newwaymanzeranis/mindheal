@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { productsApi } from "~/lib/api";
 import { formatPrice, productMindHealLabel } from "~/utils/format";
 import { getProductPricing } from "~/utils/pricing";
+import { adminPath } from "~/config/site";
 
 const PAGE_SIZE = 50;
 
@@ -60,7 +61,7 @@ export default function AdminProducts() {
             </p>
           )}
         </div>
-        <Link to="/admin/products/new" className="btn btn-success">
+        <Link to={adminPath("products/new")} className="btn btn-success">
           <i className="bi bi-plus-lg" /> Add Product
         </Link>
       </div>
@@ -109,7 +110,7 @@ export default function AdminProducts() {
                     </td>
                     <td className="admin-actions">
                       <Link
-                        to={`/admin/products/${p.id}/edit`}
+                        to={adminPath(`products/${p.id}/edit`)}
                         className="btn btn-sm btn-outline-primary"
                       >
                         Edit

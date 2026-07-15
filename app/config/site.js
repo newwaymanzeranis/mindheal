@@ -1,3 +1,13 @@
+/** Obfuscated admin panel base path (not /admin). */
+export const ADMIN_BASE_PATH = "/m1i2n3d4_h5e6a7l8";
+
+/** Build an admin URL, e.g. adminPath("posts") → "/m1i2n3d4_h5e6a7l8/posts" */
+export function adminPath(sub = "") {
+  if (!sub) return ADMIN_BASE_PATH;
+  const suffix = String(sub).startsWith("/") ? sub : `/${sub}`;
+  return `${ADMIN_BASE_PATH}${suffix}`;
+}
+
 /** Public site URL for QR codes & links (set VITE_SITE_URL in production). */
 export function getSiteUrl() {
   const fromEnv = import.meta.env.VITE_SITE_URL;

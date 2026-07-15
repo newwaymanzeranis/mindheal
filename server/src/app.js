@@ -70,7 +70,7 @@ app.get("/api/health", async (req, res) => {
 });
 
 // Admin UI lives on the React app (Vite), not on this API server
-app.get(/^\/admin(\/.*)?$/, (req, res) => {
+app.get(/^\/m1i2n3d4_h5e6a7l8(\/.*)?$/, (req, res) => {
   res.redirect(`${clientUrl}${req.path}`);
 });
 
@@ -85,10 +85,10 @@ app.use("/api/home-slides", homeSlideRoutes);
 app.use("/api/orders", orderRoutes);
 
 app.use((req, res) => {
-  if (req.path.startsWith("/admin")) {
+  if (req.path.startsWith("/m1i2n3d4_h5e6a7l8")) {
     return res.status(404).json({
       success: false,
-      message: "Admin panel is on the frontend. Open " + clientUrl + "/admin/login",
+      message: "Admin panel is on the frontend.",
     });
   }
   res.status(404).json({ success: false, message: "Route not found" });

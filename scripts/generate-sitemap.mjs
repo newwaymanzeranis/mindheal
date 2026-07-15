@@ -134,6 +134,7 @@ function writeRobots() {
     `User-agent: *
 Allow: /
 
+Disallow: /m1i2n3d4_h5e6a7l8
 Disallow: /admin
 Disallow: /account
 Disallow: /checkout

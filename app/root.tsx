@@ -23,6 +23,7 @@ import { DEFAULT_LANG } from "~/i18n";
 import { getLangFromRequest } from "~/lib/lang.server";
 import { useSiteScripts } from "~/hooks/useSiteScripts";
 import { initAOS, refreshAOS } from "~/utils/siteInit";
+import { ADMIN_BASE_PATH } from "~/config/site";
 
 import cartCss from "~/styles/cart.css?url";
 import floatingActionsCss from "~/styles/floating-actions.css?url";
@@ -107,7 +108,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const { lang } = useLoaderData<typeof loader>();
   const { pathname } = useLocation();
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isAdminRoute = pathname.startsWith(ADMIN_BASE_PATH);
   const isHome = pathname === "/";
   const scriptsReady = useSiteScripts();
 

@@ -2,14 +2,15 @@ import { Outlet, useLocation } from "react-router";
 
 import AdminSidebar from "~/components/admin/AdminSidebar";
 import { useAuth } from "~/context/AuthContext";
+import { ADMIN_BASE_PATH, adminPath } from "~/config/site";
 
 const PAGE_TITLES = {
-  "/admin": "Dashboard",
-  "/admin/posts": "Blog Posts",
-  "/admin/posts/new": "New Post",
-  "/admin/products": "Products",
-  "/admin/products/new": "New Product",
-  "/admin/testimonials": "Testimonials",
+  [ADMIN_BASE_PATH]: "Dashboard",
+  [adminPath("posts")]: "Blog Posts",
+  [adminPath("posts/new")]: "New Post",
+  [adminPath("products")]: "Products",
+  [adminPath("products/new")]: "New Product",
+  [adminPath("testimonials")]: "Testimonials",
 };
 
 function getPageTitle(pathname) {
@@ -23,7 +24,7 @@ export default function AdminShell({ children }) {
   const location = useLocation();
   const { user } = useAuth();
   const title = getPageTitle(location.pathname);
-  const isDashboard = location.pathname === "/admin";
+  const isDashboard = location.pathname === ADMIN_BASE_PATH;
 
   return (
     <div className="admin-shell">

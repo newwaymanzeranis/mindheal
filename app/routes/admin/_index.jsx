@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
 import { ordersApi, postsApi, productsApi, testimonialsApi } from "~/lib/api";
+import { adminPath } from "~/config/site";
 import { formatPrice } from "~/utils/format";
 import {
   ADMIN_STATUS_LABELS,
@@ -53,7 +54,7 @@ const CONTENT_STAT_CARDS = [
     label: "Blog Posts",
     icon: "bi-journal-richtext",
     accent: "stat-accent-green",
-    href: "/admin/posts",
+    href: adminPath("posts"),
     action: "Manage posts",
   },
   {
@@ -61,7 +62,7 @@ const CONTENT_STAT_CARDS = [
     label: "Products",
     icon: "bi-box-seam",
     accent: "stat-accent-teal",
-    href: "/admin/products",
+    href: adminPath("products"),
     action: "Manage products",
   },
   {
@@ -69,7 +70,7 @@ const CONTENT_STAT_CARDS = [
     label: "Testimonials",
     icon: "bi-chat-heart",
     accent: "stat-accent-amber",
-    href: "/admin/testimonials",
+    href: adminPath("testimonials"),
     action: "Manage reviews",
   },
 ];
@@ -79,21 +80,21 @@ const QUICK_ACTIONS = [
     title: "All Orders",
     description: "View and update COD order status",
     icon: "bi-receipt",
-    to: "/admin/orders",
+    to: adminPath("orders"),
     variant: "primary",
   },
   {
     title: "New Blog Post",
     description: "Publish articles and healing stories",
     icon: "bi-pencil-square",
-    to: "/admin/posts/new",
+    to: adminPath("posts/new"),
     variant: "primary",
   },
   {
     title: "New Product",
     description: "Add Bach Flower mixtures to the store",
     icon: "bi-plus-circle",
-    to: "/admin/products/new",
+    to: adminPath("products/new"),
     variant: "outline",
   },
   {
@@ -194,7 +195,7 @@ export default function AdminDashboard() {
               Status-wise counts for Cash on Delivery orders
             </p>
           </div>
-          <Link to="/admin/orders" className="admin-section-link">
+          <Link to={adminPath("orders")} className="admin-section-link">
             All orders <i className="bi bi-arrow-right" />
           </Link>
         </div>
@@ -240,7 +241,7 @@ export default function AdminDashboard() {
                 return (
                   <Link
                     key={card.status}
-                    to={`/admin/orders?status=${card.status}`}
+                    to={`${adminPath("orders")}?status=${card.status}`}
                     className={`admin-stat-card ${card.accent}`}
                   >
                     <div className="admin-stat-card-top">
@@ -353,7 +354,7 @@ export default function AdminDashboard() {
             <ul className="admin-recent-orders">
               {orderStats.recentOrders.map((order) => (
                 <li key={order.id}>
-                  <Link to="/admin/orders" className="admin-recent-order-link">
+                  <Link to={adminPath("orders")} className="admin-recent-order-link">
                     <span className="admin-recent-order-no">
                       {order.orderNumber}
                     </span>
@@ -371,7 +372,7 @@ export default function AdminDashboard() {
               ))}
             </ul>
           )}
-          <Link to="/admin/orders" className="admin-summary-view-all">
+          <Link to={adminPath("orders")} className="admin-summary-view-all">
             View all orders
           </Link>
 

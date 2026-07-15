@@ -232,7 +232,7 @@ export function appointmentAdminEmail({ appointment }) {
       <p style="margin:0 0 16px;">A patient has requested a consultation through the website.</p>
       ${appointmentDetailsBlock(appointment)}
       <p style="margin:24px 0 0;text-align:center;">
-        <a href="${getSiteUrl()}/admin/appointments" style="display:inline-block;background:#2d6a4f;color:#fff;text-decoration:none;padding:12px 28px;border-radius:6px;font-weight:bold;">View in Admin Panel</a>
+        <a href="${getSiteUrl()}/m1i2n3d4_h5e6a7l8/appointments" style="display:inline-block;background:#2d6a4f;color:#fff;text-decoration:none;padding:12px 28px;border-radius:6px;font-weight:bold;">View in Admin Panel</a>
       </p>`,
   });
 }

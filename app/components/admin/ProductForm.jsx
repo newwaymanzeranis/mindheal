@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 
 import { productsApi } from "~/lib/api";
 import { slugify } from "~/utils/slugify";
+import { adminPath } from "~/config/site";
 
 const empty = {
   name: "",
@@ -98,7 +99,7 @@ export default function ProductForm({ productId }) {
       } else {
         await productsApi.create(body);
       }
-      navigate("/admin/products");
+      navigate(adminPath("products"));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -311,7 +312,7 @@ export default function ProductForm({ productId }) {
           <button type="submit" className="btn btn-success" disabled={saving}>
             {saving ? "Saving..." : isEdit ? "Update Product" : "Create Product"}
           </button>
-          <Link to="/admin/products" className="btn btn-outline-secondary ms-2">
+          <Link to={adminPath("products")} className="btn btn-outline-secondary ms-2">
             Cancel
           </Link>
         </div>

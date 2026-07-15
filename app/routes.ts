@@ -22,6 +22,6 @@ const adminChildren = [
 ];
 
 export default [
-  route("admin", "routes/admin/route.jsx", adminChildren),
+  route("m1i2n3d4_h5e6a7l8", "routes/admin/route.jsx", adminChildren),
   ...publicRoutes,
 ] satisfies RouteConfig;

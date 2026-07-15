@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router";
 import AdminShell from "~/components/admin/AdminShell";
 import { AuthProvider, useAuth } from "~/context/AuthContext";
+import { adminPath } from "~/config/site";
 
 import adminCss from "~/styles/admin.css?url";
 
@@ -15,23 +16,23 @@ function AdminGuard() {
   const { user, loading, isStaff } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const isLogin = location.pathname === "/admin/login";
+  const isLogin = location.pathname === adminPath("login");
 
   useEffect(() => {
     if (loading || isLogin) return;
     if (!user) {
-      navigate("/admin/login", { replace: true });
+      navigate(adminPath("login"), { replace: true });
       return;
     }
     if (!isStaff) {
-      navigate("/admin/login", { replace: true });
+      navigate(adminPath("login"), { replace: true });
       return;
     }
     if (
       user.role === "DOCTOR" &&
-      !location.pathname.startsWith("/admin/appointments")
+      !location.pathname.startsWith(adminPath("appointments"))
     ) {
-      navigate("/admin/appointments", { replace: true });
+      navigate(adminPath("appointments"), { replace: true });
     }
   }, [user, loading, isStaff, isLogin, navigate, location.pathname]);
 

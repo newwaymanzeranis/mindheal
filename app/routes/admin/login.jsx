@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
+import { adminPath } from "~/config/site";
 
 export default function AdminLogin() {
   const { login } = useAuth();
@@ -22,7 +23,7 @@ export default function AdminLogin() {
         setError("Staff access only (Admin or Doctor)");
         return;
       }
-      navigate(user.role === "DOCTOR" ? "/admin/appointments" : "/admin");
+      navigate(user.role === "DOCTOR" ? adminPath("appointments") : adminPath());
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {

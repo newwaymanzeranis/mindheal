@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router";
 
 import { useAuth } from "~/context/AuthContext";
+import { adminPath } from "~/config/site";
 
 const navLinkClass = ({ isActive }) => (isActive ? "active" : "");
 
@@ -10,7 +11,7 @@ export default function AdminSidebar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/admin/login");
+    navigate(adminPath("login"));
   };
 
   return (
@@ -25,40 +26,40 @@ export default function AdminSidebar() {
       <ul className="admin-nav">
         {isAdmin && (
           <li>
-            <NavLink to="/admin" end className={navLinkClass}>
+            <NavLink to={adminPath()} end className={navLinkClass}>
               <i className="bi bi-grid" /> Dashboard
             </NavLink>
           </li>
         )}
         <li>
-          <NavLink to="/admin/appointments" className={navLinkClass}>
+          <NavLink to={adminPath("appointments")} className={navLinkClass}>
             <i className="bi bi-calendar-check" /> Appointments
           </NavLink>
         </li>
         {isAdmin && (
           <>
             <li>
-              <NavLink to="/admin/posts" className={navLinkClass}>
+              <NavLink to={adminPath("posts")} className={navLinkClass}>
                 <i className="bi bi-journal-text" /> Blog Posts
               </NavLink>
             </li>
             <li>
-              <NavLink to="/admin/products" className={navLinkClass}>
+              <NavLink to={adminPath("products")} className={navLinkClass}>
                 <i className="bi bi-box-seam" /> Products
               </NavLink>
             </li>
             <li>
-              <NavLink to="/admin/testimonials" className={navLinkClass}>
+              <NavLink to={adminPath("testimonials")} className={navLinkClass}>
                 <i className="bi bi-chat-quote" /> Testimonials
               </NavLink>
             </li>
             <li>
-              <NavLink to="/admin/team" className={navLinkClass}>
+              <NavLink to={adminPath("team")} className={navLinkClass}>
                 <i className="bi bi-people" /> Team Members
               </NavLink>
             </li>
             <li>
-              <NavLink to="/admin/orders" className={navLinkClass}>
+              <NavLink to={adminPath("orders")} className={navLinkClass}>
                 <i className="bi bi-bag-check" /> Orders
               </NavLink>
             </li>

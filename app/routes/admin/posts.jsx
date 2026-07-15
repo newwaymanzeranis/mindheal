@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 import { postsApi } from "~/lib/api";
+import { adminPath } from "~/config/site";
 
 export default function AdminPosts() {
   const [posts, setPosts] = useState([]);
@@ -35,7 +36,7 @@ export default function AdminPosts() {
     <>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="mb-0">Blog Posts</h2>
-        <Link to="/admin/posts/new" className="btn btn-success">
+        <Link to={adminPath("posts/new")} className="btn btn-success">
           <i className="bi bi-plus-lg" /> Add Post
         </Link>
       </div>
@@ -64,7 +65,7 @@ export default function AdminPosts() {
                   </td>
                   <td>{post.author || "—"}</td>
                   <td className="admin-actions">
-                    <Link to={`/admin/posts/${post.id}/edit`} className="btn btn-sm btn-outline-primary">
+                    <Link to={adminPath(`posts/${post.id}/edit`)} className="btn btn-sm btn-outline-primary">
                       Edit
                     </Link>
                     <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(post.id)}>
